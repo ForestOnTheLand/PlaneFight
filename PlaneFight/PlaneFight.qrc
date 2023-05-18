@@ -1,0 +1,5 @@
+<RCC>
+    <qresource prefix="/PlaneFight">
+        <file>img/player.png</file>
+    </qresource>
+</RCC>
