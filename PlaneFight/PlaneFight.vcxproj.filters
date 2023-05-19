@@ -85,6 +85,9 @@
     <ClCompile Include="_Effect.cpp">
       <Filter>Source Files\Base</Filter>
     </ClCompile>
+    <ClCompile Include="ExplosionEffect.cpp">
+      <Filter>Source Files\Display</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="config.h">
@@ -107,6 +110,9 @@
     </ClInclude>
     <ClInclude Include="_Effect.h">
       <Filter>Header Files\Base</Filter>
+    </ClInclude>
+    <ClInclude Include="ExplosionEffect.h">
+      <Filter>Header Files\Display</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

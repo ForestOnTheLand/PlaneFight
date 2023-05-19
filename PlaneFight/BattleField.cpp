@@ -30,6 +30,7 @@ void BattleField::generateEnemy() {
 void BattleField::checkDeadPlane() {
 	for (auto iter = _enemies.begin(); iter != _enemies.end();) {
 		if ((*iter)->dead()) {
+			_effects.push_back(new ExplosionEffect((*iter)->rect().center()));
 			delete *iter;
 			iter = _enemies.erase(iter);
 		} else {
@@ -73,6 +74,18 @@ void BattleField::gameOver() {
 	exit(0);
 }
 
+void BattleField::paintEffect(QPainter& painter) {
+	for (auto iter = _effects.begin(); iter != _effects.end();) {
+		if ((*iter)->valid()) {
+			(*iter)->display(painter);
+			++iter;
+		} else {
+			delete *iter;
+			iter = _effects.erase(iter);
+		}
+	}
+}
+
 void BattleField::paintEvent(QPaintEvent* event) {
 	QPainter painter(this);
 	painter.drawPixmap(PlayerPlane::plane()->rect(), PlayerPlane::plane()->picture());
@@ -80,6 +93,7 @@ void BattleField::paintEvent(QPaintEvent* event) {
 		painter.drawPixmap(enemy->rect(), enemy->picture());
 	}
 	PlayerPlane::plane()->drawMissiles(painter);
+	paintEffect(painter);
 }
 
 void BattleField::mouseMoveEvent(QMouseEvent* event) {

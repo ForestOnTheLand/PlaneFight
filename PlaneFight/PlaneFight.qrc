@@ -3,5 +3,7 @@
         <file>img/player.png</file>
         <file>img/enemy.png</file>
         <file>img/missile_0.png</file>
+        <file>img/explosion_1.png</file>
+        <file>img/explosion_2.png</file>
     </qresource>
 </RCC>

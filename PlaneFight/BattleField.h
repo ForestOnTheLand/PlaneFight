@@ -6,6 +6,7 @@
 #include <qevent.h>
 #include "ui_BattleField.h"
 #include "EnemyPlane.h"
+#include "ExplosionEffect.h"
 #include <vector>
 
 QT_BEGIN_NAMESPACE
@@ -21,6 +22,7 @@ private:
 	QTimer* _timer;
 	Ui::BattleFieldClass* ui;
 	std::vector<EnemyPlane*> _enemies;
+	std::vector<_Effect*> _effects;
 
 public:
 	BattleField(QWidget* parent = nullptr);
@@ -33,6 +35,7 @@ public:
 	void updateAll();
 	void checkCollision();
 	void gameOver();
+	void paintEffect(QPainter& painter);
 
 public:
 	void paintEvent(QPaintEvent* event) override;
