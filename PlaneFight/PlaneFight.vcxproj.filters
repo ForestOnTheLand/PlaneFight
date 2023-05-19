@@ -45,10 +45,10 @@
     <Filter Include="Source Files\Missile">
       <UniqueIdentifier>{7c03453e-d143-446b-a97c-b933ab415028}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Display">
+    <Filter Include="Header Files\Effect">
       <UniqueIdentifier>{b4f3edb3-d1f2-46af-a2d9-6ff8519fd046}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Display">
+    <Filter Include="Source Files\Effect">
       <UniqueIdentifier>{40070add-d2ca-4209-aff5-2b4a38fedb69}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
@@ -86,7 +86,7 @@
       <Filter>Source Files\Base</Filter>
     </ClCompile>
     <ClCompile Include="ExplosionEffect.cpp">
-      <Filter>Source Files\Display</Filter>
+      <Filter>Source Files\Effect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -112,7 +112,7 @@
       <Filter>Header Files\Base</Filter>
     </ClInclude>
     <ClInclude Include="ExplosionEffect.h">
-      <Filter>Header Files\Display</Filter>
+      <Filter>Header Files\Effect</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
