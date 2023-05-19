@@ -7,8 +7,8 @@ const QPixmap& _Plane::picture() const {
 const QRect& _Plane::rect() const {
 	return _rect;
 }
-const QPolygon& _Plane::border() const {
-	return _border;
+int& _Plane::health() {
+	return _health;
 }
 
 /**
@@ -16,11 +16,10 @@ const QPolygon& _Plane::border() const {
  *
  * \param __image_path :  Path of the picture of plane
  */
-_Plane::_Plane(const char* const __image_path) {
+_Plane::_Plane(const char* const __image_path, int __health) : _health(__health) {
 	_picture.load(__image_path);
 	_rect.setWidth(_picture.width());
 	_rect.setHeight(_picture.height());
-	_rect.moveTo(0, 0);
 }
 
 /**
@@ -29,7 +28,7 @@ _Plane::_Plane(const char* const __image_path) {
  * \param __y :  y axis coordinate of the center of plane
  */
 void _Plane::setPosition(int __x, int __y) {
-	_rect.moveTo(__x - _picture.width() / 2, __y - _picture.height() / 2);
+	_rect.moveCenter({__x, __y});
 }
 
 /**
@@ -56,4 +55,19 @@ void _Plane::drawMissiles(QPainter& painter) {
 	for (_Missile* missile : _missiles) {
 		painter.drawPixmap(missile->rect(), missile->picture());
 	}
+}
+
+void _Plane::hurt(_Plane* __other) {
+	if (_rect.intersects(__other->rect())) {
+		__other->health() = 0;
+		this->_health = 0;
+	}
+	for (_Missile* missile : _missiles) {
+		if (missile->rect().intersects(__other->rect()))
+			__other->health() -= missile->attack();
+	}
+}
+
+bool _Plane::dead() {
+	return (_health <= 0) || (_rect.y() > BATTLEFIELD_HEIGHT + 5);
 }

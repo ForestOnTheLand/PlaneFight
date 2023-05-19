@@ -3,7 +3,7 @@
 
 class EnemyPlane : public _Plane {
 public:
-	EnemyPlane(const char* __image_path, QPoint __init_pos);
+	EnemyPlane(const char* __image_path, int __health, QPoint __init_pos);
 
 public:
 	virtual void updatePosition() = 0;
@@ -14,7 +14,7 @@ private:
 	int _timer, _speed_x, _speed_y;
 
 public:
-	TrivialEnemyPlane(const char* __image_path);
+	TrivialEnemyPlane(const char* __image_path, int __health);
 
 public:
 	void updatePosition() final;

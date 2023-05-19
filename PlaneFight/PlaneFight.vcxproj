@@ -90,6 +90,7 @@
     <ClCompile Include="EnemyPlane.cpp" />
     <ClCompile Include="PlayerPlane.cpp" />
     <ClCompile Include="SteadyMissile.cpp" />
+    <ClCompile Include="_Effect.cpp" />
     <ClCompile Include="_Missile.cpp" />
     <ClCompile Include="_Plane.cpp" />
     <QtRcc Include="PlaneFight.qrc" />
@@ -102,6 +103,7 @@
     <ClInclude Include="EnemyPlane.h" />
     <ClInclude Include="PlayerPlane.h" />
     <ClInclude Include="SteadyMissile.h" />
+    <ClInclude Include="_Effect.h" />
     <ClInclude Include="_Missile.h" />
     <ClInclude Include="_Plane.h" />
   </ItemGroup>

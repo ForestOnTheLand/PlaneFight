@@ -28,8 +28,11 @@ public:
 
 public:
 	void generateEnemy();
+	void checkDeadPlane();
 	void start();
 	void updateAll();
+	void checkCollision();
+	void gameOver();
 
 public:
 	void paintEvent(QPaintEvent* event) override;

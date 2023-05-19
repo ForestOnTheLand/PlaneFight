@@ -10,14 +10,18 @@ bool _Missile::free() const {
 	return _free;
 }
 
+int _Missile::attack() const {
+	return _attack;
+}
+
+
 /**
- * Constructor of missile
- *
+ * \brief Constructor of missile
  * \param __image_path :  Path of the image of missile
  * \param __init_x :  initial x axis coordinate of the center of missile
  * \param __init_y :  initial y axis coordinate of the center of missile
  */
-_Missile::_Missile(const char* const __image_path, int __init_x, int __init_y) {
+_Missile::_Missile(const char* const __image_path, int __init_x, int __init_y) : _free(false) {
 	_picture.load(__image_path);
 	_rect.setWidth(_picture.width());
 	_rect.setHeight(_picture.height());

@@ -1,9 +1,12 @@
 #include "BattleField.h"
 #include "PlayerPlane.h"
 
+static constexpr const char* enemy_plane_path = ":/PlaneFight/img/enemy.png";    // @IMAGE
+
 BattleField::BattleField(QWidget* parent)
     : QWidget(parent), ui(new Ui::BattleFieldClass()), _timer(new QTimer) {
 	ui->setupUi(this);
+	this->setFixedSize(BATTLEFIELD_WIDTH, BATTLEFIELD_HEIGHT);
 	PlayerPlane::init();
 	start();
 }
@@ -18,16 +21,31 @@ void BattleField::generateEnemy() {
 	static int timer = 0;
 	if (++timer >= 100) {
 		timer = 0;
-		EnemyPlane* enemy = new TrivialEnemyPlane("");
+		EnemyPlane* enemy = new TrivialEnemyPlane(enemy_plane_path, 50);
 		enemy->setPosition(rand() % BATTLEFIELD_WIDTH, 10);
 		_enemies.push_back(enemy);
 	}
+}
+
+void BattleField::checkDeadPlane() {
+	for (auto iter = _enemies.begin(); iter != _enemies.end();) {
+		if ((*iter)->dead()) {
+			delete *iter;
+			iter = _enemies.erase(iter);
+		} else {
+			++iter;
+		}
+	}
+	if (PlayerPlane::plane()->dead())
+		gameOver();
 }
 
 void BattleField::updateAll() {
 	PlayerPlane::plane()->shootMissiles();
 	PlayerPlane::plane()->updateMissiles();
 	generateEnemy();
+	checkCollision();
+	checkDeadPlane();
 	for (EnemyPlane* enemy : _enemies) {
 		enemy->updatePosition();
 	}
@@ -42,6 +60,17 @@ void BattleField::start() {
 		updateAll();
 		update();
 	});
+}
+
+void BattleField::checkCollision() {
+	for (EnemyPlane* enemy : _enemies) {
+		enemy->hurt(PlayerPlane::plane());
+		PlayerPlane::plane()->hurt(enemy);
+	}
+}
+
+void BattleField::gameOver() {
+	exit(0);
 }
 
 void BattleField::paintEvent(QPaintEvent* event) {

@@ -45,6 +45,12 @@
     <Filter Include="Source Files\Missile">
       <UniqueIdentifier>{7c03453e-d143-446b-a97c-b933ab415028}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Display">
+      <UniqueIdentifier>{b4f3edb3-d1f2-46af-a2d9-6ff8519fd046}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Display">
+      <UniqueIdentifier>{40070add-d2ca-4209-aff5-2b4a38fedb69}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="PlaneFight.qrc">
@@ -76,6 +82,9 @@
     <ClCompile Include="EnemyPlane.cpp">
       <Filter>Source Files\Plane</Filter>
     </ClCompile>
+    <ClCompile Include="_Effect.cpp">
+      <Filter>Source Files\Base</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="config.h">
@@ -95,6 +104,9 @@
     </ClInclude>
     <ClInclude Include="PlayerPlane.h">
       <Filter>Header Files\Plane</Filter>
+    </ClInclude>
+    <ClInclude Include="_Effect.h">
+      <Filter>Header Files\Base</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
