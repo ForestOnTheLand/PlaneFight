@@ -19,4 +19,5 @@ public:
 
 public:
 	void shootMissiles() final;
+	QPolygon border() const final;
 };

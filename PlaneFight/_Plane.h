@@ -18,20 +18,22 @@ protected:
 	int _health;
 
 public:
-	const QPixmap& picture() const;
-	const QRect& rect() const;
-
-public:
 	_Plane(const char* const __image_path, int __health);
 	virtual ~_Plane() = default;
 
 public:
-	virtual void shootMissiles() = 0;
+	const QPixmap& picture() const;
+	const QRect& rect() const;
+	virtual QPolygon border() const = 0;
 	int& health();
+	bool dead() const;
+
+public:
+	virtual void shootMissiles() = 0;
 	void setPosition(int __x, int __y);
 	void setPosition(QPoint __p);
+	void moveBy(int __dx, int __dy);
 	void updateMissiles();
 	void drawMissiles(QPainter& painter);
 	void hurt(_Plane* __other);
-	bool dead();
 };

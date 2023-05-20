@@ -17,11 +17,38 @@ BattleField::~BattleField() {
 	delete _timer;
 }
 
+void BattleField::start() {
+	_timer->setInterval(UPDATE_RATE);
+	setMouseTracking(true);
+	_timer->start();
+
+	connect(_timer, &QTimer::timeout, [=]() {
+		updateAll();
+		update();
+	});
+}
+
+void BattleField::updateAll() {
+	PlayerPlane::plane()->shootMissiles();
+	PlayerPlane::plane()->updateMissiles();
+	processKeyEvent();
+	generateEnemy();
+	checkCollision();
+	checkDeadPlane();
+	for (EnemyPlane* enemy : _enemies) {
+		enemy->updatePosition();
+	}
+}
+
+void BattleField::gameOver() {
+	exit(0);
+}
+
 void BattleField::generateEnemy() {
 	static int timer = 0;
-	if (++timer >= 100) {
+	if (++timer >= 60) {
 		timer = 0;
-		EnemyPlane* enemy = new TrivialEnemyPlane(enemy_plane_path, 50);
+		EnemyPlane* enemy = new TrivialEnemyPlane(enemy_plane_path, 60);
 		enemy->setPosition(rand() % BATTLEFIELD_WIDTH, 10);
 		_enemies.push_back(enemy);
 	}
@@ -41,37 +68,11 @@ void BattleField::checkDeadPlane() {
 		gameOver();
 }
 
-void BattleField::updateAll() {
-	PlayerPlane::plane()->shootMissiles();
-	PlayerPlane::plane()->updateMissiles();
-	generateEnemy();
-	checkCollision();
-	checkDeadPlane();
-	for (EnemyPlane* enemy : _enemies) {
-		enemy->updatePosition();
-	}
-}
-
-void BattleField::start() {
-	_timer->setInterval(UPDATE_RATE);
-	setMouseTracking(true);
-	_timer->start();
-
-	connect(_timer, &QTimer::timeout, [=]() {
-		updateAll();
-		update();
-	});
-}
-
 void BattleField::checkCollision() {
 	for (EnemyPlane* enemy : _enemies) {
 		enemy->hurt(PlayerPlane::plane());
 		PlayerPlane::plane()->hurt(enemy);
 	}
-}
-
-void BattleField::gameOver() {
-	exit(0);
 }
 
 void BattleField::paintEffect(QPainter& painter) {
@@ -86,7 +87,19 @@ void BattleField::paintEffect(QPainter& painter) {
 	}
 }
 
-void BattleField::paintEvent(QPaintEvent* event) {
+void BattleField::processKeyEvent() {
+	if (_key.W)
+		PlayerPlane::plane()->moveBy(0, -6);
+	if (_key.A)
+		PlayerPlane::plane()->moveBy(-6, 0);
+	if (_key.S)
+		PlayerPlane::plane()->moveBy(0, 6);
+	if (_key.D)
+		PlayerPlane::plane()->moveBy(6, 0);
+}
+
+
+void BattleField::paintEvent(QPaintEvent* _event) {
 	QPainter painter(this);
 	painter.drawPixmap(PlayerPlane::plane()->rect(), PlayerPlane::plane()->picture());
 	for (EnemyPlane* enemy : _enemies) {
@@ -96,18 +109,35 @@ void BattleField::paintEvent(QPaintEvent* event) {
 	paintEffect(painter);
 }
 
-void BattleField::mouseMoveEvent(QMouseEvent* event) {
-	int x = event->x(), y = event->y();
+void BattleField::mouseMoveEvent(QMouseEvent* _event) {
+	if (play_mode == mouse_mode) {
+		int x = _event->x(), y = _event->y();
+		PlayerPlane::plane()->setPosition(x, y);
+	}
+}
 
-	if (x <= 0)
-		x = 0;
-	else if (x >= BATTLEFIELD_WIDTH)
-		x = BATTLEFIELD_WIDTH;
+void BattleField::keyPressEvent(QKeyEvent* _event) {
+	if (play_mode == key_mode) {
+		switch (_event->key()) {
+			case Qt::Key_W: _key.W = true; break;
+			case Qt::Key_A: _key.A = true; break;
+			case Qt::Key_S: _key.S = true; break;
+			case Qt::Key_D: _key.D = true; break;
+			case Qt::Key_Escape: gameOver(); break;
+			default: break;
+		}
+	}
+}
 
-	if (y <= 0)
-		y = 0;
-	else if (y >= BATTLEFIELD_HEIGHT)
-		y = BATTLEFIELD_HEIGHT;
-
-	PlayerPlane::plane()->setPosition(x, y);
+void BattleField::keyReleaseEvent(QKeyEvent* _event) {
+	if (play_mode == key_mode) {
+		switch (_event->key()) {
+			case Qt::Key_W: _key.W = false; break;
+			case Qt::Key_A: _key.A = false; break;
+			case Qt::Key_S: _key.S = false; break;
+			case Qt::Key_D: _key.D = false; break;
+			case Qt::Key_Escape: gameOver(); break;
+			default: break;
+		}
+	}
 }

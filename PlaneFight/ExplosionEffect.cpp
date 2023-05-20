@@ -13,5 +13,5 @@ void ExplosionEffect::display(QPainter& painter) {
 		}
 	}
 	QPixmap& picture = *_pictures[_picture_index];
-	painter.drawPixmap(_pos, picture);
+	painter.drawPixmap(_pos.x() - picture.width() / 2, _pos.y() - picture.height() / 2, picture);
 }

@@ -31,6 +31,8 @@
         // A.cpp
         #include "A.h"
         int A::val = 1; // Must initialize outside the class!!!
+    - 注意分文件编写的函数中, 声明写缺省参数, 实现中不写.
+- 类的成员变量最好是`private`/`protected`, 通过成员函数获取, 防止不恰当的修改.  
 - 如果是一个文件内的局部(**只在**该文件生效)的变量, 可以声明为`static`. 编译期常量推荐用`constexpr`替代`const`. 如: 
     ```cpp
     // A.cpp

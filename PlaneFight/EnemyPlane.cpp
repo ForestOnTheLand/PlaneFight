@@ -15,6 +15,10 @@ void TrivialEnemyPlane::shootMissiles() {
 	return;
 }
 
+QPolygon TrivialEnemyPlane::border() const {
+	return QPolygon(_rect);
+}
+
 void TrivialEnemyPlane::updatePosition() {
 	if (--_timer == 0) {
 		_timer = rand() % 50 + 1;

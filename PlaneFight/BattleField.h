@@ -1,5 +1,6 @@
 #pragma once
 
+#include "KeyState.h"
 #include <QWidget>
 #include <qtimer.h>
 #include <qpainter.h>
@@ -23,21 +24,27 @@ private:
 	Ui::BattleFieldClass* ui;
 	std::vector<EnemyPlane*> _enemies;
 	std::vector<_Effect*> _effects;
+	KeyState _key;
 
 public:
 	BattleField(QWidget* parent = nullptr);
 	~BattleField();
 
 public:
-	void generateEnemy();
-	void checkDeadPlane();
 	void start();
 	void updateAll();
-	void checkCollision();
 	void gameOver();
+
+private:
+	void generateEnemy();
+	void checkDeadPlane();
+	void checkCollision();
 	void paintEffect(QPainter& painter);
+	void processKeyEvent();
 
 public:
-	void paintEvent(QPaintEvent* event) override;
-	void mouseMoveEvent(QMouseEvent* event) override;
+	void paintEvent(QPaintEvent* _event) final;
+	void mouseMoveEvent(QMouseEvent* _event) final;
+	void keyPressEvent(QKeyEvent* _event) final;
+	void keyReleaseEvent(QKeyEvent* _event) final;
 };

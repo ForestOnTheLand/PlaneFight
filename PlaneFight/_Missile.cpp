@@ -1,19 +1,11 @@
 #include "_Missile.h"
+#include "_Plane.h"
 
-const QPixmap& _Missile::picture() const {
-	return _picture;
-}
-const QRect& _Missile::rect() const {
-	return _rect;
-}
-bool _Missile::free() const {
-	return _free;
-}
-
-int _Missile::attack() const {
-	return _attack;
-}
-
+/*
+    ######################################################################
+    ##                          Class _Missile                          ##
+    ######################################################################
+*/
 
 /**
  * \brief Constructor of missile
@@ -26,4 +18,14 @@ _Missile::_Missile(const char* const __image_path, int __init_x, int __init_y) :
 	_rect.setWidth(_picture.width());
 	_rect.setHeight(_picture.height());
 	_rect.moveTo(__init_x - _picture.width() / 2, __init_y - _picture.height() / 2);
+}
+
+const QPixmap& _Missile::picture() const {
+	return _picture;
+}
+const QRect& _Missile::rect() const {
+	return _rect;
+}
+bool _Missile::free() const {
+	return _free;
 }

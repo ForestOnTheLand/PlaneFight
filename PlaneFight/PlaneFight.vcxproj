@@ -89,6 +89,7 @@
     <ClCompile Include="config.cpp" />
     <ClCompile Include="EnemyPlane.cpp" />
     <ClCompile Include="ExplosionEffect.cpp" />
+    <ClCompile Include="KeyState.cpp" />
     <ClCompile Include="PlayerPlane.cpp" />
     <ClCompile Include="SteadyMissile.cpp" />
     <ClCompile Include="_Effect.cpp" />
@@ -103,6 +104,7 @@
     <ClInclude Include="config.h" />
     <ClInclude Include="EnemyPlane.h" />
     <ClInclude Include="ExplosionEffect.h" />
+    <ClInclude Include="KeyState.h" />
     <ClInclude Include="PlayerPlane.h" />
     <ClInclude Include="SteadyMissile.h" />
     <ClInclude Include="_Effect.h" />
