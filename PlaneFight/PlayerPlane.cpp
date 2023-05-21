@@ -4,7 +4,7 @@
 static constexpr const char* player_plane_path = ":/PlaneFight/img/player.png";         // @IMAGE
 static constexpr const char* player_missile_path = ":/PlaneFight/img/missile_0.png";    // @IMAGE
 static constexpr int player_plane_health = 500;
-static constexpr int player_plane_shoot_interval = 30;
+static constexpr int player_plane_shoot_interval = 20;
 
 PlayerPlane* PlayerPlane::_plane = nullptr;
 
@@ -13,7 +13,8 @@ PlayerPlane::PlayerPlane(const char* const __image_path)
 
 void PlayerPlane::init() {
 	_plane = new PlayerPlane(player_plane_path);
-	_plane->setPosition(BATTLEFIELD_WIDTH / 2, BATTLEFIELD_HEIGHT - _plane->rect().height() / 2);
+	_plane->setPosition(battlefield_border.center().x(),
+	                    battlefield_border.bottom() - _plane->rect().height());
 }
 
 void PlayerPlane::free() {
@@ -34,6 +35,13 @@ PlayerPlane* PlayerPlane::plane() {
 	return _plane;
 }
 
-QPolygon PlayerPlane::border() const {
+QPolygon PlayerPlane::box() const {
 	return QPolygon({_rect.center()});
+}
+
+void PlayerPlane::_setPosition(int __x, int __y) {
+	_rect.moveCenter({_checked(__x, battlefield_border.left() + _rect.width() / 2,
+	                           battlefield_border.right() - _rect.width() / 2),
+	                  _checked(__y, battlefield_border.top() + _rect.height() / 2,
+	                           battlefield_border.bottom() - _rect.height() / 2)});
 }

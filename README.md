@@ -26,3 +26,4 @@
 
 - [代码要求及建议](./doc/code_style.md)
 - [代码文件说明](./doc/code_structure.md)
+- [代码更新日志](./doc/update_log.md)

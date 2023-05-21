@@ -1,12 +1,12 @@
 # 代码结构说明
 
-更新于 `2023/5/19 21:10`
+更新于 `2023/5/21 17:30`
 
 > 注意: 以下代码文件均位于[`../PlaneFight`](../PlaneFight)处, 位于同一文件夹中. 以下结构是`VS`解决方案中代码虚拟层次结构, 不代表文件夹中实际位置. 打开`VS`解决方案资源管理器即可看到这一个由"筛选器"(`Filter`)组成的结构. 
 
 ## `Form Files`
 
-> `.ui`文件均存于此处. 用于编辑界面(虽然基本都是图片, 没怎么用过这些), 在`Qt Designer`中打开(`VS`中需设置在`Qt Designer`中打开). 
+> `.ui`文件均存于此处. 用于编辑界面(虽然基本都是图片, 没怎么用过这些), 在`Qt Designer`中打开(`VS`中需特别设置在`Qt Designer`中打开). 
 
 - `BattleField.ui`
 
@@ -27,11 +27,14 @@
     - 子类需要实现: 
         ```cpp
         void shootMissiles();
+        void _setPosition(int __x, int __y); (protected)
         ```
 - `_Missile.h`&`_Missle.cpp` 实现了子弹的基类`_Missile`.
     - 子类需要实现: 
         ```cpp
         void updatePosition();
+        void hurt(_Plane* plane);
+        QPolygon box() const; // 碰撞箱
         ```
 
 ### `Effect`
@@ -60,6 +63,10 @@
         ```cpp
         void updatePosition(); 
         ```
+        子类可选择实现
+        ```cpp
+        void _setPosition(int __x, int __y); (protected)
+        ```
     - 普通敌机`TrivialEnemyPlane`. 它继承自`EnemyPlane`. 
         - 位置更新策略: 竖直方向上匀速, 水平方向随机移动. 
 
@@ -75,11 +82,19 @@
 
 - `BattleField.h`&`BattleField.cpp` 实现了战场主界面
 
+### `Util`
+
+> 配置文件及好用的小函数
+
+#### `config.h`&`config.cpp`
+
+> 配置文件, **全项目通用**的数值常量等在此定义. **仅在单个文件使用**的变量最好在文件开头声明并定义为`static constexpr T t = ...`, 不要污染全局. 
+
+#### `util.h`&`util.cpp`
+
+> 有一些好用的小函数或结构体. 
+
 ### `main.cpp`
 
 现在处于测试阶段, 随意更改, 对已完成部分测试. 
 希望最终不要在`main.cpp`中写大量代码. 
-
-### `config.h`&`config.cpp`
-
-配置文件, **全项目通用**的数值常量等在此定义. **仅在单个文件使用**的变量最好在文件开头声明并定义为`static constexpr T t = ...`, 不要污染全局. 

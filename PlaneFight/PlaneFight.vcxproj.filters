@@ -91,7 +91,7 @@
     <ClCompile Include="ExplosionEffect.cpp">
       <Filter>Source Files\Effect</Filter>
     </ClCompile>
-    <ClCompile Include="KeyState.cpp">
+    <ClCompile Include="util.cpp">
       <Filter>Source Files\Util</Filter>
     </ClCompile>
     <ClCompile Include="config.cpp">
@@ -120,7 +120,7 @@
     <ClInclude Include="ExplosionEffect.h">
       <Filter>Header Files\Effect</Filter>
     </ClInclude>
-    <ClInclude Include="KeyState.h">
+    <ClInclude Include="util.h">
       <Filter>Header Files\Util</Filter>
     </ClInclude>
     <ClInclude Include="config.h">

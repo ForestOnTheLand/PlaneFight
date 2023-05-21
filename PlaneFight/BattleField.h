@@ -1,6 +1,6 @@
 #pragma once
 
-#include "KeyState.h"
+#include "util.h"
 #include <QWidget>
 #include <qtimer.h>
 #include <qpainter.h>

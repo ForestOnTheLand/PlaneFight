@@ -1,4 +1,6 @@
 #pragma once
+
+#include "util.h"
 #include "_Plane.h"
 
 /**
@@ -9,6 +11,7 @@ class PlayerPlane : public _Plane {
 private:
 	PlayerPlane(const char* const __image_path);
 	static PlayerPlane* _plane;
+	void _setPosition(int __x, int __y) override;
 
 public:
 	static PlayerPlane* plane();
@@ -19,5 +22,5 @@ public:
 
 public:
 	void shootMissiles() final;
-	QPolygon border() const final;
+	QPolygon box() const final;
 };

@@ -2,6 +2,9 @@
 #include "_Plane.h"
 
 class EnemyPlane : public _Plane {
+protected:
+	void _setPosition(int __x, int __y) override;
+
 public:
 	EnemyPlane(const char* __image_path, int __health, QPoint __init_pos);
 
@@ -19,5 +22,5 @@ public:
 public:
 	void updatePosition() final;
 	void shootMissiles() final;
-	QPolygon border() const final;
+	QPolygon box() const final;
 };

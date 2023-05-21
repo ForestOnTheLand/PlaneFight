@@ -1,7 +1,7 @@
 #pragma once
+#include <qrect.h>
 
-extern const int BATTLEFIELD_HEIGHT;
-extern const int BATTLEFIELD_WIDTH;
+inline constexpr QRect battlefield_border(10, 10, 480, 680);
 extern const int UPDATE_RATE;
 
 enum play_mode_t { mouse_mode, key_mode };

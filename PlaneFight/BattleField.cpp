@@ -6,7 +6,7 @@ static constexpr const char* enemy_plane_path = ":/PlaneFight/img/enemy.png";   
 BattleField::BattleField(QWidget* parent)
     : QWidget(parent), ui(new Ui::BattleFieldClass()), _timer(new QTimer) {
 	ui->setupUi(this);
-	this->setFixedSize(BATTLEFIELD_WIDTH, BATTLEFIELD_HEIGHT);
+	this->setFixedSize(500, 800);
 	PlayerPlane::init();
 	start();
 }
@@ -49,7 +49,7 @@ void BattleField::generateEnemy() {
 	if (++timer >= 60) {
 		timer = 0;
 		EnemyPlane* enemy = new TrivialEnemyPlane(enemy_plane_path, 60);
-		enemy->setPosition(rand() % BATTLEFIELD_WIDTH, 10);
+		enemy->setPosition(randint(battlefield_border.left(), battlefield_border.right()), 10);
 		_enemies.push_back(enemy);
 	}
 }
@@ -57,7 +57,8 @@ void BattleField::generateEnemy() {
 void BattleField::checkDeadPlane() {
 	for (auto iter = _enemies.begin(); iter != _enemies.end();) {
 		if ((*iter)->dead()) {
-			_effects.push_back(new ExplosionEffect((*iter)->rect().center()));
+			if ((*iter)->health() <= 0)
+				_effects.push_back(new ExplosionEffect((*iter)->rect().center()));
 			delete *iter;
 			iter = _enemies.erase(iter);
 		} else {
@@ -101,6 +102,7 @@ void BattleField::processKeyEvent() {
 
 void BattleField::paintEvent(QPaintEvent* _event) {
 	QPainter painter(this);
+	painter.drawRect(battlefield_border);
 	painter.drawPixmap(PlayerPlane::plane()->rect(), PlayerPlane::plane()->picture());
 	for (EnemyPlane* enemy : _enemies) {
 		painter.drawPixmap(enemy->rect(), enemy->picture());

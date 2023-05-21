@@ -22,23 +22,12 @@ _Plane::_Plane(const char* const __image_path, int __health) : _health(__health)
 	_rect.setHeight(_picture.height());
 }
 
-/**
- *
- * \param __x :  x axis coordinate of the center of plane
- * \param __y :  y axis coordinate of the center of plane
- */
-void _Plane::setPosition(int __x, int __y) {
-	__x = __x <= 0 ? 0 : __x >= BATTLEFIELD_WIDTH ? BATTLEFIELD_WIDTH : __x;
-	__y = __y <= 0 ? 0 : __y >= BATTLEFIELD_HEIGHT ? BATTLEFIELD_HEIGHT : __y;
-	_rect.moveCenter({__x, __y});
+void _Plane::setPosition(QPoint __p) {
+	_setPosition(__p.x(), __p.y());
 }
 
-/**
- *
- * \param __p :  coordinate of the center of plane
- */
-void _Plane::setPosition(QPoint __p) {
-	setPosition(__p.x(), __p.y());
+void _Plane::setPosition(int __x, int __y) {
+	_setPosition(__x, __y);
 }
 
 /**
@@ -47,7 +36,7 @@ void _Plane::setPosition(QPoint __p) {
  * \param __dy : change of y coordinate
  */
 void _Plane::moveBy(int __dx, int __dy) {
-	setPosition(_rect.center().x() + __dx, _rect.center().y() + __dy);
+	_setPosition(_rect.center().x() + __dx, _rect.center().y() + __dy);
 }
 
 
@@ -70,7 +59,7 @@ void _Plane::drawMissiles(QPainter& painter) {
 }
 
 void _Plane::hurt(_Plane* __other) {
-	if (border().intersects(__other->border())) {
+	if (box().intersects(__other->box())) {
 		__other->health() = 0;
 		this->_health = 0;
 	}
@@ -80,5 +69,5 @@ void _Plane::hurt(_Plane* __other) {
 }
 
 bool _Plane::dead() const {
-	return (_health <= 0) || (_rect.y() > BATTLEFIELD_HEIGHT + 5);
+	return (_health <= 0) || (_rect.y() >= battlefield_border.bottom());
 }
