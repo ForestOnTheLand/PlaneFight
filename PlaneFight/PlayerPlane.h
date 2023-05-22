@@ -21,6 +21,6 @@ public:
 	PlayerPlane& operator=(const PlayerPlane&) = delete;
 
 public:
-	void shootMissiles() final;
+	void shootMissiles();
 	QPolygon box() const final;
 };

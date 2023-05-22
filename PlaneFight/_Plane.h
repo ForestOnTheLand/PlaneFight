@@ -12,9 +12,8 @@ class _Missile;
  */
 class _Plane {
 protected:
-	QPixmap _picture;                    // Picture of plane
-	QRect _rect;                         // Border of picture
-	std::vector<_Missile*> _missiles;    // Missiles of plane
+	QPixmap _picture;    // Picture of plane
+	QRect _rect;         // Border of picture
 	int _health;
 
 protected:
@@ -32,11 +31,8 @@ public:
 	bool dead() const;
 
 public:
-	virtual void shootMissiles() = 0;
 	void setPosition(int __x, int __y);
 	void setPosition(QPoint p);
 	void moveBy(int __dx, int __dy);
-	void updateMissiles();
-	void drawMissiles(QPainter& painter);
 	void hurt(_Plane* __other);
 };

@@ -8,6 +8,7 @@
 #include "ui_BattleField.h"
 #include "EnemyPlane.h"
 #include "ExplosionEffect.h"
+#include "_Missile.h"
 #include <vector>
 
 QT_BEGIN_NAMESPACE
@@ -15,6 +16,8 @@ namespace Ui {
 	class BattleFieldClass;
 };
 QT_END_NAMESPACE
+
+class EnemyPlane;
 
 class BattleField : public QWidget {
 	Q_OBJECT
@@ -41,8 +44,10 @@ private:
 	void checkCollision();
 	void paintEffect(QPainter& painter);
 	void processKeyEvent();
+	void updateMissiles();
 
 public:
+	std::vector<_Missile*> _enemyMissile;
 	void paintEvent(QPaintEvent* _event) final;
 	void mouseMoveEvent(QMouseEvent* _event) final;
 	void keyPressEvent(QKeyEvent* _event) final;

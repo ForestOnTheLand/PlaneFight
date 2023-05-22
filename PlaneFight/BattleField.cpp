@@ -1,5 +1,6 @@
 #include "BattleField.h"
 #include "PlayerPlane.h"
+#include "EnemyPlane.h"
 
 static constexpr const char* enemy_plane_path = ":/PlaneFight/img/enemy.png";    // @IMAGE
 
@@ -37,7 +38,9 @@ void BattleField::updateAll() {
 	checkDeadPlane();
 	for (EnemyPlane* enemy : _enemies) {
 		enemy->updatePosition();
+		enemy->shootMissiles(this);
 	}
+	updateMissiles();
 }
 
 void BattleField::gameOver() {
@@ -51,6 +54,19 @@ void BattleField::generateEnemy() {
 		EnemyPlane* enemy = new TrivialEnemyPlane(enemy_plane_path, 60);
 		enemy->setPosition(randint(battlefield_border.left(), battlefield_border.right()), 10);
 		_enemies.push_back(enemy);
+	}
+}
+
+void BattleField::updateMissiles() {
+	for (auto iter = _enemyMissile.begin(); iter != _enemyMissile.end();) {
+		if ((*iter)->free()) {
+			delete* iter;
+			iter = _enemyMissile.erase(iter);
+		}
+		else {
+			(*iter)->updatePosition();
+			++iter;
+		}
 	}
 }
 
@@ -73,6 +89,9 @@ void BattleField::checkCollision() {
 	for (EnemyPlane* enemy : _enemies) {
 		enemy->hurt(PlayerPlane::plane());
 		PlayerPlane::plane()->hurt(enemy);
+	}
+	for (_Missile* missile : _enemyMissile) {
+		missile->hurt(PlayerPlane::plane());
 	}
 }
 
@@ -108,6 +127,9 @@ void BattleField::paintEvent(QPaintEvent* _event) {
 		painter.drawPixmap(enemy->rect(), enemy->picture());
 	}
 	PlayerPlane::plane()->drawMissiles(painter);
+	for (_Missile* missile : _enemyMissile) {
+		painter.drawPixmap(missile->rect(), missile->picture());
+	}
 	paintEffect(painter);
 }
 

@@ -39,32 +39,10 @@ void _Plane::moveBy(int __dx, int __dy) {
 	_setPosition(_rect.center().x() + __dx, _rect.center().y() + __dy);
 }
 
-
-void _Plane::updateMissiles() {
-	for (auto iter = _missiles.begin(); iter != _missiles.end();) {
-		if ((*iter)->free()) {
-			delete *iter;
-			iter = _missiles.erase(iter);
-		} else {
-			(*iter)->updatePosition();
-			++iter;
-		}
-	}
-}
-
-void _Plane::drawMissiles(QPainter& painter) {
-	for (_Missile* missile : _missiles) {
-		painter.drawPixmap(missile->rect(), missile->picture());
-	}
-}
-
 void _Plane::hurt(_Plane* __other) {
 	if (box().intersects(__other->box())) {
 		__other->health() = 0;
 		this->_health = 0;
-	}
-	for (_Missile* missile : _missiles) {
-		missile->hurt(__other);
 	}
 }
 
