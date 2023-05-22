@@ -5,5 +5,10 @@
         <file>img/missile_0.png</file>
         <file>img/explosion_1.png</file>
         <file>img/explosion_2.png</file>
+        <file>img/bullet/scale_bullet_red.png</file>
+        <file>img/bullet/small_bullet_purple.png</file>
+        <file>img/bullet/mid_bullet_green.png</file>
+        <file>img/P.png</file>
+        <file>img/bullet/small_bullet_orange.png</file>
     </qresource>
 </RCC>

@@ -3,7 +3,7 @@
 
 static constexpr const char* player_plane_path = ":/PlaneFight/img/player.png";         // @IMAGE
 static constexpr const char* player_missile_path = ":/PlaneFight/img/missile_0.png";    // @IMAGE
-static constexpr int player_plane_health = 500;
+static constexpr int player_plane_health = 50;
 static constexpr int player_plane_shoot_interval = 20;
 
 PlayerPlane* PlayerPlane::_plane = nullptr;

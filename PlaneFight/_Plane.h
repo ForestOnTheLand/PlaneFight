@@ -32,7 +32,6 @@ public:
 	bool dead() const;
 
 public:
-	virtual void shootMissiles() = 0;
 	void setPosition(int __x, int __y);
 	void setPosition(QPoint p);
 	void moveBy(int __dx, int __dy);
