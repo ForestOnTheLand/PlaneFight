@@ -60,10 +60,9 @@ void BattleField::generateEnemy() {
 void BattleField::updateMissiles() {
 	for (auto iter = _enemyMissile.begin(); iter != _enemyMissile.end();) {
 		if ((*iter)->free()) {
-			delete* iter;
+			delete *iter;
 			iter = _enemyMissile.erase(iter);
-		}
-		else {
+		} else {
 			(*iter)->updatePosition();
 			++iter;
 		}
@@ -72,8 +71,8 @@ void BattleField::updateMissiles() {
 
 void BattleField::checkDeadPlane() {
 	for (auto iter = _enemies.begin(); iter != _enemies.end();) {
-		if ((*iter)->dead()) {
-			if ((*iter)->health() <= 0)
+		if ((*iter)->dead() || (*iter)->out()) {
+			if ((*iter)->dead())
 				_effects.push_back(new ExplosionEffect((*iter)->rect().center()));
 			delete *iter;
 			iter = _enemies.erase(iter);
@@ -128,6 +127,7 @@ void BattleField::paintEvent(QPaintEvent* _event) {
 	}
 	PlayerPlane::plane()->drawMissiles(painter);
 	for (_Missile* missile : _enemyMissile) {
+		// painter.drawRect(missile->rect());
 		painter.drawPixmap(missile->rect(), missile->picture());
 	}
 	paintEffect(painter);
@@ -135,7 +135,6 @@ void BattleField::paintEvent(QPaintEvent* _event) {
 
 void BattleField::mouseMoveEvent(QMouseEvent* _event) {
 	if (play_mode == mouse_mode) {
-
 		int x = _event->x(), y = _event->y();
 		PlayerPlane::plane()->setPosition(x, y);
 	}

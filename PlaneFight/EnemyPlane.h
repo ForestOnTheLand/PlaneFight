@@ -11,14 +11,16 @@ protected:
 
 public:
 	EnemyPlane(const char* __image_path, int __health, QPoint __init_pos);
+
+public:
 	virtual void shootMissiles(BattleField* field) = 0;
 	virtual void updatePosition() = 0;
 };
 
-
 class TrivialEnemyPlane : public EnemyPlane {
 private:
 	int _timer, _speed_x, _speed_y;
+
 
 public:
 	TrivialEnemyPlane(const char* __image_path, int __health);

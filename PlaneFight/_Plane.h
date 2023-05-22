@@ -29,10 +29,11 @@ public:
 	virtual QPolygon box() const = 0;
 	int& health();
 	bool dead() const;
+	bool out() const;
 
 public:
 	void setPosition(int __x, int __y);
 	void setPosition(QPoint p);
 	void moveBy(int __dx, int __dy);
-	void hurt(_Plane* __other);
+	virtual void hurt(_Plane* __other);
 };

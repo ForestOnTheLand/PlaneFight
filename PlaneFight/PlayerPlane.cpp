@@ -17,6 +17,14 @@ void PlayerPlane::init() {
 	                    battlefield_border.bottom() - _plane->rect().height());
 }
 
+void PlayerPlane::_setPosition(int __x, int __y) {
+	_rect.moveCenter({_checked(__x, battlefield_border.left() + _rect.width() / 2,
+	                           battlefield_border.right() - _rect.width() / 2),
+	                  _checked(__y, battlefield_border.top() + _rect.height() / 2,
+	                           battlefield_border.bottom() - _rect.height() / 2)});
+}
+
+
 void PlayerPlane::free() {
 	delete _plane;
 	_plane = nullptr;
@@ -31,17 +39,35 @@ void PlayerPlane::shootMissiles() {
 	}
 }
 
+void PlayerPlane::drawMissiles(QPainter& painter) {
+	for (_Missile* missile : _missiles) {
+		painter.drawPixmap(missile->rect(), missile->picture());
+	}
+}
+
+void PlayerPlane::updateMissiles() {
+	for (auto iter = _missiles.begin(); iter != _missiles.end();) {
+		if ((*iter)->free()) {
+			delete *iter;
+			iter = _missiles.erase(iter);
+		} else {
+			(*iter)->updatePosition();
+			++iter;
+		}
+	}
+}
+
 PlayerPlane* PlayerPlane::plane() {
 	return _plane;
 }
 
 QPolygon PlayerPlane::box() const {
-	return QPolygon({_rect.center()});
+	return QPolygon(QRect(_rect.center(), QSize(1, 1)));
 }
 
-void PlayerPlane::_setPosition(int __x, int __y) {
-	_rect.moveCenter({_checked(__x, battlefield_border.left() + _rect.width() / 2,
-	                           battlefield_border.right() - _rect.width() / 2),
-	                  _checked(__y, battlefield_border.top() + _rect.height() / 2,
-	                           battlefield_border.bottom() - _rect.height() / 2)});
+void PlayerPlane::hurt(_Plane* __other) {
+	_Plane::hurt(__other);
+	for (_Missile* missile : _missiles) {
+		missile->hurt(__other);
+	}
 }

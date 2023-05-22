@@ -33,10 +33,13 @@ void TrivialEnemyPlane::shootMissiles(BattleField* field) {
 	if (++shoot == trival_plane_shoot_interval) {
 		shoot = 0;
 		field->_enemyMissile.push_back(new SteadyMissile(trival_missile_path, _rect.center().x(),
-		                                                 _rect.center().y() - 20, 0, 5, 50));
+			_rect.center().y() - 20, 0, 5, 50));
 	}
+
 	return;
 }
+
+
 
 QPolygon TrivialEnemyPlane::box() const {
 	return QPolygon(_rect);

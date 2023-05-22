@@ -47,5 +47,9 @@ void _Plane::hurt(_Plane* __other) {
 }
 
 bool _Plane::dead() const {
-	return (_health <= 0) || (_rect.y() >= battlefield_border.bottom());
+	return (_health <= 0);
+}
+
+bool _Plane::out() const {
+	return (_rect.bottom() >= battlefield_border.bottom());
 }
