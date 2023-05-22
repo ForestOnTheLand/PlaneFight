@@ -17,6 +17,7 @@ void PlayerPlane::init() {
 	                    battlefield_border.bottom() - _plane->rect().height());
 }
 
+
 void PlayerPlane::_setPosition(int __x, int __y) {
 	_rect.moveCenter({_checked(__x, battlefield_border.left() + _rect.width() / 2,
 	                           battlefield_border.right() - _rect.width() / 2),
