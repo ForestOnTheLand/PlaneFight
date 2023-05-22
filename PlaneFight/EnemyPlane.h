@@ -1,9 +1,10 @@
 #pragma once
 #include "_Plane.h"
 
+
 class EnemyPlane : public _Plane {
 protected:
-	void _setPosition(int __x, int __y) override;
+	void _setPosition(int __x, int __y) final;
 
 public:
 	EnemyPlane(const char* __image_path, int __health, QPoint __init_pos);
@@ -11,6 +12,7 @@ public:
 public:
 	virtual void updatePosition() = 0;
 };
+
 
 class TrivialEnemyPlane : public EnemyPlane {
 private:

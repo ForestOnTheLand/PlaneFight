@@ -57,6 +57,9 @@
     <Filter Include="Source Files\Util">
       <UniqueIdentifier>{4719518b-9a3f-44eb-97e8-fa85c06ff704}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Header Files\Policy">
+      <UniqueIdentifier>{58e61108-0cdd-44ab-b4c7-a7b19811faf0}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="PlaneFight.qrc">
@@ -97,6 +100,9 @@
     <ClCompile Include="config.cpp">
       <Filter>Source Files\Util</Filter>
     </ClCompile>
+    <ClCompile Include="EnemyGenerator.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="_Missile.h">
@@ -125,6 +131,9 @@
     </ClInclude>
     <ClInclude Include="config.h">
       <Filter>Header Files\Util</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyGenerator.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
