@@ -135,6 +135,7 @@ void BattleField::paintEvent(QPaintEvent* _event) {
 
 void BattleField::mouseMoveEvent(QMouseEvent* _event) {
 	if (play_mode == mouse_mode) {
+
 		int x = _event->x(), y = _event->y();
 		PlayerPlane::plane()->setPosition(x, y);
 	}
