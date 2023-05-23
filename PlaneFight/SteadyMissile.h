@@ -1,5 +1,5 @@
 #pragma once
-#include "_Missile.h"
+#include "_Entity.h"
 
 class _Plane;
 

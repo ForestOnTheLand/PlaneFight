@@ -19,7 +19,7 @@ BattleField::~BattleField() {
 }
 
 void BattleField::start() {
-	_timer->setInterval(UPDATE_RATE);
+	_timer->setInterval(update_rate);
 	setMouseTracking(true);
 	_timer->start();
 
@@ -48,6 +48,10 @@ void BattleField::gameOver() {
 	exit(0);
 }
 
+void BattleField::pause() {
+	_timer->isActive() ? _timer->stop() : _timer->start();
+}
+
 void BattleField::generateEnemy() {
 	static int timer = 0;
 	if (++timer >= 60) {
@@ -71,12 +75,11 @@ void BattleField::updateMissiles() {
 }
 
 void BattleField::updateDrops() {
-	for (auto iter = _enemyDrop.begin(); iter != _enemyDrop.end();) {
+	for (auto iter = _drops.begin(); iter != _drops.end();) {
 		if ((*iter)->free()) {
-			delete* iter;
-			iter = _enemyDrop.erase(iter);
-		}
-		else {
+			delete *iter;
+			iter = _drops.erase(iter);
+		} else {
 			(*iter)->updatePosition();
 			++iter;
 		}
@@ -109,8 +112,8 @@ void BattleField::checkCollision() {
 	for (_Missile* missile : _enemyMissile) {
 		missile->collide(PlayerPlane::plane());
 	}
-	for (_Missile* drop : _enemyDrop) {
-		drop->collide(PlayerPlane::plane());
+	for (_Bonus* drop : _drops) {
+		drop->collide();
 	}
 }
 
@@ -138,7 +141,7 @@ void BattleField::processKeyEvent() {
 	if (_key.K) {
 		PlayerPlane::plane()->Bomb();
 		for (auto iter = _enemyMissile.begin(); iter != _enemyMissile.end();) {
-			delete* iter;
+			delete *iter;
 			iter = _enemyMissile.erase(iter);
 		}
 		_key.K = 0;
@@ -150,19 +153,22 @@ void BattleField::paintEvent(QPaintEvent* _event) {
 	QPainter painter(this);
 	painter.drawRect(battlefield_border);
 	painter.drawPixmap(PlayerPlane::plane()->rect(), PlayerPlane::plane()->picture());
+	PlayerPlane::plane()->drawMissiles(painter);
+	PlayerPlane::plane()->drawHP(painter);
 	for (EnemyPlane* enemy : _enemies) {
 		painter.drawPixmap(enemy->rect(), enemy->picture());
 	}
-	PlayerPlane::plane()->drawMissiles(painter);
 	for (_Missile* missile : _enemyMissile) {
-		// painter.drawRect(missile->rect());
 		painter.drawPixmap(missile->rect(), missile->picture());
 	}
-	for (_Missile* drop : _enemyDrop) {
+	for (_Bonus* drop : _drops) {
 		painter.drawPixmap(drop->rect(), drop->picture());
 	}
 	paintEffect(painter);
-	painter.drawText(650, 200, QString::number(PlayerPlane::plane()->score,10));
+
+	ui->score_label->setText(QString("Score: ") + QString::number(PlayerPlane::plane()->score));
+	ui->hp_label->setText(QString("HP: ") + QString::number(PlayerPlane::plane()->health()) + "/" +
+	                      QString::number(player_max_health));
 }
 
 void BattleField::mouseMoveEvent(QMouseEvent* _event) {
@@ -180,7 +186,8 @@ void BattleField::keyPressEvent(QKeyEvent* _event) {
 			case Qt::Key_A: _key.A = true; break;
 			case Qt::Key_S: _key.S = true; break;
 			case Qt::Key_D: _key.D = true; break;
-			case Qt::Key_Escape: gameOver(); break;
+			case Qt::Key_Escape: pause(); break;
+			case Qt::Key_Backspace: gameOver(); break;
 			default: break;
 		}
 	}
@@ -193,7 +200,7 @@ void BattleField::keyReleaseEvent(QKeyEvent* _event) {
 			case Qt::Key_A: _key.A = false; break;
 			case Qt::Key_S: _key.S = false; break;
 			case Qt::Key_D: _key.D = false; break;
-			case Qt::Key_Escape: gameOver(); break;
+			case Qt::Key_Escape: break;
 			default: break;
 		}
 	}

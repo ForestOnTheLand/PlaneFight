@@ -8,7 +8,7 @@
 #include "ui_BattleField.h"
 #include "EnemyPlane.h"
 #include "ExplosionEffect.h"
-#include "_Missile.h"
+#include "_Entity.h"
 #include <vector>
 
 QT_BEGIN_NAMESPACE
@@ -46,10 +46,11 @@ private:
 	void processKeyEvent();
 	void updateMissiles();
 	void updateDrops();
+	void pause();
 
 public:
 	std::vector<_Missile*> _enemyMissile;
-	std::vector<_Missile*> _enemyDrop;
+	std::vector<_Bonus*> _drops;
 	void paintEvent(QPaintEvent* _event) final;
 	void mouseMoveEvent(QMouseEvent* _event) final;
 	void keyPressEvent(QKeyEvent* _event) final;

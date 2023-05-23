@@ -2,7 +2,7 @@
 #include <qrect.h>
 
 inline constexpr QRect battlefield_border(10, 10, 480, 680);
-extern const int UPDATE_RATE;
-
+inline constexpr int update_rate = 10;
+inline constexpr int player_max_health = 500;
 enum play_mode_t { mouse_mode, key_mode };
-extern const play_mode_t play_mode;
+inline constexpr play_mode_t play_mode = key_mode;

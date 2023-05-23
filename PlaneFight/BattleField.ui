@@ -1,22 +1,77 @@
-<UI version="4.0" >
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
  <class>BattleFieldClass</class>
- <widget class="QWidget" name="BattleFieldClass" >
-  <property name="objectName" >
-   <string notr="true">BattleFieldClass</string>
-  </property>
-  <property name="geometry" >
+ <widget class="QWidget" name="BattleFieldClass">
+  <property name="geometry">
    <rect>
-	<x>0</x>
-	<y>0</y>
-	<width>600</width>
-	<height>400</height>
+    <x>0</x>
+    <y>0</y>
+    <width>800</width>
+    <height>800</height>
    </rect>
   </property>
-  <property name="windowTitle" >
+  <property name="minimumSize">
+   <size>
+    <width>800</width>
+    <height>800</height>
+   </size>
+  </property>
+  <property name="maximumSize">
+   <size>
+    <width>800</width>
+    <height>800</height>
+   </size>
+  </property>
+  <property name="font">
+   <font>
+    <family>Perpetua</family>
+   </font>
+  </property>
+  <property name="windowTitle">
    <string>BattleField</string>
-  </property>$centralwidget$
+  </property>
+  <widget class="QLabel" name="score_label">
+   <property name="geometry">
+    <rect>
+     <x>560</x>
+     <y>80</y>
+     <width>191</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Chiller</family>
+     <pointsize>26</pointsize>
+     <italic>false</italic>
+    </font>
+   </property>
+   <property name="text">
+    <string>Score:</string>
+   </property>
+  </widget>
+  <widget class="QLabel" name="hp_label">
+   <property name="geometry">
+    <rect>
+     <x>560</x>
+     <y>190</y>
+     <width>191</width>
+     <height>71</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Chiller</family>
+     <pointsize>26</pointsize>
+     <italic>false</italic>
+    </font>
+   </property>
+   <property name="text">
+    <string>HP:400/500</string>
+   </property>
+  </widget>
  </widget>
- <layoutDefault spacing="6" margin="11" />
- <pixmapfunction></pixmapfunction>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources/>
  <connections/>
-</UI>
+</ui>

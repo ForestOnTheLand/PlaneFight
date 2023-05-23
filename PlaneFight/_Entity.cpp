@@ -29,3 +29,9 @@ const QRect& _Entity::rect() const {
 bool _Entity::free() const {
 	return _free || _rect.bottom() > battlefield_border.bottom();
 }
+
+_Missile::_Missile(const char* const __image_path, int __init_x, int __init_y)
+    : _Entity(__image_path, __init_x, __init_y) {}
+
+_Bonus::_Bonus(const char* const __image_path, int __init_x, int __init_y)
+    : _Entity(__image_path, __init_x, __init_y) {}

@@ -1,6 +1,6 @@
 #include "EnemyPlane.h"
 #include "PlayerPlane.h"
-#include "_Missile.h"
+#include "_Entity.h"
 #include "SteadyMissile.h"
 #include "BattleField.h"
 #include "PointBonus.h"
@@ -40,7 +40,7 @@ void TrivialEnemyPlane::shootMissiles(BattleField* field) {
 	if (++shoot == trival_plane_shoot_interval) {
 		shoot = 0;
 		field->_enemyMissile.push_back(new SteadyMissile(trival_missile_path, _rect.center().x(),
-			_rect.center().y() - 20, 0, 5, 50));
+		                                                 _rect.center().y() - 20, 0, 5, 50));
 	}
 
 	return;
@@ -48,22 +48,19 @@ void TrivialEnemyPlane::shootMissiles(BattleField* field) {
 
 void TrivialEnemyPlane::Drop(BattleField* field) {
 	if (with_probability(0.2)) {
-		field->_enemyDrop.push_back(new PointBonus(point_drop_path, _rect.center().x(),
-			_rect.center().y(), 0, 4, 10));
-	}
-	else if (with_probability(0.2)) {
-		field->_enemyDrop.push_back(new PowerBonus(power_drop_path, _rect.center().x(),
-			_rect.center().y(), 0, 4, 5));
-	}
-	else if (with_probability(0.2)) {
-		field->_enemyDrop.push_back(new LifeBonus(life_drop_path, _rect.center().x(),
-			_rect.center().y(), 0, 4, 10));
+		field->_drops.push_back(
+		    new PointBonus(point_drop_path, _rect.center().x(), _rect.center().y(), 0, 4, 10));
+	} else if (with_probability(0.2)) {
+		field->_drops.push_back(
+		    new PowerBonus(power_drop_path, _rect.center().x(), _rect.center().y(), 0, 4, 5));
+	} else if (with_probability(0.2)) {
+		field->_drops.push_back(
+		    new LifeBonus(life_drop_path, _rect.center().x(), _rect.center().y(), 0, 4, 10));
 	}
 
 
 	return;
 }
-
 
 
 

@@ -24,6 +24,21 @@ public:
 	bool free() const;
 
 public:
-	virtual void collide(_Plane* plane) = 0;
 	virtual void updatePosition() = 0;    // To be implemented...
+};
+
+class _Missile : public _Entity {
+public:
+	explicit _Missile(const char* const __image_path, int __init_x, int __init_y);
+
+public:
+	virtual void collide(_Plane* plane) = 0;
+};
+
+class _Bonus : public _Entity {
+public:
+	explicit _Bonus(const char* const __image_path, int __init_x, int __init_y);
+
+public:
+	virtual void collide() = 0;
 };

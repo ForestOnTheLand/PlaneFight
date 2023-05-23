@@ -1,5 +1,5 @@
 #include "_Plane.h"
-#include "_Missile.h"
+#include "_Entity.h"
 
 const QPixmap& _Plane::picture() const {
 	return _picture;

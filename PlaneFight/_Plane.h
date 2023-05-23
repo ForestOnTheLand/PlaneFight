@@ -5,7 +5,7 @@
 #include <qpixmap.h>
 #include <vector>
 
-class _Missile;
+class _Entity;
 
 /**
  * Abstract Base Class of all Planes.

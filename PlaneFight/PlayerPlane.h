@@ -3,6 +3,7 @@
 #include <vector>
 #include "util.h"
 #include "_Plane.h"
+#include "_Entity.h"
 
 /**
  * Player's plane.
@@ -15,7 +16,7 @@ private:
 	static PlayerPlane* _plane;
 
 private:
-	PlayerPlane(const char* const __image_path,int _bombs);
+	PlayerPlane(const char* const __image_path, int _bombs);
 	void _setPosition(int __x, int __y) final;
 	PlayerPlane(const PlayerPlane&) = delete;
 	PlayerPlane& operator=(const PlayerPlane&) = delete;
@@ -31,6 +32,7 @@ public:
 	void shootMissiles();
 	void Bomb();
 	void drawMissiles(QPainter& painter);
+	void drawHP(QPainter& painter);
 	void updateMissiles();
 	void hurt(_Plane* __other) final;
 	QPolygon box() const final;

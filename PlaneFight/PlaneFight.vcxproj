@@ -86,18 +86,16 @@
   </ItemDefinitionGroup>
   <ItemGroup>
     <ClCompile Include="BattleField.cpp" />
-    <ClCompile Include="config.cpp" />
     <ClCompile Include="EnemyGenerator.cpp" />
     <ClCompile Include="EnemyPlane.cpp" />
     <ClCompile Include="ExplosionEffect.cpp" />
     <ClCompile Include="LifeBonus.cpp" />
     <ClCompile Include="PointBonus.cpp" />
     <ClCompile Include="PowerBonus.cpp" />
-    <ClCompile Include="util.cpp" />
     <ClCompile Include="PlayerPlane.cpp" />
     <ClCompile Include="SteadyMissile.cpp" />
     <ClCompile Include="_Effect.cpp" />
-    <ClCompile Include="_Missile.cpp" />
+    <ClCompile Include="_Entity.cpp" />
     <ClCompile Include="_Plane.cpp" />
     <QtRcc Include="PlaneFight.qrc" />
     <QtUic Include="BattleField.ui" />
@@ -116,7 +114,7 @@
     <ClInclude Include="PlayerPlane.h" />
     <ClInclude Include="SteadyMissile.h" />
     <ClInclude Include="_Effect.h" />
-    <ClInclude Include="_Missile.h" />
+    <ClInclude Include="_Entity.h" />
     <ClInclude Include="_Plane.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
