@@ -26,6 +26,8 @@ public:
 	static void free();
 
 public:
+	int score;
+	int power;
 	void shootMissiles();
 	void Bomb();
 	void drawMissiles(QPainter& painter);

@@ -23,7 +23,6 @@ class BattleField : public QWidget {
 	Q_OBJECT
 
 private:
-	int score;
 	QTimer* _timer;
 	Ui::BattleFieldClass* ui;
 	std::vector<EnemyPlane*> _enemies;

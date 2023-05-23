@@ -106,6 +106,12 @@
     <ClCompile Include="PointBonus.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="LifeBonus.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="PowerBonus.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="_Missile.h">
@@ -139,7 +145,13 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="PointBonus.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Missile</Filter>
+    </ClInclude>
+    <ClInclude Include="PowerBonus.h">
+      <Filter>Header Files\Missile</Filter>
+    </ClInclude>
+    <ClInclude Include="LifeBonus.h">
+      <Filter>Header Files\Missile</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

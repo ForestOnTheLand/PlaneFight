@@ -8,7 +8,9 @@
         <file>img/bullet/scale_bullet_red.png</file>
         <file>img/bullet/small_bullet_purple.png</file>
         <file>img/bullet/mid_bullet_green.png</file>
-        <file>img/P.png</file>
         <file>img/bullet/small_bullet_orange.png</file>
+        <file>img/point.png</file>
+        <file>img/life.png</file>
+        <file>img/power.png</file>
     </qresource>
 </RCC>

@@ -6,7 +6,6 @@ static constexpr const char* enemy_plane_path = ":/PlaneFight/img/enemy.png";   
 
 BattleField::BattleField(QWidget* parent)
     : QWidget(parent), ui(new Ui::BattleFieldClass()), _timer(new QTimer) {
-	score = 0;
 	ui->setupUi(this);
 	this->setFixedSize(800, 800);
 	PlayerPlane::init();
@@ -88,6 +87,7 @@ void BattleField::checkDeadPlane() {
 	for (auto iter = _enemies.begin(); iter != _enemies.end();) {
 		if ((*iter)->dead() || (*iter)->out()) {
 			if ((*iter)->dead()) {
+				PlayerPlane::plane()->score += 100;
 				_effects.push_back(new ExplosionEffect((*iter)->rect().center()));
 				(*iter)->Drop(this);
 			}
@@ -162,7 +162,7 @@ void BattleField::paintEvent(QPaintEvent* _event) {
 		painter.drawPixmap(drop->rect(), drop->picture());
 	}
 	paintEffect(painter);
-	painter.drawText(700, 200, QString::number(score,10));
+	painter.drawText(650, 200, QString::number(PlayerPlane::plane()->score,10));
 }
 
 void BattleField::mouseMoveEvent(QMouseEvent* _event) {
