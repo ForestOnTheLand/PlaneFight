@@ -10,11 +10,12 @@
  */
 class PlayerPlane : public _Plane {
 private:
+	int bombs;
 	std::vector<_Missile*> _missiles;    // Missiles of plane
 	static PlayerPlane* _plane;
 
 private:
-	PlayerPlane(const char* const __image_path);
+	PlayerPlane(const char* const __image_path,int _bombs);
 	void _setPosition(int __x, int __y) final;
 	PlayerPlane(const PlayerPlane&) = delete;
 	PlayerPlane& operator=(const PlayerPlane&) = delete;
@@ -26,6 +27,7 @@ public:
 
 public:
 	void shootMissiles();
+	void Bomb();
 	void drawMissiles(QPainter& painter);
 	void updateMissiles();
 	void hurt(_Plane* __other) final;

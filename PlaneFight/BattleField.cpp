@@ -135,6 +135,14 @@ void BattleField::processKeyEvent() {
 		PlayerPlane::plane()->moveBy(0, 3);
 	if (_key.D)
 		PlayerPlane::plane()->moveBy(3, 0);
+	if (_key.K) {
+		PlayerPlane::plane()->Bomb();
+		for (auto iter = _enemyMissile.begin(); iter != _enemyMissile.end();) {
+			delete* iter;
+			iter = _enemyMissile.erase(iter);
+		}
+		_key.K = 0;
+	}
 }
 
 
@@ -167,6 +175,7 @@ void BattleField::mouseMoveEvent(QMouseEvent* _event) {
 void BattleField::keyPressEvent(QKeyEvent* _event) {
 	if (play_mode == key_mode) {
 		switch (_event->key()) {
+			case Qt::Key_K: _key.K = true; break;
 			case Qt::Key_W: _key.W = true; break;
 			case Qt::Key_A: _key.A = true; break;
 			case Qt::Key_S: _key.S = true; break;

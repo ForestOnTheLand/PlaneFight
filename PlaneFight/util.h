@@ -7,6 +7,7 @@ struct KeyState {
 	bool A = 0;
 	bool S = 0;
 	bool D = 0;
+	bool K = 0;
 };
 
 inline int randint(int begin, int end) {
