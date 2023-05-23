@@ -3,16 +3,20 @@
 
 static constexpr const char* player_plane_path = ":/PlaneFight/img/player.png";         // @IMAGE
 static constexpr const char* player_missile_path = ":/PlaneFight/img/missile_0.png";    // @IMAGE
-static constexpr int player_plane_health = 50;
-static constexpr int player_plane_shoot_interval = 20;
+static constexpr const char* player_bomb_path = ":/PlaneFight/img/bullet/scale_bullet_red.png";    // @IMAGE
+static constexpr int player_plane_health = 1000;
+static constexpr int player_plane_shoot_interval_1 = 20;
+static constexpr int player_plane_shoot_interval_2 = 20;
+static constexpr int player_plane_shoot_interval_3 = 20;
+static constexpr int player_plane_bombs = 3;
 
 PlayerPlane* PlayerPlane::_plane = nullptr;
 
-PlayerPlane::PlayerPlane(const char* const __image_path)
-    : _Plane(__image_path, player_plane_health) {}
+PlayerPlane::PlayerPlane(const char* const __image_path,int _bombs)
+    : _Plane(__image_path, player_plane_health),bombs(_bombs) ,score(0),power(0) {}
 
 void PlayerPlane::init() {
-	_plane = new PlayerPlane(player_plane_path);
+	_plane = new PlayerPlane(player_plane_path, player_plane_bombs);
 	_plane->setPosition(battlefield_border.center().x(),
 	                    battlefield_border.bottom() - _plane->rect().height());
 }
@@ -33,10 +37,47 @@ void PlayerPlane::free() {
 
 void PlayerPlane::shootMissiles() {
 	static int timer = 0;
-	if (++timer == player_plane_shoot_interval) {
-		timer = 0;
-		_missiles.push_back(new SteadyMissile(player_missile_path, _rect.center().x(),
-		                                      _rect.center().y() - 20, 0, -10, 50));
+	switch (power/5) {
+	case 0:
+		if (++timer >= player_plane_shoot_interval_1) {
+			timer = 0;
+			_missiles.push_back(new SteadyMissile(player_missile_path, _rect.center().x(),
+				_rect.center().y() - 20, 0, -10, 50));
+		}
+		break;
+	case 1:
+		if (++timer >= player_plane_shoot_interval_2) {
+			timer = 0;
+			_missiles.push_back(new SteadyMissile(player_missile_path, _rect.center().x() - 10,
+				_rect.center().y() - 20, 0, -10, 50));
+			_missiles.push_back(new SteadyMissile(player_missile_path, _rect.center().x() + 10,
+				_rect.center().y() - 20, 0, -10, 50));
+		}
+		break;
+	case 2:
+		if (++timer >= player_plane_shoot_interval_3) {
+			timer = 0;
+			_missiles.push_back(new SteadyMissile(player_missile_path, _rect.center().x() - 5,
+				_rect.center().y() - 20, 0, -10, 50));
+			_missiles.push_back(new SteadyMissile(player_missile_path, _rect.center().x() + 5,
+				_rect.center().y() - 20, 0, -10, 50));
+			_missiles.push_back(new SteadyMissile(player_missile_path, _rect.center().x() - 20,
+				_rect.center().y(), 0, -10, 50));
+			_missiles.push_back(new SteadyMissile(player_missile_path, _rect.center().x() + 20,
+				_rect.center().y(), 0, -10, 50));
+		}
+		break;
+	default:break;
+	}
+}
+
+void PlayerPlane::Bomb() {
+	if (bombs) {
+		bombs--;
+		for (int i = 0; i < 500; i += 20) {
+			_missiles.push_back(new SteadyMissile(player_bomb_path, i,
+				_rect.center().y() - 20, 0, -5, 100));
+		}
 	}
 }
 

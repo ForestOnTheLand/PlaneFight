@@ -4,11 +4,15 @@
 #include "SteadyMissile.h"
 #include "BattleField.h"
 #include "PointBonus.h"
+#include "PowerBonus.h"
+#include "LifeBonus.h"
 #include "util.h"
 
 static constexpr int trival_plane_shoot_interval = 50;
 static constexpr const char* trival_missile_path = ":/PlaneFight/img/bullet/mid_bullet_green.png";
-static constexpr const char* point_drop_path = ":/PlaneFight/img/P.png";
+static constexpr const char* life_drop_path = ":/PlaneFight/img/life.png";
+static constexpr const char* point_drop_path = ":/PlaneFight/img/point.png";
+static constexpr const char* power_drop_path = ":/PlaneFight/img/power.png";
 
 
 
@@ -47,6 +51,15 @@ void TrivialEnemyPlane::Drop(BattleField* field) {
 		field->_enemyDrop.push_back(new PointBonus(point_drop_path, _rect.center().x(),
 			_rect.center().y(), 0, 4, 10));
 	}
+	else if (with_probability(0.2)) {
+		field->_enemyDrop.push_back(new PowerBonus(power_drop_path, _rect.center().x(),
+			_rect.center().y(), 0, 4, 5));
+	}
+	else if (with_probability(0.2)) {
+		field->_enemyDrop.push_back(new LifeBonus(life_drop_path, _rect.center().x(),
+			_rect.center().y(), 0, 4, 10));
+	}
+
 
 	return;
 }
