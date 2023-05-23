@@ -24,6 +24,6 @@ public:
 	bool free() const;
 
 public:
-	virtual void hurt(_Plane* plane) = 0;
+	virtual void collide(_Plane* plane) = 0;
 	virtual void updatePosition() = 0;    // To be implemented...
 };

@@ -69,6 +69,6 @@ QPolygon PlayerPlane::box() const {
 void PlayerPlane::hurt(_Plane* __other) {
 	_Plane::hurt(__other);
 	for (_Missile* missile : _missiles) {
-		missile->hurt(__other);
+		missile->collide(__other);
 	}
 }

@@ -103,6 +103,9 @@
     <ClCompile Include="EnemyGenerator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="PointBonus.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="_Missile.h">
@@ -133,6 +136,9 @@
       <Filter>Header Files\Util</Filter>
     </ClInclude>
     <ClInclude Include="EnemyGenerator.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="PointBonus.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

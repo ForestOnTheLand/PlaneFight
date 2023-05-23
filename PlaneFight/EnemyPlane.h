@@ -14,6 +14,7 @@ public:
 
 public:
 	virtual void shootMissiles(BattleField* field) = 0;
+	virtual void Drop(BattleField* field) = 0;
 	virtual void updatePosition() = 0;
 };
 
@@ -28,5 +29,6 @@ public:
 public:
 	void updatePosition() final;
 	void shootMissiles(BattleField* field);
+	void Drop(BattleField* field);
 	QPolygon box() const final;
 };

@@ -6,8 +6,9 @@ static constexpr const char* enemy_plane_path = ":/PlaneFight/img/enemy.png";   
 
 BattleField::BattleField(QWidget* parent)
     : QWidget(parent), ui(new Ui::BattleFieldClass()), _timer(new QTimer) {
+	score = 0;
 	ui->setupUi(this);
-	this->setFixedSize(500, 800);
+	this->setFixedSize(800, 800);
 	PlayerPlane::init();
 	start();
 }
@@ -41,6 +42,7 @@ void BattleField::updateAll() {
 		enemy->shootMissiles(this);
 	}
 	updateMissiles();
+	updateDrops();
 }
 
 void BattleField::gameOver() {
@@ -69,11 +71,26 @@ void BattleField::updateMissiles() {
 	}
 }
 
+void BattleField::updateDrops() {
+	for (auto iter = _enemyDrop.begin(); iter != _enemyDrop.end();) {
+		if ((*iter)->free()) {
+			delete* iter;
+			iter = _enemyDrop.erase(iter);
+		}
+		else {
+			(*iter)->updatePosition();
+			++iter;
+		}
+	}
+}
+
 void BattleField::checkDeadPlane() {
 	for (auto iter = _enemies.begin(); iter != _enemies.end();) {
 		if ((*iter)->dead() || (*iter)->out()) {
-			if ((*iter)->dead())
+			if ((*iter)->dead()) {
 				_effects.push_back(new ExplosionEffect((*iter)->rect().center()));
+				(*iter)->Drop(this);
+			}
 			delete *iter;
 			iter = _enemies.erase(iter);
 		} else {
@@ -90,7 +107,10 @@ void BattleField::checkCollision() {
 		PlayerPlane::plane()->hurt(enemy);
 	}
 	for (_Missile* missile : _enemyMissile) {
-		missile->hurt(PlayerPlane::plane());
+		missile->collide(PlayerPlane::plane());
+	}
+	for (_Missile* drop : _enemyDrop) {
+		drop->collide(PlayerPlane::plane());
 	}
 }
 
@@ -108,13 +128,13 @@ void BattleField::paintEffect(QPainter& painter) {
 
 void BattleField::processKeyEvent() {
 	if (_key.W)
-		PlayerPlane::plane()->moveBy(0, -6);
+		PlayerPlane::plane()->moveBy(0, -3);
 	if (_key.A)
-		PlayerPlane::plane()->moveBy(-6, 0);
+		PlayerPlane::plane()->moveBy(-3, 0);
 	if (_key.S)
-		PlayerPlane::plane()->moveBy(0, 6);
+		PlayerPlane::plane()->moveBy(0, 3);
 	if (_key.D)
-		PlayerPlane::plane()->moveBy(6, 0);
+		PlayerPlane::plane()->moveBy(3, 0);
 }
 
 
@@ -130,7 +150,11 @@ void BattleField::paintEvent(QPaintEvent* _event) {
 		// painter.drawRect(missile->rect());
 		painter.drawPixmap(missile->rect(), missile->picture());
 	}
+	for (_Missile* drop : _enemyDrop) {
+		painter.drawPixmap(drop->rect(), drop->picture());
+	}
 	paintEffect(painter);
+	painter.drawText(700, 200, QString::number(score,10));
 }
 
 void BattleField::mouseMoveEvent(QMouseEvent* _event) {

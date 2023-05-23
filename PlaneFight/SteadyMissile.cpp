@@ -6,10 +6,10 @@ SteadyMissile::SteadyMissile(const char* __image_path, int __init_x, int __init_
     : _Missile(__image_path, __init_x, __init_y), _speed_x(__speed_x), _speed_y(__speed_y),
       _attack_point(__attack_point) {}
 
-void SteadyMissile::hurt(_Plane* plane) {
+void SteadyMissile::collide(_Plane* plane) {
 	if (plane->box().intersects(_rect)) {
 		_free = true;
-	plane->health() -= _attack_point;
+		plane->health() -= _attack_point;
 	}
 }
 

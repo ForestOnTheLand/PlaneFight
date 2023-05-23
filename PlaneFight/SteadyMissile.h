@@ -14,5 +14,5 @@ public:
 
 public:
 	void updatePosition() final;
-	void hurt(_Plane* plane) final;
+	void collide(_Plane* plane) final;
 };

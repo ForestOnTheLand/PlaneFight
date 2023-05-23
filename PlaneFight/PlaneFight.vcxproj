@@ -90,6 +90,7 @@
     <ClCompile Include="EnemyGenerator.cpp" />
     <ClCompile Include="EnemyPlane.cpp" />
     <ClCompile Include="ExplosionEffect.cpp" />
+    <ClCompile Include="PointBonus.cpp" />
     <ClCompile Include="util.cpp" />
     <ClCompile Include="PlayerPlane.cpp" />
     <ClCompile Include="SteadyMissile.cpp" />
@@ -106,6 +107,7 @@
     <ClInclude Include="EnemyGenerator.h" />
     <ClInclude Include="EnemyPlane.h" />
     <ClInclude Include="ExplosionEffect.h" />
+    <ClInclude Include="PointBonus.h" />
     <ClInclude Include="util.h" />
     <ClInclude Include="PlayerPlane.h" />
     <ClInclude Include="SteadyMissile.h" />
