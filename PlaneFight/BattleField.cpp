@@ -59,6 +59,9 @@ void BattleField::generateEnemy() {
 		EnemyPlane* enemy = new TrivialEnemyPlane(enemy_plane_path, 60);
 		enemy->setPosition(randint(battlefield_border.left(), battlefield_border.right()), 10);
 		_enemies.push_back(enemy);
+		EnemyPlane* enemy1 = new StableEnemyPlane(enemy_plane_path, 60,200);
+		enemy1->setPosition(randint(battlefield_border.left()+100, battlefield_border.right()-100), 10);
+		_enemies.push_back(enemy1);
 	}
 }
 

@@ -70,9 +70,6 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="_Missile.cpp">
-      <Filter>Source Files\Base</Filter>
-    </ClCompile>
     <ClCompile Include="_Plane.cpp">
       <Filter>Source Files\Base</Filter>
     </ClCompile>
@@ -94,12 +91,6 @@
     <ClCompile Include="ExplosionEffect.cpp">
       <Filter>Source Files\Effect</Filter>
     </ClCompile>
-    <ClCompile Include="util.cpp">
-      <Filter>Source Files\Util</Filter>
-    </ClCompile>
-    <ClCompile Include="config.cpp">
-      <Filter>Source Files\Util</Filter>
-    </ClCompile>
     <ClCompile Include="EnemyGenerator.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -112,11 +103,14 @@
     <ClCompile Include="PowerBonus.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="_Entity.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="ArbitraryMissile.cpp">
+      <Filter>Source Files\Missile</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="_Missile.h">
-      <Filter>Header Files\Base</Filter>
-    </ClInclude>
     <ClInclude Include="_Plane.h">
       <Filter>Header Files\Base</Filter>
     </ClInclude>
@@ -151,6 +145,12 @@
       <Filter>Header Files\Missile</Filter>
     </ClInclude>
     <ClInclude Include="LifeBonus.h">
+      <Filter>Header Files\Missile</Filter>
+    </ClInclude>
+    <ClInclude Include="_Entity.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="ArbitraryMissile.h">
       <Filter>Header Files\Missile</Filter>
     </ClInclude>
   </ItemGroup>

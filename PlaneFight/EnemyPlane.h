@@ -32,3 +32,19 @@ public:
 	void Drop(BattleField* field);
 	QPolygon box() const final;
 };
+
+
+class StableEnemyPlane : public EnemyPlane {
+private:
+	int _timer, _speed_x, _speed_y;
+	int _height;
+
+public:
+	StableEnemyPlane(const char* __image_path, int __health,int __height);
+
+public:
+	void updatePosition() final;
+	void shootMissiles(BattleField* field);
+	void Drop(BattleField* field);
+	QPolygon box() const final;
+};

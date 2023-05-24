@@ -85,6 +85,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="ArbitraryMissile.cpp" />
     <ClCompile Include="BattleField.cpp" />
     <ClCompile Include="EnemyGenerator.cpp" />
     <ClCompile Include="EnemyPlane.cpp" />
@@ -103,6 +104,7 @@
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="BattleField.h" />
+    <ClInclude Include="ArbitraryMissile.h" />
     <ClInclude Include="config.h" />
     <ClInclude Include="EnemyGenerator.h" />
     <ClInclude Include="EnemyPlane.h" />
