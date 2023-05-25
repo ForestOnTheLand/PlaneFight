@@ -1,5 +1,4 @@
 #include "_Plane.h"
-#include "_Entity.h"
 
 const QPixmap& _Plane::picture() const {
 	return _picture;
@@ -41,8 +40,8 @@ void _Plane::moveBy(int __dx, int __dy) {
 
 void _Plane::hurt(_Plane* __other) {
 	if (box().intersects(__other->box())) {
-		__other->health() = 0;
-		this->_health = 0;
+		__other->health() -= 100;
+		this->_health -= 100;
 	}
 }
 
@@ -52,4 +51,8 @@ bool _Plane::dead() const {
 
 bool _Plane::out() const {
 	return (_rect.bottom() >= battlefield_border.bottom());
+}
+
+void _Plane::drawOn(QPainter& painter) {
+	painter.drawPixmap(_rect, _picture);
 }

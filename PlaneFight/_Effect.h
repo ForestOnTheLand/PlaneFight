@@ -1,7 +1,7 @@
 #pragma once
 
-#include <qpixmap.h>
-#include <qpainter.h>
+#include "util.h"
+
 #include <vector>
 #include <initializer_list>
 

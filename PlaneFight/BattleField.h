@@ -1,15 +1,10 @@
 #pragma once
 
 #include "util.h"
-#include <QWidget>
-#include <qtimer.h>
-#include <qpainter.h>
-#include <qevent.h>
 #include "ui_BattleField.h"
 #include "EnemyPlane.h"
 #include "ExplosionEffect.h"
-#include "_Entity.h"
-#include <vector>
+#include "Generator.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -25,9 +20,8 @@ class BattleField : public QWidget {
 private:
 	QTimer* _timer;
 	Ui::BattleFieldClass* ui;
-	std::vector<EnemyPlane*> _enemies;
-	std::vector<_Effect*> _effects;
 	KeyState _key;
+	EnemyGenerator* _generator;
 
 public:
 	BattleField(QWidget* parent = nullptr);
@@ -49,6 +43,8 @@ private:
 	void pause();
 
 public:
+	std::vector<EnemyPlane*> _enemies;
+	std::vector<_Effect*> _effects;
 	std::vector<_Missile*> _enemyMissile;
 	std::vector<_Bonus*> _drops;
 	void paintEvent(QPaintEvent* _event) final;

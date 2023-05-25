@@ -122,3 +122,9 @@ void PlayerPlane::hurt(_Plane* __other) {
 		missile->collide(__other);
 	}
 }
+
+void PlayerPlane::drawOn(QPainter& painter) {
+	painter.drawPixmap(_rect, _picture);
+	drawMissiles(painter);
+	drawHP(painter);
+}

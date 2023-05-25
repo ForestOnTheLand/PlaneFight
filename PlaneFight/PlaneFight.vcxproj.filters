@@ -54,11 +54,17 @@
     <Filter Include="Header Files\Util">
       <UniqueIdentifier>{ea9fc4f3-ca87-474d-b637-d219d52d3539}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Source Files\Util">
-      <UniqueIdentifier>{4719518b-9a3f-44eb-97e8-fa85c06ff704}</UniqueIdentifier>
+    <Filter Include="Header Files\Bonus">
+      <UniqueIdentifier>{4cb79c73-2af1-40bc-9346-65fded4abb98}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Policy">
-      <UniqueIdentifier>{58e61108-0cdd-44ab-b4c7-a7b19811faf0}</UniqueIdentifier>
+    <Filter Include="Source Files\Bonus">
+      <UniqueIdentifier>{b703603e-a837-4f27-b5b8-c69193dad822}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\EnemyGenerator">
+      <UniqueIdentifier>{e60b2f2d-37a1-430d-a4be-796bc252d0db}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\EnemyGenerator">
+      <UniqueIdentifier>{7b8ad1ca-03dd-4eac-9198-3f28dfb93936}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -91,23 +97,29 @@
     <ClCompile Include="ExplosionEffect.cpp">
       <Filter>Source Files\Effect</Filter>
     </ClCompile>
-    <ClCompile Include="EnemyGenerator.cpp">
-      <Filter>Source Files</Filter>
+    <ClCompile Include="LifeBonus.cpp">
+      <Filter>Source Files\Bonus</Filter>
     </ClCompile>
     <ClCompile Include="PointBonus.cpp">
-      <Filter>Source Files</Filter>
-    </ClCompile>
-    <ClCompile Include="LifeBonus.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Bonus</Filter>
     </ClCompile>
     <ClCompile Include="PowerBonus.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Bonus</Filter>
+    </ClCompile>
+    <ClCompile Include="Menu.cpp">
+      <Filter>Source Files\UI</Filter>
     </ClCompile>
     <ClCompile Include="_Entity.cpp">
-      <Filter>Source Files</Filter>
+      <Filter>Source Files\Base</Filter>
     </ClCompile>
-    <ClCompile Include="ArbitraryMissile.cpp">
-      <Filter>Source Files\Missile</Filter>
+    <ClCompile Include="EnemyGenerator.cpp">
+      <Filter>Source Files\EnemyGenerator</Filter>
+    </ClCompile>
+    <ClCompile Include="Generator.cpp">
+      <Filter>Source Files\EnemyGenerator</Filter>
+    </ClCompile>
+    <ClCompile Include="BossEnemyPlane.cpp">
+      <Filter>Source Files\Plane</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -116,9 +128,6 @@
     </ClInclude>
     <ClInclude Include="SteadyMissile.h">
       <Filter>Header Files\Missile</Filter>
-    </ClInclude>
-    <ClInclude Include="EnemyPlane.h">
-      <Filter>Header Files\Plane</Filter>
     </ClInclude>
     <ClInclude Include="PlayerPlane.h">
       <Filter>Header Files\Plane</Filter>
@@ -135,23 +144,29 @@
     <ClInclude Include="config.h">
       <Filter>Header Files\Util</Filter>
     </ClInclude>
-    <ClInclude Include="EnemyGenerator.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="PointBonus.h">
-      <Filter>Header Files\Missile</Filter>
+      <Filter>Header Files\Bonus</Filter>
     </ClInclude>
     <ClInclude Include="PowerBonus.h">
-      <Filter>Header Files\Missile</Filter>
+      <Filter>Header Files\Bonus</Filter>
     </ClInclude>
     <ClInclude Include="LifeBonus.h">
-      <Filter>Header Files\Missile</Filter>
+      <Filter>Header Files\Bonus</Filter>
     </ClInclude>
     <ClInclude Include="_Entity.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\Base</Filter>
     </ClInclude>
-    <ClInclude Include="ArbitraryMissile.h">
-      <Filter>Header Files\Missile</Filter>
+    <ClInclude Include="EnemyGenerator.h">
+      <Filter>Header Files\EnemyGenerator</Filter>
+    </ClInclude>
+    <ClInclude Include="Generator.h">
+      <Filter>Header Files\EnemyGenerator</Filter>
+    </ClInclude>
+    <ClInclude Include="EnemyPlane.h">
+      <Filter>Header Files\Plane</Filter>
+    </ClInclude>
+    <ClInclude Include="BossEnemyPlane.h">
+      <Filter>Header Files\Plane</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -161,6 +176,9 @@
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="BattleField.h">
+      <Filter>Header Files\UI</Filter>
+    </QtMoc>
+    <QtMoc Include="Menu.h">
       <Filter>Header Files\UI</Filter>
     </QtMoc>
   </ItemGroup>

@@ -1,9 +1,7 @@
 #pragma once
 
-#include <vector>
-#include "util.h"
 #include "_Plane.h"
-#include "_Entity.h"
+#include <vector>
 
 /**
  * Player's plane.
@@ -36,4 +34,5 @@ public:
 	void updateMissiles();
 	void hurt(_Plane* __other) final;
 	QPolygon box() const final;
+	void drawOn(QPainter& painter) final;
 };

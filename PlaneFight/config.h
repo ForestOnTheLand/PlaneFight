@@ -1,5 +1,10 @@
 #pragma once
-#include <qrect.h>
+
+#include <QPixmap>
+#include <QPainter>
+#include <QTimer>
+#include <qevent.h>
+#include <QWidget>
 
 inline constexpr QRect battlefield_border(10, 10, 480, 680);
 inline constexpr int update_rate = 10;

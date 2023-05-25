@@ -1,21 +1,20 @@
 #include "BattleField.h"
 #include "PlayerPlane.h"
-#include "EnemyPlane.h"
-
-static constexpr const char* enemy_plane_path = ":/PlaneFight/img/enemy.png";    // @IMAGE
 
 BattleField::BattleField(QWidget* parent)
-    : QWidget(parent), ui(new Ui::BattleFieldClass()), _timer(new QTimer) {
+    : QWidget(parent), ui(new Ui::BattleFieldClass()), _timer(new QTimer),
+      _generator(Generator::level_1) {
 	ui->setupUi(this);
 	this->setFixedSize(800, 800);
 	PlayerPlane::init();
-	start();
+	// start();
 }
 
 BattleField::~BattleField() {
 	PlayerPlane::free();
 	delete ui;
 	delete _timer;
+	delete _generator;
 }
 
 void BattleField::start() {
@@ -53,16 +52,7 @@ void BattleField::pause() {
 }
 
 void BattleField::generateEnemy() {
-	static int timer = 0;
-	if (++timer >= 60) {
-		timer = 0;
-		EnemyPlane* enemy = new TrivialEnemyPlane(enemy_plane_path, 60);
-		enemy->setPosition(randint(battlefield_border.left(), battlefield_border.right()), 10);
-		_enemies.push_back(enemy);
-		EnemyPlane* enemy1 = new StableEnemyPlane(enemy_plane_path, 60,200);
-		enemy1->setPosition(randint(battlefield_border.left()+100, battlefield_border.right()-100), 10);
-		_enemies.push_back(enemy1);
-	}
+	_generator->execute(this);
 }
 
 void BattleField::updateMissiles() {
@@ -155,11 +145,9 @@ void BattleField::processKeyEvent() {
 void BattleField::paintEvent(QPaintEvent* _event) {
 	QPainter painter(this);
 	painter.drawRect(battlefield_border);
-	painter.drawPixmap(PlayerPlane::plane()->rect(), PlayerPlane::plane()->picture());
-	PlayerPlane::plane()->drawMissiles(painter);
-	PlayerPlane::plane()->drawHP(painter);
+	PlayerPlane::plane()->drawOn(painter);
 	for (EnemyPlane* enemy : _enemies) {
-		painter.drawPixmap(enemy->rect(), enemy->picture());
+		enemy->drawOn(painter);
 	}
 	for (_Missile* missile : _enemyMissile) {
 		painter.drawPixmap(missile->rect(), missile->picture());

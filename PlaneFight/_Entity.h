@@ -1,7 +1,6 @@
 #pragma once
 
-#include "config.h"
-#include <QPixmap>
+#include "util.h"
 
 class _Plane;
 

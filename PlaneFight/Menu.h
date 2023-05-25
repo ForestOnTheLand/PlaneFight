@@ -10,29 +10,28 @@
 #include <QVBoxLayout>
 
 namespace Ui {
-class MenuClass;
+	class MenuClass;
 }
 
-class Menu : public QWidget
-{
-    Q_OBJECT
+class Menu : public QWidget {
+	Q_OBJECT
 
 public:
-    explicit Menu(QWidget *parent = nullptr);
-    ~Menu();
-    QStackedWidget* stackWidget;
-    QPushButton* gameModes[3];
-    QWidget* gameWidgets[4];
-    QVBoxLayout menuButtonLayout;
-    QHBoxLayout mainLayout;
+	explicit Menu(QWidget* parent = nullptr);
+	~Menu();
+	QStackedWidget* stackWidget;
+	QPushButton* gameModes[3];
+	QWidget* gameWidgets[4];
+	QVBoxLayout menuButtonLayout;
+	QHBoxLayout mainLayout;
 
 public slots:
-    void GameMode1();
-    void GameMode2();
-    void GameMode3();
+	void GameMode1();
+	void GameMode2();
+	void GameMode3();
 
 private:
-    Ui::MenuClass *ui;
+	Ui::MenuClass* ui;
 };
 
-#endif // MENU_H
+#endif    // MENU_H

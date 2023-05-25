@@ -17,7 +17,7 @@ _Entity::_Entity(const char* const __image_path, int __init_x, int __init_y) {
 	_picture.load(__image_path);
 	_rect.setWidth(_picture.width());
 	_rect.setHeight(_picture.height());
-	_rect.moveTo(__init_x - _picture.width() / 2, __init_y - _picture.height() / 2);
+	_rect.moveTo(__init_x - _picture.width() / 2.0, __init_y - _picture.height() / 2.0);
 }
 
 const QPixmap& _Entity::picture() const {
