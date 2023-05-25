@@ -4,7 +4,7 @@
 
 EnemyGeneratingPolicy::EnemyGeneratingPolicy(const std::function<void(BattleField*)>& __f,
                                              int __time)
-    : _call(__f), _time(__time * update_rate) {}
+    : _call(__f), _time(__time * (1000 / update_rate)) {}
 void EnemyGeneratingPolicy::execute(BattleField* b) {
 	_call(b);
 	++_timer;
