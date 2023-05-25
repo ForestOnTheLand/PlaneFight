@@ -12,6 +12,7 @@ public:
 	virtual ~Policy() = default;
 	virtual void execute(BattleField* b) = 0;
 	virtual bool terminal() = 0;
+	virtual void draw(QPainter& painter);
 };
 
 
@@ -46,6 +47,17 @@ public:
 	bool terminal() override;
 };
 
+class PictureDisplay : public Policy {
+	std::vector<std::pair<QPixmap, QRect>> _picture;
+	int _time;
+	int _timer = 0;
+
+public:
+	PictureDisplay(std::initializer_list<std::pair<const char* const, QPoint>> __list, int __time);
+	void execute(BattleField* b) override;
+	bool terminal() override;
+	void draw(QPainter& painter) override;
+};
 
 class EnemyGenerator {
 protected:
@@ -56,4 +68,5 @@ public:
 	EnemyGenerator(std::initializer_list<Policy*> __policies);
 	void execute(BattleField* b);
 	bool free() const;
+	void draw(QPainter& painter) const;
 };

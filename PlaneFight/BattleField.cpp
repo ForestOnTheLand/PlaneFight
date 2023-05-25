@@ -156,7 +156,7 @@ void BattleField::paintEvent(QPaintEvent* _event) {
 		painter.drawPixmap(drop->rect(), drop->picture());
 	}
 	paintEffect(painter);
-
+	_generator->draw(painter);
 	ui->score_label->setText(QString("Score: ") + QString::number(PlayerPlane::plane()->score));
 	ui->hp_label->setText(QString("HP: ") + QString::number(PlayerPlane::plane()->health()) + "/" +
 	                      QString::number(player_max_health));

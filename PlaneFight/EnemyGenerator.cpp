@@ -2,9 +2,13 @@
 #include "BattleField.h"
 #include "BossEnemyPlane.h"
 
+void Policy::draw(QPainter& painter) {
+	return;
+}
+
 EnemyGeneratingPolicy::EnemyGeneratingPolicy(const std::function<void(BattleField*)>& __f,
                                              int __time)
-    : _call(__f), _time(__time * update_rate) {}
+    : _call(__f), _time(__time * (1000 / update_rate)) {}
 void EnemyGeneratingPolicy::execute(BattleField* b) {
 	_call(b);
 	++_timer;
@@ -36,6 +40,31 @@ bool BossGeneratingPolicy::terminal() {
 	return _field != nullptr && _field->_enemies.empty();
 }
 
+
+PictureDisplay::PictureDisplay(std::initializer_list<std::pair<const char* const, QPoint>> __list,
+                               int __time)
+    : _time(__time) {
+	for (auto [path, pos] : __list) {
+		QPixmap picture;
+		picture.load(path);
+		_picture.push_back(
+		    {picture, QRect(pos.x() - picture.width() / 2, pos.y() - picture.height() / 2,
+		                    picture.width(), picture.height())});
+	}
+}
+void PictureDisplay::execute(BattleField* b) {
+	++_timer;
+}
+bool PictureDisplay::terminal() {
+	return _timer > _time;
+}
+void PictureDisplay::draw(QPainter& painter) {
+	for (auto [pixmap, rect] : _picture) {
+		painter.drawPixmap(rect, pixmap);
+	}
+}
+
+
 EnemyGenerator::EnemyGenerator(std::initializer_list<Policy*> __policies) : _policies(__policies) {}
 void EnemyGenerator::execute(BattleField* b) {
 	if (_policies.empty()) {
@@ -49,4 +78,8 @@ void EnemyGenerator::execute(BattleField* b) {
 }
 bool EnemyGenerator::free() const {
 	return _free;
+}
+void EnemyGenerator::draw(QPainter& painter) const {
+	if (!_policies.empty())
+		_policies.front()->draw(painter);
 }
