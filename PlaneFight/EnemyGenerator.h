@@ -48,6 +48,7 @@ public:
 };
 
 class PictureDisplay : public Policy {
+	std::vector<std::pair<const char* const, QPoint>> _list;
 	std::vector<std::pair<QPixmap, QRect>> _picture;
 	int _time;
 	int _timer = 0;
@@ -66,6 +67,7 @@ protected:
 
 public:
 	EnemyGenerator(std::initializer_list<Policy*> __policies);
+	~EnemyGenerator();
 	void execute(BattleField* b);
 	bool free() const;
 	void draw(QPainter& painter) const;

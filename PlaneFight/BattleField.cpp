@@ -3,7 +3,7 @@
 
 BattleField::BattleField(QWidget* parent)
     : QWidget(parent), ui(new Ui::BattleFieldClass()), _timer(new QTimer),
-      _generator(Generator::level_1) {
+      _generator(Generator::level_1()) {
 	ui->setupUi(this);
 	this->setFixedSize(800, 800);
 	PlayerPlane::init();
@@ -35,7 +35,7 @@ void BattleField::updateAll() {
 	generateEnemy();
 	checkCollision();
 	checkDeadPlane();
-	for (EnemyPlane* enemy : _enemies) {
+	for (_EnemyPlane* enemy : _enemies) {
 		enemy->updatePosition();
 		enemy->shootMissiles(this);
 	}
@@ -84,8 +84,8 @@ void BattleField::checkDeadPlane() {
 		if ((*iter)->dead() || (*iter)->out()) {
 			if ((*iter)->dead()) {
 				PlayerPlane::plane()->score += 100;
-				_effects.push_back(new ExplosionEffect((*iter)->rect().center()));
-				(*iter)->Drop(this);
+				//_effects.push_back(new ExplosionEffect((*iter)->rect().center()));
+				(*iter)->afterDeath(this);
 			}
 			delete *iter;
 			iter = _enemies.erase(iter);
@@ -98,7 +98,7 @@ void BattleField::checkDeadPlane() {
 }
 
 void BattleField::checkCollision() {
-	for (EnemyPlane* enemy : _enemies) {
+	for (_EnemyPlane* enemy : _enemies) {
 		enemy->hurt(PlayerPlane::plane());
 		PlayerPlane::plane()->hurt(enemy);
 	}
@@ -146,7 +146,7 @@ void BattleField::paintEvent(QPaintEvent* _event) {
 	QPainter painter(this);
 	painter.drawRect(battlefield_border);
 	PlayerPlane::plane()->drawOn(painter);
-	for (EnemyPlane* enemy : _enemies) {
+	for (_EnemyPlane* enemy : _enemies) {
 		enemy->drawOn(painter);
 	}
 	for (_Missile* missile : _enemyMissile) {

@@ -5,7 +5,7 @@
 static constexpr const char* trival_missile_path = ":/PlaneFight/img/bullet/mid_bullet_green.png";
 
 BossEnemyPlane::BossEnemyPlane(const char* __image_path, int __health)
-    : EnemyPlane(__image_path, __health, {battlefield_border.center().x(), 0}),
+    : _EnemyPlane(__image_path, __health, {battlefield_border.center().x(), 0}),
       _max_health(_health) {}
 
 void BossEnemyPlane::shootMissilesAround(BattleField* field) {
@@ -54,7 +54,7 @@ void BossEnemyPlane::shootMissiles(BattleField* field) {
 	}
 }
 
-void BossEnemyPlane::Drop(BattleField* field) {
+void BossEnemyPlane::afterDeath(BattleField* field) {
 	return;
 }
 

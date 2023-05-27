@@ -22,6 +22,14 @@ inline int randint(int begin, int end) {
 	return rand() % (end - begin) + begin;
 }
 
+inline int random_x() {
+	return randint(battlefield_border.left(), battlefield_border.right());
+}
+
+inline int random_y() {
+	return randint(battlefield_border.top(), battlefield_border.bottom());
+}
+
 inline double randdouble(double begin, double end) {
 	return _rand_double() * (end - begin) + begin;
 }
@@ -32,4 +40,16 @@ inline int _checked(int t, int begin, int end) {
 
 inline bool with_probability(double p) {
 	return _rand_double() < p;
+}
+
+inline int distribution_as(std::initializer_list<double> __list) {
+	int i = 0;
+	double d = _rand_double(), p_sum = 0;
+	for (double p : __list) {
+		if (d < (p_sum += p))
+			break;
+		else
+			++i;
+	}
+	return i;
 }

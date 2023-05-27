@@ -5,30 +5,30 @@
 namespace Generator {
 	static constexpr const char* enemy_plane_path = ":/PlaneFight/img/enemy.png";    // @IMAGE
 	namespace PolicyFucntion {
+		using namespace Plane;
 		auto example = [](BattleField* b) {
 			static int timer = 0;
 			if (++timer >= 60) {
 				timer = 0;
-				EnemyPlane* enemy = new TrivialEnemyPlane(enemy_plane_path, 60);
-				enemy->setPosition(randint(battlefield_border.left(), battlefield_border.right()),
-				                   10);
-				b->_enemies.push_back(enemy);
-				EnemyPlane* enemy1 = new StableEnemyPlane(enemy_plane_path, 60, 200);
-				enemy1->setPosition(
-				    randint(battlefield_border.left() + 100, battlefield_border.right() - 100), 10);
-				b->_enemies.push_back(enemy1);
+				b->_enemies.push_back(new EnemyPlane(enemy_plane_path, 60, 50, Shoot::Straight(),
+				                                     Speed::RandomX(), Speed::Steady(10, 3),
+				                                     {0.2, 0.2, 0.2}));
+				b->_enemies.push_back(new EnemyPlane(
+				    enemy_plane_path, 60, 80, Shoot::ThreeWays(), Speed::Steady(random_x()),
+				    Speed::Stable(30, 3, 200, 500), {0.2, 0.2, 0.2}));
 			}
 		};
 	}    // namespace PolicyFucntion
 }    // namespace Generator
 
 namespace Generator {
-	EnemyGenerator* example_generator(new EnemyGenerator({
-	    new EnemyGeneratingPolicy(PolicyFucntion::example, 5000),
-	}));
-	EnemyGenerator* level_1(new EnemyGenerator({
-	    new EnemyGeneratingPolicy(PolicyFucntion::example, 30),
-	    new EnemyClearingPolicy(),
-	    new BossGeneratingPolicy(),
-	}));
+	EnemyGenerator* level_1() {
+		return new EnemyGenerator({
+		    new EnemyGeneratingPolicy(PolicyFucntion::example, 30),
+		    new PictureDisplay({{enemy_plane_path, battlefield_border.center()}},
+             2),
+		    new EnemyClearingPolicy(),
+		    new BossGeneratingPolicy(),
+		});
+	};
 }    // namespace Generator

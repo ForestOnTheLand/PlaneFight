@@ -8,8 +8,7 @@ private:
 	int _strengthen_point;
 
 public:
-	PowerBonus(const char* __image_path, int __init_x, int __init_y, int __speed_x, int __speed_y,
-	           int __strengthen_point);
+	PowerBonus(int __init_x, int __init_y, int __speed_x, int __speed_y, int __strengthen_point);
 
 public:
 	void updatePosition() final;

@@ -43,7 +43,7 @@ private:
 	void pause();
 
 public:
-	std::vector<EnemyPlane*> _enemies;
+	std::vector<_EnemyPlane*> _enemies;
 	std::vector<_Effect*> _effects;
 	std::vector<_Missile*> _enemyMissile;
 	std::vector<_Bonus*> _drops;

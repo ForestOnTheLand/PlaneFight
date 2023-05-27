@@ -1,7 +1,7 @@
 #pragma once
 #include "EnemyPlane.h"
 
-class BossEnemyPlane : public EnemyPlane {
+class BossEnemyPlane : public _EnemyPlane {
 private:
 	void shootMissilesAround(BattleField* field);
 	void shootMissilesArc(BattleField* field);
@@ -12,7 +12,7 @@ public:
 	BossEnemyPlane(const char* __image_path, int __health);
 	void updatePosition() final;
 	void shootMissiles(BattleField* field) final;
-	void Drop(BattleField* field) final;
+	void afterDeath(BattleField* field) final;
 	void drawOn(QPainter& painter) final;
 	bool out() const final;
 };

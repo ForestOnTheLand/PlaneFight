@@ -21,7 +21,7 @@ void EnemyClearingPolicy::execute(BattleField* b) {
 	if (b->_enemies.empty()) {
 		_finish = true;
 	} else {
-		for (EnemyPlane* enemy : b->_enemies) {
+		for (_EnemyPlane* enemy : b->_enemies) {
 			enemy->moveBy(0, 10);
 		}
 	}
@@ -43,15 +43,7 @@ bool BossGeneratingPolicy::terminal() {
 
 PictureDisplay::PictureDisplay(std::initializer_list<std::pair<const char* const, QPoint>> __list,
                                int __time)
-    : _time(__time) {
-	for (auto [path, pos] : __list) {
-		QPixmap picture;
-		picture.load(path);
-		_picture.push_back(
-		    {picture, QRect(pos.x() - picture.width() / 2, pos.y() - picture.height() / 2,
-		                    picture.width(), picture.height())});
-	}
-}
+    : _time(__time), _list(__list) {}
 void PictureDisplay::execute(BattleField* b) {
 	++_timer;
 }
@@ -59,13 +51,29 @@ bool PictureDisplay::terminal() {
 	return _timer > _time;
 }
 void PictureDisplay::draw(QPainter& painter) {
-	for (auto [pixmap, rect] : _picture) {
-		painter.drawPixmap(rect, pixmap);
+	if (_list.size() != _picture.size()) {
+		for (auto [path, pos] : _list) {
+			QPixmap picture;
+			picture.load(path);
+			_picture.push_back(
+			    {picture, QRect(pos.x() - picture.width() / 2, pos.y() - picture.height() / 2,
+			                    picture.width(), picture.height())});
+		}
+	} else {
+		for (auto [pixmap, rect] : _picture) {
+			painter.drawPixmap(rect, pixmap);
+		}
 	}
 }
 
 
 EnemyGenerator::EnemyGenerator(std::initializer_list<Policy*> __policies) : _policies(__policies) {}
+EnemyGenerator::~EnemyGenerator() {
+	for (Policy* policy : _policies) {
+		delete policy;
+	}
+}
+
 void EnemyGenerator::execute(BattleField* b) {
 	if (_policies.empty()) {
 		_free = true;
