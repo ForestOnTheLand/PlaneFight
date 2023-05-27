@@ -12,5 +12,12 @@
         <file>img/point.png</file>
         <file>img/life.png</file>
         <file>img/power.png</file>
+        <file>img/bullet/etama6_6.png</file>
+        <file>img/bullet/etama6_4.png</file>
+        <file>img/bullet/small_bullet_darkBlue.png</file>
+        <file>img/bullet/small_bullet_lightBlue.png</file>
+        <file>img/bosswarning.png</file>
+        <file>img/Boss1.png</file>
+        <file>img/Boss2.png</file>
     </qresource>
 </RCC>
