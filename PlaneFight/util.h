@@ -42,7 +42,8 @@ inline bool with_probability(double p) {
 	return _rand_double() < p;
 }
 
-inline int distribution_as(std::initializer_list<double> __list) {
+template <typename T>
+inline int distribution_as(T __list) {
 	int i = 0;
 	double d = _rand_double(), p_sum = 0;
 	for (double p : __list) {

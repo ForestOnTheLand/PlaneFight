@@ -46,8 +46,9 @@ void EnemyPlane::afterDeath(BattleField* field) {
 		case 0: bonus = new PointBonus(_rect.center().x(), _rect.center().y(), 0, 4, 10); break;
 		case 1: bonus = new PowerBonus(_rect.center().x(), _rect.center().y(), 0, 4, 5); break;
 		case 2: bonus = new LifeBonus(_rect.center().x(), _rect.center().y(), 0, 4, 10); break;
-		default: break;
+		default: return;
 	}
+	field->_drops.push_back(bonus);
 }
 void EnemyPlane::updatePosition() {
 	++_move_timer;
@@ -61,8 +62,11 @@ namespace Plane {
 			    trival_missile_path, plane->rect().center().x(), plane->rect().bottom(), 0, 5, 50));
 		}
 		void ThreeWays::operator()(EnemyPlane* plane, BattleField* field) {
-			field->_enemyMissile.push_back(new SteadyMissile(
-			    stable_missile_path, plane->rect().center().x(), plane->rect().bottom(), 0, 5, 50));
+			double dx = PlayerPlane::plane()->rect().center().x() - plane->rect().center().x();
+			double dy = PlayerPlane::plane()->rect().center().y() - plane->rect().center().y();
+			double distance = sqrt(pow(dx, 2) + pow(dy, 2));
+			field->_enemyMissile.push_back(new SteadyMissileF(stable_missile_path, plane->rect().center().x(),
+				plane->rect().center().y() + 20, 4 * dx / distance, 4 * dy / distance, 50));
 			field->_enemyMissile.push_back(new SteadyMissile(stable_missile_path,
 			                                                 plane->rect().center().x(),
 			                                                 plane->rect().bottom(), -2, 3, 50));
