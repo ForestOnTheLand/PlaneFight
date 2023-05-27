@@ -23,6 +23,24 @@ void BossEnemyPlane::shootMissilesAround(BattleField* field) {
 	}
 }
 
+
+void BossEnemyPlane::shootMissilesRound(BattleField* field) {
+	static int counter = 0;
+	static int timer = 0;
+	if (++timer <= 10)
+		return;
+	timer = 0;
+	for (double angle = 0; angle < 360; angle += 10) {
+		field->_enemyMissile.push_back(new SteadyMissileF(
+			trival_missile_path, _rect.center().x() + 10 * cos(angle),
+			_rect.center().y() + 10 * sin(angle), 3 * cos(angle), 3 * sin(angle), 50));
+	}
+	if (++counter >= 5) {
+		counter = 0, timer = 0;
+		_shoot_state = 0;
+	}
+}
+
 void BossEnemyPlane::shootMissilesArc(BattleField* field) {
 	static int counter = 0;
 	static int timer = 0;
@@ -48,9 +66,10 @@ void BossEnemyPlane::updatePosition() {
 
 void BossEnemyPlane::shootMissiles(BattleField* field) {
 	switch (_shoot_state) {
-		case 0: _shoot_state = with_probability(0.5) ? 0 : randint(1, 3); break;
+		case 0: _shoot_state = with_probability(0.5) ? 0 : randint(1, 4); break;
 		case 1: shootMissilesAround(field); break;
 		case 2: shootMissilesArc(field); break;
+		case 3: shootMissilesRound(field); break;
 	}
 }
 

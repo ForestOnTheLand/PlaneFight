@@ -9,7 +9,7 @@
 
 static constexpr const char* trival_missile_path = ":/PlaneFight/img/bullet/mid_bullet_green.png";
 static constexpr const char* stable_missile_path =
-    ":/PlaneFight/img/bullet/small_bullet_purple.png";
+    ":/PlaneFight/img/bullet/small_bullet_darkBlue.png";
 
 _EnemyPlane::_EnemyPlane(const char* __image_path, int __health, QPoint __init_pos)
     : _Plane(__image_path, __health) {

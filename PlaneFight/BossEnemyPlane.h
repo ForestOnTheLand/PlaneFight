@@ -5,6 +5,7 @@ class BossEnemyPlane : public _EnemyPlane {
 private:
 	void shootMissilesAround(BattleField* field);
 	void shootMissilesArc(BattleField* field);
+	void shootMissilesRound(BattleField* field);
 	int _shoot_state = 0;
 	int _max_health;
 

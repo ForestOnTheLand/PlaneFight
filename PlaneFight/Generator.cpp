@@ -25,9 +25,9 @@ namespace Generator {
 namespace Generator {
 	EnemyGenerator* level_1() {
 		return new EnemyGenerator({
-		    new EnemyGeneratingPolicy(PolicyFucntion::example, 5),
+		    new EnemyGeneratingPolicy(PolicyFucntion::example, 30),
 		    new PictureDisplay({{warning_path, battlefield_border.center()}},
-             1000),
+             100),
 		    new EnemyClearingPolicy(),
 		    new BossGeneratingPolicy(),
 		});
