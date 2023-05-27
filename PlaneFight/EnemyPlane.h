@@ -21,7 +21,7 @@ public:
 class EnemyPlane : public _EnemyPlane {
 	std::function<int(int)> _x, _y;
 	std::function<void(EnemyPlane*, BattleField*)> _shoot;
-	std::initializer_list<double> _prob;
+	std::vector<double> _prob;
 	int _shoot_timer = 0, _move_timer = 0, _shoot_interval;
 
 public:

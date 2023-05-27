@@ -24,7 +24,7 @@ namespace Generator {
 namespace Generator {
 	EnemyGenerator* level_1() {
 		return new EnemyGenerator({
-		    new EnemyGeneratingPolicy(PolicyFucntion::example, 30),
+		    new EnemyGeneratingPolicy(PolicyFucntion::example, 10),
 		    new PictureDisplay({{enemy_plane_path, battlefield_border.center()}},
              2),
 		    new EnemyClearingPolicy(),

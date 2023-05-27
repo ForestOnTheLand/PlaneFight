@@ -46,8 +46,9 @@ void EnemyPlane::afterDeath(BattleField* field) {
 		case 0: bonus = new PointBonus(_rect.center().x(), _rect.center().y(), 0, 4, 10); break;
 		case 1: bonus = new PowerBonus(_rect.center().x(), _rect.center().y(), 0, 4, 5); break;
 		case 2: bonus = new LifeBonus(_rect.center().x(), _rect.center().y(), 0, 4, 10); break;
-		default: break;
+		default: return;
 	}
+	field->_drops.push_back(bonus);
 }
 void EnemyPlane::updatePosition() {
 	++_move_timer;

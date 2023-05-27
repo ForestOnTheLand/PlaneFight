@@ -43,7 +43,7 @@ bool BossGeneratingPolicy::terminal() {
 
 PictureDisplay::PictureDisplay(std::initializer_list<std::pair<const char* const, QPoint>> __list,
                                int __time)
-    : _time(__time), _list(__list) {}
+    : _time(__time * (1000 / update_rate)), _list(__list) {}
 void PictureDisplay::execute(BattleField* b) {
 	++_timer;
 }
