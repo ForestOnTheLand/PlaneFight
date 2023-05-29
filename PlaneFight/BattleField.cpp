@@ -1,9 +1,11 @@
 #include "BattleField.h"
 #include "PlayerPlane.h"
+#include "Menu.h"
+#include "GameReview.h"
 
-BattleField::BattleField(QWidget* parent)
+BattleField::BattleField(QWidget* parent,Menu* menu)
     : QWidget(parent), ui(new Ui::BattleFieldClass()), _timer(new QTimer),
-      _generator(Generator::level_1()) {
+      _generator(Generator::level_1()),mainMenu(menu) {
 	ui->setupUi(this);
 	this->setFixedSize(800, 800);
 	PlayerPlane::init();
@@ -44,7 +46,15 @@ void BattleField::updateAll() {
 }
 
 void BattleField::gameOver() {
-	exit(0);
+	GameReview* pGameReview = qobject_cast<GameReview*>(mainMenu->gameWidgets[5]);
+	//pGameReview->score = PlayerPlane::plane()->score;
+	//pGameReview->refill();
+	mainMenu->stackWidget->setCurrentIndex(1);
+	mainMenu->to_remove.push_back(mainMenu->gameWidgets[2]);
+	mainMenu->gameWidgets[2] = new BattleField(nullptr, mainMenu);
+	mainMenu->stackWidget->insertWidget(2,mainMenu->gameWidgets[2]);
+	mainMenu->stackWidget->removeWidget(this);
+	//exit(0);
 }
 
 void BattleField::pause() {

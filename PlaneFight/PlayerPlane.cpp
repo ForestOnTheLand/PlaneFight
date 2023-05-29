@@ -17,6 +17,9 @@ PlayerPlane::PlayerPlane(const char* const __image_path, int _bombs)
     : _Plane(__image_path, player_max_health), bombs(_bombs), score(0), power(0) {}
 
 void PlayerPlane::init() {
+	if (_plane) {
+		delete _plane;
+	}
 	_plane = new PlayerPlane(player_plane_path, player_plane_bombs);
 	_plane->setPosition(battlefield_border.center().x(),
 	                    battlefield_border.bottom() - _plane->rect().height());
