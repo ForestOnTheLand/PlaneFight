@@ -121,6 +121,12 @@
     <ClCompile Include="BossEnemyPlane.cpp">
       <Filter>Source Files\Plane</Filter>
     </ClCompile>
+    <ClCompile Include="GameReview.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="Ranking.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
     <ClCompile Include="TrackMissile.cpp">
       <Filter>Source Files\Missile</Filter>
     </ClCompile>
@@ -179,6 +185,15 @@
     <QtUic Include="BattleField.ui">
       <Filter>Form Files</Filter>
     </QtUic>
+    <QtUic Include="GameReview.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="Menu.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="Ranking.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="BattleField.h">
@@ -187,5 +202,14 @@
     <QtMoc Include="Menu.h">
       <Filter>Header Files\UI</Filter>
     </QtMoc>
+    <QtMoc Include="GameReview.h">
+      <Filter>Header Files\UI</Filter>
+    </QtMoc>
+    <QtMoc Include="Ranking.h">
+      <Filter>Header Files\UI</Filter>
+    </QtMoc>
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="DataRecord.txt" />
   </ItemGroup>
 </Project>

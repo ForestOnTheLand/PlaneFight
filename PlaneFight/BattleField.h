@@ -5,6 +5,7 @@
 #include "EnemyPlane.h"
 #include "ExplosionEffect.h"
 #include "Generator.h"
+#include "Menu.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui {
@@ -13,6 +14,7 @@ namespace Ui {
 QT_END_NAMESPACE
 
 class EnemyPlane;
+class Menu;
 
 class BattleField : public QWidget {
 	Q_OBJECT
@@ -22,9 +24,10 @@ private:
 	Ui::BattleFieldClass* ui;
 	KeyState _key;
 	EnemyGenerator* _generator;
+	Menu* mainMenu;
 
 public:
-	BattleField(QWidget* parent = nullptr);
+	BattleField(QWidget* parent = nullptr,Menu* menu=nullptr);
 	~BattleField();
 
 public:
