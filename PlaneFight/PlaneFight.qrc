@@ -19,5 +19,16 @@
         <file>img/bosswarning.png</file>
         <file>img/Boss1.png</file>
         <file>img/Boss2.png</file>
+        <file>img/MenuBackground.png</file>
+        <file>img/685387.jpg</file>
+        <file>img/1305704.jpg</file>
+        <file>img/MenuBackground1.png</file>
+        <file>img/battleBackground.jpg</file>
+        <file>img/background22.png</file>
+        <file>img/stg4bg1.png</file>
+        <file>img/bullet/flame_bullet_red_1.png</file>
+        <file>img/bullet/orb_bullet_orange.png</file>
+        <file>img/bullet/star_bullet_purple.png</file>
+        <file>img/bullet/big_bullet_blue.png</file>
     </qresource>
 </RCC>

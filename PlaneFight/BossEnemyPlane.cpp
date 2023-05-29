@@ -2,7 +2,10 @@
 #include "BattleField.h"
 #include "SteadyMissile.h"
 
-static constexpr const char* trival_missile_path = ":/PlaneFight/img/bullet/mid_bullet_green.png";
+static constexpr const char* around_missile_path = ":/PlaneFight/img/bullet/flame_bullet_red_1.png";
+static constexpr const char* round_missile_path = ":/PlaneFight/img/bullet/orb_bullet_orange.png";
+static constexpr const char* arc_missile_path = ":/PlaneFight/img/bullet/star_bullet_purple.png";
+
 
 BossEnemyPlane::BossEnemyPlane(const char* __image_path, int __health)
     : _EnemyPlane(__image_path, __health, {battlefield_border.center().x(), 0}),
@@ -15,7 +18,7 @@ void BossEnemyPlane::shootMissilesAround(BattleField* field) {
 		return;
 	angle += 7, timer = 0;
 	field->_enemyMissile.push_back(new SteadyMissileF(
-	    trival_missile_path, _rect.center().x() + 10 * cos(angle),
+	    around_missile_path, _rect.center().x() + 10 * cos(angle),
 	    _rect.center().y() + 10 * sin(angle), 2 * cos(angle), 2 * sin(angle), 50));
 	if (angle > 720) {
 		angle = 0, timer = 0;
@@ -32,7 +35,7 @@ void BossEnemyPlane::shootMissilesRound(BattleField* field) {
 	timer = 0;
 	for (double angle = 0; angle < 360; angle += 10) {
 		field->_enemyMissile.push_back(new SteadyMissileF(
-			trival_missile_path, _rect.center().x() + 10 * cos(angle),
+			round_missile_path, _rect.center().x() + 10 * cos(angle),
 			_rect.center().y() + 10 * sin(angle), 3 * cos(angle), 3 * sin(angle), 50));
 	}
 	if (++counter >= 5) {
@@ -49,7 +52,7 @@ void BossEnemyPlane::shootMissilesArc(BattleField* field) {
 	timer = 0;
 	for (double angle = randdouble(40, 50); angle < 140; angle += 10) {
 		field->_enemyMissile.push_back(new SteadyMissileF(
-		    trival_missile_path, _rect.center().x() + 10 * cos(angle),
+		    arc_missile_path, _rect.center().x() + 10 * cos(angle),
 		    _rect.center().y() + 10 * sin(angle), 3 * cos(angle), 3 * sin(angle), 50));
 	}
 	if (++counter >= 5) {

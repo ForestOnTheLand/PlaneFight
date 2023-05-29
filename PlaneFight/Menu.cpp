@@ -2,12 +2,21 @@
 #include "ui_Menu.h"
 #include "BattleField.h"
 #include "qpushbutton.h"
+#include "qpainter.h"
+#include "qpixmap.h"
+#include "qpoint.h"
 
 Menu::Menu(QWidget* parent) : QWidget(parent), ui(new Ui::MenuClass) {
 	ui->setupUi(this);
 
 	stackWidget = new QStackedWidget();
-	gameWidgets[0] = new QWidget();        // interface for menu
+	gameWidgets[0] = new QWidget();// interface for menu
+	gameWidgets[0]->setAutoFillBackground(true);
+	QImage image;
+	QPalette palette;
+	image.load(":/PlaneFight/img/MenuBackground1.png");
+	palette.setBrush(this->backgroundRole(), QBrush(image));
+	gameWidgets[0]->setPalette(palette);
 	gameWidgets[1] = new BattleField();    // interface for battlefield
 
 	for (int i = 0; i < 3; ++i) {

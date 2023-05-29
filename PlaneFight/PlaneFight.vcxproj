@@ -58,6 +58,11 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
   </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Link>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
     <ClCompile>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
@@ -97,6 +102,7 @@
     <ClCompile Include="PowerBonus.cpp" />
     <ClCompile Include="PlayerPlane.cpp" />
     <ClCompile Include="SteadyMissile.cpp" />
+    <ClCompile Include="TrackMissile.cpp" />
     <ClCompile Include="_Effect.cpp" />
     <ClCompile Include="_Entity.cpp" />
     <ClCompile Include="_Plane.cpp" />
@@ -116,6 +122,7 @@
     <QtMoc Include="Menu.h" />
     <ClInclude Include="PointBonus.h" />
     <ClInclude Include="PowerBonus.h" />
+    <ClInclude Include="TrackMissile.h" />
     <ClInclude Include="util.h" />
     <ClInclude Include="PlayerPlane.h" />
     <ClInclude Include="SteadyMissile.h" />

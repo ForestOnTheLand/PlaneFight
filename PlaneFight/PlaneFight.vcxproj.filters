@@ -121,6 +121,9 @@
     <ClCompile Include="BossEnemyPlane.cpp">
       <Filter>Source Files\Plane</Filter>
     </ClCompile>
+    <ClCompile Include="TrackMissile.cpp">
+      <Filter>Source Files\Missile</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="_Plane.h">
@@ -167,6 +170,9 @@
     </ClInclude>
     <ClInclude Include="BossEnemyPlane.h">
       <Filter>Header Files\Plane</Filter>
+    </ClInclude>
+    <ClInclude Include="TrackMissile.h">
+      <Filter>Header Files\Missile</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

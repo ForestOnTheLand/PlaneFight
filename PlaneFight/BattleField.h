@@ -43,6 +43,7 @@ private:
 	void pause();
 
 public:
+	QPixmap pic1, pic2;
 	std::vector<_EnemyPlane*> _enemies;
 	std::vector<_Effect*> _effects;
 	std::vector<_Missile*> _enemyMissile;

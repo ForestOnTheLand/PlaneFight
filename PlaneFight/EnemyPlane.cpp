@@ -1,6 +1,7 @@
 #include "EnemyPlane.h"
 #include "PlayerPlane.h"
 #include "SteadyMissile.h"
+#include "TrackMissile.h"
 #include "BattleField.h"
 #include "PointBonus.h"
 #include "PowerBonus.h"
@@ -8,8 +9,8 @@
 #include <cmath>
 
 static constexpr const char* trival_missile_path = ":/PlaneFight/img/bullet/mid_bullet_green.png";
-static constexpr const char* stable_missile_path =
-    ":/PlaneFight/img/bullet/small_bullet_darkBlue.png";
+static constexpr const char* stable_missile_path = ":/PlaneFight/img/bullet/small_bullet_darkBlue.png";
+static constexpr const char* track_missile_path = ":/PlaneFight/img/bullet/small_bullet_orange.png";
 
 _EnemyPlane::_EnemyPlane(const char* __image_path, int __health, QPoint __init_pos)
     : _Plane(__image_path, __health) {
@@ -62,11 +63,9 @@ namespace Plane {
 			    trival_missile_path, plane->rect().center().x(), plane->rect().bottom(), 0, 5, 50));
 		}
 		void ThreeWays::operator()(EnemyPlane* plane, BattleField* field) {
-			double dx = PlayerPlane::plane()->rect().center().x() - plane->rect().center().x();
-			double dy = PlayerPlane::plane()->rect().center().y() - plane->rect().center().y();
-			double distance = sqrt(pow(dx, 2) + pow(dy, 2));
-			field->_enemyMissile.push_back(new SteadyMissileF(stable_missile_path, plane->rect().center().x(),
-				plane->rect().center().y() + 20, 4 * dx / distance, 4 * dy / distance, 50));
+
+			field->_enemyMissile.push_back(new TrackMissile(track_missile_path, plane->rect().center().x(),
+				plane->rect().center().y() + 20, 0, 5, 50));
 			field->_enemyMissile.push_back(new SteadyMissile(stable_missile_path,
 			                                                 plane->rect().center().x(),
 			                                                 plane->rect().bottom(), -2, 3, 50));
