@@ -31,8 +31,8 @@
     <Import Project="$(QtMsBuild)\qt_defaults.props" />
   </ImportGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="QtSettings">
-    <QtInstall>6.5.0_msvc2019_64</QtInstall>
-    <QtModules>core;gui;widgets</QtModules>
+    <QtInstall>6.5.1_msvc2019_64</QtInstall>
+    <QtModules>core;gui;widgets;multimedia</QtModules>
     <QtBuildConfig>debug</QtBuildConfig>
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'" Label="QtSettings">
@@ -90,6 +90,7 @@
     </Link>
   </ItemDefinitionGroup>
   <ItemGroup>
+    <ClCompile Include="BackgroundMusic.cpp" />
     <ClCompile Include="BattleField.cpp" />
     <ClCompile Include="BossEnemyPlane.cpp" />
     <ClCompile Include="EnemyGenerator.cpp" />
@@ -117,6 +118,7 @@
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="BattleField.h" />
+    <ClInclude Include="BackgroundMusic.h" />
     <ClInclude Include="BossEnemyPlane.h" />
     <ClInclude Include="config.h" />
     <ClInclude Include="EnemyGenerator.h" />

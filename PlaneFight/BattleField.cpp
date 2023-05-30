@@ -2,16 +2,14 @@
 #include "PlayerPlane.h"
 #include "Menu.h"
 #include "GameReview.h"
-//#include <QtMultimedia/QSound> // VS向.pro文件添加代码的方式
 
-BattleField::BattleField(QWidget* parent,Menu* menu)
+BattleField::BattleField(QWidget* parent, Menu* menu)
     : QWidget(parent), ui(new Ui::BattleFieldClass()), _timer(new QTimer),
-      _generator(Generator::level_1()),mainMenu(menu) {
+      _generator(Generator::level_1()), mainMenu(menu) {
 	ui->setupUi(this);
 	this->setFixedSize(800, 800);
 	pic1.load(":/PlaneFight/img/battleBackground.jpg");
 	pic2.load(":/PlaneFight/img/background22.png");
-	PlayerPlane::init();
 	// start();
 }
 
@@ -23,6 +21,8 @@ BattleField::~BattleField() {
 }
 
 void BattleField::start() {
+	PlayerPlane::init();
+
 	_timer->setInterval(update_rate);
 	setMouseTracking(true);
 	_timer->start();
@@ -50,14 +50,15 @@ void BattleField::updateAll() {
 
 void BattleField::gameOver() {
 	GameReview* pGameReview = qobject_cast<GameReview*>(mainMenu->gameWidgets[5]);
-	//pGameReview->score = PlayerPlane::plane()->score;
-	//pGameReview->refill();
+	// pGameReview->score = PlayerPlane::plane()->score;
+	// pGameReview->refill();
+	_timer->stop();
 	mainMenu->stackWidget->setCurrentIndex(1);
 	mainMenu->to_remove.push_back(mainMenu->gameWidgets[2]);
 	mainMenu->gameWidgets[2] = new BattleField(nullptr, mainMenu);
-	mainMenu->stackWidget->insertWidget(2,mainMenu->gameWidgets[2]);
+	mainMenu->stackWidget->insertWidget(2, mainMenu->gameWidgets[2]);
 	mainMenu->stackWidget->removeWidget(this);
-	//exit(0);
+	// exit(0);
 }
 
 void BattleField::pause() {

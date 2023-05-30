@@ -7,43 +7,47 @@
 #include "qpoint.h"
 #include "GameReview.h"
 #include "Ranking.h"
+#include "BackgroundMusic.h"
 
 Menu::Menu(QWidget* parent) : QWidget(parent), ui(new Ui::MenuClass) {
+	BackgroundMusic::load(":/PlaneFight/sound/lockdown.wav");
+	BackgroundMusic::play();
+
 	ui->setupUi(this);
 
 	stackWidget = new QStackedWidget();
-	gameWidgets.push_back(new QWidget());				       //0 interface for start menu
-	gameWidgets.push_back(new QWidget());				       //1 interface for choosing mode
-	gameWidgets.push_back(new BattleField(nullptr, this));     //2 interface for survive mode
-	gameWidgets.push_back(new QWidget());			           //3 interface for choosing level mode
-	gameWidgets.push_back(new Ranking(nullptr));			   //4 interface for ranking
-	gameWidgets.push_back(new GameReview(nullptr));			   //5 interface for game review
-	gameWidgets.push_back(new QWidget());					   //6 interface for rule
-	gameWidgets.push_back(new QWidget());					   //7 interface for levels
-	gameWidgets.push_back(new QWidget());					   //8 interface for levels
+	gameWidgets.push_back(new QWidget());                     // 0 interface for start menu
+	gameWidgets.push_back(new QWidget());                     // 1 interface for choosing mode
+	gameWidgets.push_back(new BattleField(nullptr, this));    // 2 interface for survive mode
+	gameWidgets.push_back(new QWidget());                     // 3 interface for choosing level mode
+	gameWidgets.push_back(new Ranking(nullptr));              // 4 interface for ranking
+	gameWidgets.push_back(new GameReview(nullptr));           // 5 interface for game review
+	gameWidgets.push_back(new QWidget());                     // 6 interface for rule
+	gameWidgets.push_back(new QWidget());                     // 7 interface for levels
+	gameWidgets.push_back(new QWidget());                     // 8 interface for levels
 
 	for (int i = 0; i < 3; ++i) {
 		startButtons.push_back(new QPushButton(gameWidgets[0]));
 		switch (i) {
-		case 0:
-			startButtons[i]->setText("Start Now!");
-			startButtons[i]->setFont(QFont("consolas", 17));
-			startButtons[i]->setGeometry(QRect(270, 200, 191, 71));
-			connect(startButtons[i], &QPushButton::clicked, this, &Menu::StartGame);
-			break;
-		case 1:
-			startButtons[i]->setText("Rules");
-			startButtons[i]->setFont(QFont("consolas", 17));
-			startButtons[i]->setGeometry(QRect(270, 400, 191, 71));
-			connect(startButtons[i], &QPushButton::clicked, this, &Menu::ShowRules);
-			break;
-		case 2:
-			startButtons[i]->setText("Leave");
-			startButtons[i]->setFont(QFont("consolas", 17));
-			startButtons[i]->setGeometry(QRect(270, 600, 191, 71));
-			connect(startButtons[i], &QPushButton::clicked, this, &Menu::Leave);
-			break;
-		default: startButtons[i]->setText("bt"); break;
+			case 0:
+				startButtons[i]->setText("Start Now!");
+				startButtons[i]->setFont(QFont("consolas", 17));
+				startButtons[i]->setGeometry(QRect(270, 200, 191, 71));
+				connect(startButtons[i], &QPushButton::clicked, this, &Menu::StartGame);
+				break;
+			case 1:
+				startButtons[i]->setText("Rules");
+				startButtons[i]->setFont(QFont("consolas", 17));
+				startButtons[i]->setGeometry(QRect(270, 400, 191, 71));
+				connect(startButtons[i], &QPushButton::clicked, this, &Menu::ShowRules);
+				break;
+			case 2:
+				startButtons[i]->setText("Leave");
+				startButtons[i]->setFont(QFont("consolas", 17));
+				startButtons[i]->setGeometry(QRect(270, 600, 191, 71));
+				connect(startButtons[i], &QPushButton::clicked, this, &Menu::Leave);
+				break;
+			default: startButtons[i]->setText("bt"); break;
 		}
 	}
 
@@ -114,25 +118,25 @@ void Menu::GameMode3() {
 }
 
 Menu::~Menu() {
-	for (auto iter = gameModes.begin(); iter!=gameModes.end(); ++iter) {
+	for (auto iter = gameModes.begin(); iter != gameModes.end(); ++iter) {
 		if (*iter) {
 			delete *iter;
 		}
 	}
 	for (auto iter = startButtons.begin(); iter != startButtons.end(); ++iter) {
 		if (*iter) {
-			delete* iter;
+			delete *iter;
 		}
 	}
-	for (auto iter = gameWidgets.begin(); iter != gameWidgets.end();++iter) {
+	for (auto iter = gameWidgets.begin(); iter != gameWidgets.end(); ++iter) {
 		if (*iter) {
 			delete *iter;
 		}
 	}
 	for (auto iter = to_remove.begin(); iter != to_remove.end(); ++iter) {
 		if (*iter) {
-			//qDebug() << "called"<<'\n';
-			delete* iter;
+			// qDebug() << "called"<<'\n';
+			delete *iter;
 		}
 	}
 	delete stackWidget;

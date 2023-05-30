@@ -30,5 +30,12 @@
         <file>img/bullet/orb_bullet_orange.png</file>
         <file>img/bullet/star_bullet_purple.png</file>
         <file>img/bullet/big_bullet_blue.png</file>
+        <file>img/first.svg</file>
+        <file>img/second.svg</file>
+        <file>img/third.svg</file>
+        <file>img/newRecord.svg</file>
+        <file>sound/lockdown.wav</file>
+        <file>sound/effect_sound/se_enep00.wav</file>
+        <file>sound/th11_09.mp3</file>
     </qresource>
 </RCC>
