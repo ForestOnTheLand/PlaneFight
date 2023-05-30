@@ -58,6 +58,11 @@
   </PropertyGroup>
   <PropertyGroup Condition="'$(Configuration)|$(Platform)' == 'Release|x64'">
   </PropertyGroup>
+  <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)'=='Debug|x64'">
+    <Link>
+      <AdditionalDependencies>%(AdditionalDependencies)</AdditionalDependencies>
+    </Link>
+  </ItemDefinitionGroup>
   <ItemDefinitionGroup Condition="'$(Configuration)|$(Platform)' == 'Debug|x64'" Label="Configuration">
     <ClCompile>
       <TreatWChar_tAsBuiltInType>true</TreatWChar_tAsBuiltInType>
@@ -90,19 +95,25 @@
     <ClCompile Include="EnemyGenerator.cpp" />
     <ClCompile Include="EnemyPlane.cpp" />
     <ClCompile Include="ExplosionEffect.cpp" />
+    <ClCompile Include="GameReview.cpp" />
     <ClCompile Include="Generator.cpp" />
     <ClCompile Include="LifeBonus.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="PointBonus.cpp" />
     <ClCompile Include="PowerBonus.cpp" />
     <ClCompile Include="PlayerPlane.cpp" />
+    <ClCompile Include="Ranking.cpp" />
     <ClCompile Include="SteadyMissile.cpp" />
+    <ClCompile Include="TrackMissile.cpp" />
     <ClCompile Include="_Effect.cpp" />
     <ClCompile Include="_Entity.cpp" />
     <ClCompile Include="_Plane.cpp" />
     <QtRcc Include="PlaneFight.qrc" />
     <QtUic Include="BattleField.ui" />
     <ClCompile Include="main.cpp" />
+    <QtUic Include="GameReview.ui" />
+    <QtUic Include="Menu.ui" />
+    <QtUic Include="Ranking.ui" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="BattleField.h" />
@@ -111,17 +122,23 @@
     <ClInclude Include="EnemyGenerator.h" />
     <ClInclude Include="EnemyPlane.h" />
     <ClInclude Include="ExplosionEffect.h" />
+    <QtMoc Include="GameReview.h" />
     <ClInclude Include="Generator.h" />
     <ClInclude Include="LifeBonus.h" />
     <QtMoc Include="Menu.h" />
     <ClInclude Include="PointBonus.h" />
     <ClInclude Include="PowerBonus.h" />
+    <QtMoc Include="Ranking.h" />
+    <ClInclude Include="TrackMissile.h" />
     <ClInclude Include="util.h" />
     <ClInclude Include="PlayerPlane.h" />
     <ClInclude Include="SteadyMissile.h" />
     <ClInclude Include="_Effect.h" />
     <ClInclude Include="_Entity.h" />
     <ClInclude Include="_Plane.h" />
+  </ItemGroup>
+  <ItemGroup>
+    <Text Include="DataRecord.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

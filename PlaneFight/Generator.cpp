@@ -4,6 +4,7 @@
 
 namespace Generator {
 	static constexpr const char* enemy_plane_path = ":/PlaneFight/img/enemy.png";    // @IMAGE
+	static constexpr const char* warning_path = ":/PlaneFight/img/bosswarning.png";    // @IMAGE
 	namespace PolicyFucntion {
 		using namespace Plane;
 		auto example = [](BattleField* b) {
@@ -24,9 +25,9 @@ namespace Generator {
 namespace Generator {
 	EnemyGenerator* level_1() {
 		return new EnemyGenerator({
-		    new EnemyGeneratingPolicy(PolicyFucntion::example, 10),
-		    new PictureDisplay({{enemy_plane_path, battlefield_border.center()}},
-             2),
+		    new EnemyGeneratingPolicy(PolicyFucntion::example, 30),
+		    new PictureDisplay({{warning_path, battlefield_border.center()}},
+             100),
 		    new EnemyClearingPolicy(),
 		    new BossGeneratingPolicy(),
 		});

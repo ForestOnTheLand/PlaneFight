@@ -1,0 +1,329 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>RankingClass</class>
+ <widget class="QWidget" name="RankingClass">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>922</width>
+    <height>875</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>Ranking</string>
+  </property>
+  <widget class="QWidget" name="verticalLayoutWidget">
+   <property name="geometry">
+    <rect>
+     <x>39</x>
+     <y>50</y>
+     <width>841</width>
+     <height>671</height>
+    </rect>
+   </property>
+   <layout class="QVBoxLayout" name="verticalLayout" stretch="1,1,6">
+    <property name="leftMargin">
+     <number>0</number>
+    </property>
+    <item>
+     <widget class="QLabel" name="label_2">
+      <property name="maximumSize">
+       <size>
+        <width>16777215</width>
+        <height>416</height>
+       </size>
+      </property>
+      <property name="font">
+       <font>
+        <family>Rage Italic</family>
+        <pointsize>48</pointsize>
+       </font>
+      </property>
+      <property name="statusTip">
+       <string>0</string>
+      </property>
+      <property name="lineWidth">
+       <number>10</number>
+      </property>
+      <property name="midLineWidth">
+       <number>10</number>
+      </property>
+      <property name="text">
+       <string>             Ranking</string>
+      </property>
+      <property name="textFormat">
+       <enum>Qt::PlainText</enum>
+      </property>
+     </widget>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout_7" stretch="5,5">
+      <item>
+       <widget class="QLabel" name="label_13">
+        <property name="font">
+         <font>
+          <family>MV Boli</family>
+          <pointsize>28</pointsize>
+         </font>
+        </property>
+        <property name="lineWidth">
+         <number>0</number>
+        </property>
+        <property name="text">
+         <string>    Time</string>
+        </property>
+        <property name="textFormat">
+         <enum>Qt::PlainText</enum>
+        </property>
+       </widget>
+      </item>
+      <item>
+       <widget class="QLabel" name="label_12">
+        <property name="font">
+         <font>
+          <family>MV Boli</family>
+          <pointsize>28</pointsize>
+         </font>
+        </property>
+        <property name="text">
+         <string>score</string>
+        </property>
+       </widget>
+      </item>
+     </layout>
+    </item>
+    <item>
+     <layout class="QHBoxLayout" name="horizontalLayout">
+      <item>
+       <layout class="QVBoxLayout" name="verticalLayout_2" stretch="10,9,8,8,8">
+        <property name="spacing">
+         <number>0</number>
+        </property>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="5,3,2">
+          <property name="spacing">
+           <number>0</number>
+          </property>
+          <item>
+           <widget class="QLabel" name="first_t">
+            <property name="font">
+             <font>
+              <family>Segoe Print</family>
+              <pointsize>28</pointsize>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>5/9</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="first_s">
+            <property name="font">
+             <font>
+              <family>Segoe Print</family>
+              <pointsize>28</pointsize>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>9000</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="first_icon">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="pixmap">
+             <pixmap resource="PlaneFight.qrc">:/PlaneFight/img/first.svg</pixmap>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_3" stretch="5,3,2">
+          <item>
+           <widget class="QLabel" name="second_t_2">
+            <property name="font">
+             <font>
+              <family>Segoe Print</family>
+              <pointsize>28</pointsize>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>5/8</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="second_s_2">
+            <property name="font">
+             <font>
+              <family>Segoe Print</family>
+              <pointsize>28</pointsize>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>8000</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="second_icon">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="pixmap">
+             <pixmap resource="PlaneFight.qrc">:/PlaneFight/img/second.svg</pixmap>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_4" stretch="5,3,2">
+          <item>
+           <widget class="QLabel" name="third_t_2">
+            <property name="font">
+             <font>
+              <family>Segoe Print</family>
+              <pointsize>28</pointsize>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>5/7</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="third_s_2">
+            <property name="font">
+             <font>
+              <family>Segoe Print</family>
+              <pointsize>28</pointsize>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>7000</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="third_icon">
+            <property name="text">
+             <string/>
+            </property>
+            <property name="pixmap">
+             <pixmap resource="PlaneFight.qrc">:/PlaneFight/img/third.svg</pixmap>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_6" stretch="5,5">
+          <item>
+           <widget class="QLabel" name="fourth_t">
+            <property name="font">
+             <font>
+              <family>Segoe Print</family>
+              <pointsize>28</pointsize>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>5/6</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="fourth_s">
+            <property name="font">
+             <font>
+              <family>Segoe Print</family>
+              <pointsize>28</pointsize>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>6000</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+        <item>
+         <layout class="QHBoxLayout" name="horizontalLayout_5" stretch="5,5">
+          <item>
+           <widget class="QLabel" name="fifth_t">
+            <property name="font">
+             <font>
+              <family>Segoe Print</family>
+              <pointsize>28</pointsize>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>5/5</string>
+            </property>
+           </widget>
+          </item>
+          <item>
+           <widget class="QLabel" name="fifth_s">
+            <property name="font">
+             <font>
+              <family>Segoe Print</family>
+              <pointsize>28</pointsize>
+              <bold>true</bold>
+             </font>
+            </property>
+            <property name="text">
+             <string>5000</string>
+            </property>
+           </widget>
+          </item>
+         </layout>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </item>
+   </layout>
+  </widget>
+  <widget class="QCommandLinkButton" name="exitButton">
+   <property name="geometry">
+    <rect>
+     <x>690</x>
+     <y>740</y>
+     <width>121</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>Segoe UI</family>
+     <pointsize>16</pointsize>
+     <italic>true</italic>
+     <bold>true</bold>
+    </font>
+   </property>
+   <property name="text">
+    <string>exit</string>
+   </property>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="PlaneFight.qrc"/>
+ </resources>
+ <connections/>
+</ui>
