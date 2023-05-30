@@ -14,13 +14,16 @@ void TrackMissile::collide(_Plane* plane) {
 }
 
 void TrackMissile::updatePosition() {
-	if (_timer++ == _track_time) {
+	if (_timer++ == _track_time+30) {
 		double dx = PlayerPlane::plane()->rect().center().x() - rect().center().x();
 		double dy = PlayerPlane::plane()->rect().center().y() - rect().center().y();
 		double distance = sqrt(pow(dx, 2) + pow(dy, 2));
 		double speed = sqrt(pow(_speed_x, 2) + pow(_speed_y, 2));
 		_speed_x = speed * dx / distance;
 		_speed_y = speed * dy / distance;
+	}
+	if (_timer++ >= _track_time && _timer <= _track_time + 30) {
+		return;
 	}
 	_rect.moveTo(_real_x += _speed_x, _real_y += _speed_y);
 }

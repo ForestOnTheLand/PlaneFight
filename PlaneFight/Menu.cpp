@@ -22,6 +22,15 @@ Menu::Menu(QWidget* parent) : QWidget(parent), ui(new Ui::MenuClass) {
 	gameWidgets.push_back(new QWidget());					   //7 interface for levels
 	gameWidgets.push_back(new QWidget());					   //8 interface for levels
 
+	for (int i = 0; i <= 1; i++) {
+		gameWidgets[i]->setAutoFillBackground(true);
+		QImage image;
+		QPalette palette;
+		image.load(":/PlaneFight/img/MenuBackground1.png");
+		palette.setBrush(this->backgroundRole(), QBrush(image));
+		gameWidgets[i]->setPalette(palette);
+	}
+
 	for (int i = 0; i < 3; ++i) {
 		startButtons.push_back(new QPushButton(gameWidgets[0]));
 		switch (i) {

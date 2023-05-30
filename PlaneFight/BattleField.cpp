@@ -52,6 +52,7 @@ void BattleField::gameOver() {
 	GameReview* pGameReview = qobject_cast<GameReview*>(mainMenu->gameWidgets[5]);
 	//pGameReview->score = PlayerPlane::plane()->score;
 	//pGameReview->refill();
+	_timer->stop();
 	mainMenu->stackWidget->setCurrentIndex(1);
 	mainMenu->to_remove.push_back(mainMenu->gameWidgets[2]);
 	mainMenu->gameWidgets[2] = new BattleField(nullptr, mainMenu);
