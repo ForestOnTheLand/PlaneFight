@@ -40,7 +40,9 @@ void _Plane::moveBy(int __dx, int __dy) {
 
 void _Plane::hurt(_Plane* __other) {
 	if (box().intersects(__other->box())) {
+		__other->hurtUpdate();
 		__other->health() -= 100;
+		this->hurtUpdate();
 		this->_health -= 100;
 	}
 }
@@ -56,3 +58,6 @@ bool _Plane::out() const {
 void _Plane::drawOn(QPainter& painter) {
 	painter.drawPixmap(_rect, _picture);
 }
+
+
+void _Plane::hurtUpdate(){}

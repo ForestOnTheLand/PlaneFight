@@ -8,6 +8,7 @@ SteadyMissile::SteadyMissile(const char* __image_path, int __init_x, int __init_
 void SteadyMissile::collide(_Plane* plane) {
 	if (plane->box().intersects(_rect)) {
 		_free = true;
+		plane->hurtUpdate();
 		plane->health() -= _attack_point;
 	}
 }

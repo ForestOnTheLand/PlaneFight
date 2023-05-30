@@ -36,6 +36,6 @@
         <file>img/newRecord.svg</file>
         <file>sound/lockdown.wav</file>
         <file>sound/effect_sound/se_enep00.wav</file>
-        <file>sound/th11_09.mp3</file>
+        <file>img/player_hurt.png</file>
     </qresource>
 </RCC>
