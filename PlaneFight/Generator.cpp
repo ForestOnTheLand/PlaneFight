@@ -3,7 +3,7 @@
 #include "BattleField.h"
 
 namespace Generator {
-	static constexpr const char* enemy_plane_path = ":/PlaneFight/img/enemy.png";    // @IMAGE
+	static constexpr const char* enemy_plane_path = ":/PlaneFight/img/enemy.png";      // @IMAGE
 	static constexpr const char* warning_path = ":/PlaneFight/img/bosswarning.png";    // @IMAGE
 	namespace PolicyFucntion {
 		using namespace Plane;
@@ -27,7 +27,7 @@ namespace Generator {
 		return new EnemyGenerator({
 		    new EnemyGeneratingPolicy(PolicyFucntion::example, 30),
 		    new PictureDisplay({{warning_path, battlefield_border.center()}},
-             100),
+             2),
 		    new EnemyClearingPolicy(),
 		    new BossGeneratingPolicy(),
 		});

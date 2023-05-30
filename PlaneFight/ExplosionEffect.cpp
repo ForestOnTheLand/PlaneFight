@@ -2,7 +2,15 @@
 
 ExplosionEffect::ExplosionEffect(const QPoint& __pos)
     : _Effect({":/PlaneFight/img/explosion_1.png", ":/PlaneFight/img/explosion_2.png"}),
-      _pos(__pos) {}
+      _pos(__pos) {
+	_sound = new QSoundEffect();
+	_sound->setSource(QUrl::fromLocalFile(":/PlaneFight/sound/effect_sound/se_enep00.wav"));
+	_sound->play();
+}
+
+ExplosionEffect::~ExplosionEffect() {
+	delete _sound;
+}
 
 void ExplosionEffect::display(QPainter& painter) {
 	if (++_timer == 10) {

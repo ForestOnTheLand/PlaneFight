@@ -1,10 +1,10 @@
 #include "TrackMissile.h"
 #include "PlayerPlane.h"
 
-TrackMissile::TrackMissile(const char* __image_path, int __init_x, int __init_y,
-	double __speed_x, double __speed_y, int __attack_point)
-	: _Missile(__image_path, __init_x, __init_y), _real_x(__init_x), _real_y(__init_y),
-	_speed_x(__speed_x), _speed_y(__speed_y), _attack_point(__attack_point),_track_time(30) {}
+TrackMissile::TrackMissile(const char* __image_path, int __init_x, int __init_y, double __speed_x,
+                           double __speed_y, int __attack_point)
+    : _Missile(__image_path, __init_x, __init_y), _real_x(__init_x), _real_y(__init_y),
+      _speed_x(__speed_x), _speed_y(__speed_y), _attack_point(__attack_point), _track_time(30) {}
 
 void TrackMissile::collide(_Plane* plane) {
 	if (plane->box().intersects(_rect)) {
@@ -27,4 +27,3 @@ void TrackMissile::updatePosition() {
 	}
 	_rect.moveTo(_real_x += _speed_x, _real_y += _speed_y);
 }
-
