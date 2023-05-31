@@ -133,6 +133,9 @@
     <ClCompile Include="BackgroundMusic.cpp">
       <Filter>Source Files\Effect</Filter>
     </ClCompile>
+    <ClCompile Include="Rule.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
     <ClCompile Include="Laser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -192,6 +195,9 @@
     <ClInclude Include="Laser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
+    <ClInclude Include="Rule.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="BattleField.ui">
@@ -204,6 +210,9 @@
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="Ranking.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="Rule.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>

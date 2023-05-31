@@ -1,6 +1,8 @@
 #include "BossEnemyPlane.h"
 #include "BattleField.h"
 #include "SteadyMissile.h"
+#include "TrackMissile.h"
+#define _MATH_DEFINES_DEFINED
 
 static constexpr const char* around_missile_path = ":/PlaneFight/img/bullet/flame_bullet_red_1.png";
 static constexpr const char* round_missile_path = ":/PlaneFight/img/bullet/orb_bullet_orange.png";
@@ -33,7 +35,7 @@ void BossEnemyPlane::shootMissilesRound(BattleField* field) {
 	if (++timer <= 10)
 		return;
 	timer = 0;
-	for (double angle = 0; angle < 360; angle += 10) {
+	for (double angle = 0; angle < 2*M_PI; angle += M_PI/20) {
 		field->_enemyMissile.push_back(new SteadyMissileF(
 		    round_missile_path, _rect.center().x() + 10 * cos(angle),
 		    _rect.center().y() + 10 * sin(angle), 3 * cos(angle), 3 * sin(angle), 50));
@@ -70,6 +72,23 @@ void BossEnemyPlane::shootLaser(BattleField* field) {
 	}
 }
 
+void BossEnemyPlane::shootMissilesTrack(BattleField* field) {
+	static int counter = 0;
+	static int timer = 0;
+	if (++timer <= 10)
+		return;
+	timer = 0;
+	for (double angle = 0; angle <= M_PI; angle += M_PI/10) {
+		field->_enemyMissile.push_back(new TrackMissile(
+			round_missile_path, _rect.center().x() + 10 * cos(angle),
+			_rect.center().y() + 10 * sin(angle), 3 * cos(angle), 3 * sin(angle), 50));
+	}
+	if (++counter >= 3) {
+		counter = 0, timer = 0;
+		_shoot_state = 0;
+	}
+}
+
 void BossEnemyPlane::updatePosition() {
 	if (_rect.y() <= battlefield_border.y() + 100) {
 		moveBy(0, 10);
@@ -83,6 +102,7 @@ void BossEnemyPlane::shootMissiles(BattleField* field) {
 		case 2: shootMissilesArc(field); break;
 		case 3: shootMissilesRound(field); break;
 		case 4: shootLaser(field); break;
+		case 5: shootMissilesTrack(field); break;
 	}
 }
 
