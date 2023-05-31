@@ -5,10 +5,11 @@
 #include <QtMultimedia/qsoundeffect.h>
 BattleField::BattleField(QWidget* parent,Menu* menu)
     : QWidget(parent), ui(new Ui::BattleFieldClass()), _timer(new QTimer),
-      _generator(Generator::level_1()),mainMenu(menu) {
+      _generator(Generator::level_1()), mainMenu(menu) {
 	ui->setupUi(this);
 	this->setFixedSize(800, 800);
-	PlayerPlane::init();
+	pic1.load(":/PlaneFight/img/battleBackground.jpg");
+	pic2.load(":/PlaneFight/img/background22.png");
 	// start();
 }
 
@@ -20,6 +21,8 @@ BattleField::~BattleField() {
 }
 
 void BattleField::start() {
+	PlayerPlane::init();
+
 	_timer->setInterval(update_rate);
 	setMouseTracking(true);
 	_timer->start();
@@ -47,14 +50,15 @@ void BattleField::updateAll() {
 
 void BattleField::gameOver() {
 	GameReview* pGameReview = qobject_cast<GameReview*>(mainMenu->gameWidgets[5]);
+	_timer->stop();
 	pGameReview->score = PlayerPlane::plane()->score;
 	pGameReview->refill();
 	mainMenu->stackWidget->setCurrentIndex(5);
 	mainMenu->to_remove.push_back(mainMenu->gameWidgets[2]);
 	mainMenu->gameWidgets[2] = new BattleField(nullptr, mainMenu);
-	mainMenu->stackWidget->insertWidget(2,mainMenu->gameWidgets[2]);
+	mainMenu->stackWidget->insertWidget(2, mainMenu->gameWidgets[2]);
 	mainMenu->stackWidget->removeWidget(this);
-	//exit(0);
+	// exit(0);
 }
 
 void BattleField::pause() {
@@ -154,6 +158,10 @@ void BattleField::processKeyEvent() {
 
 void BattleField::paintEvent(QPaintEvent* _event) {
 	QPainter painter(this);
+	painter.setBrush(Qt::gray);
+	painter.drawRect(this->rect());
+	painter.setBrush(Qt::NoBrush);
+	painter.drawPixmap(battlefield_border, pic2);
 	painter.drawRect(battlefield_border);
 	PlayerPlane::plane()->drawOn(painter);
 	for (_EnemyPlane* enemy : _enemies) {
@@ -170,6 +178,8 @@ void BattleField::paintEvent(QPaintEvent* _event) {
 	ui->score_label->setText(QString("Score: ") + QString::number(PlayerPlane::plane()->score));
 	ui->hp_label->setText(QString("HP: ") + QString::number(PlayerPlane::plane()->health()) + "/" +
 	                      QString::number(player_max_health));
+	ui->score_label->setStyleSheet("color:rgb(255,0,0)");
+	ui->hp_label->setStyleSheet("color:rgb(255,0,0)");
 }
 
 void BattleField::mouseMoveEvent(QMouseEvent* _event) {

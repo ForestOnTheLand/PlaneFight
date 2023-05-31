@@ -2,14 +2,21 @@
 #include "ui_Menu.h"
 #include "BattleField.h"
 #include "qpushbutton.h"
+#include "qpainter.h"
+#include "qpixmap.h"
+#include "qpoint.h"
 #include "GameReview.h"
 #include "Ranking.h"
 #include "stdio.h"
 #include "iostream"
 #include "string"
 #include <qevent.h>
+#include "BackgroundMusic.h"
 
 Menu::Menu(QWidget* parent) : QWidget(parent), ui(new Ui::MenuClass) {
+	BackgroundMusic::load(":/PlaneFight/sound/lockdown.wav");
+	BackgroundMusic::play();
+
 	ui->setupUi(this);
 	
 	stackWidget = new QStackedWidget();
@@ -22,6 +29,15 @@ Menu::Menu(QWidget* parent) : QWidget(parent), ui(new Ui::MenuClass) {
 	gameWidgets.push_back(new QWidget());					   //6 interface for rule
 	gameWidgets.push_back(new QWidget());					   //7 interface for levels
 	gameWidgets.push_back(new QWidget());					   //8 interface for levels
+
+	for (int i = 0; i <= 1; i++) {
+		gameWidgets[i]->setAutoFillBackground(true);
+		QImage image;
+		QPalette palette;
+		image.load(":/PlaneFight/img/MenuBackground1.png");
+		palette.setBrush(this->backgroundRole(), QBrush(image));
+		gameWidgets[i]->setPalette(palette);
+	}
 
 	Title = new QLabel(gameWidgets[0]);
 	Title->setText("Plane Fight");
@@ -222,7 +238,7 @@ Menu::~Menu() {
 	}
 	for (auto iter = startButtons.begin(); iter != startButtons.end(); ++iter) {
 		if (*iter) {
-			delete* iter;
+			delete *iter;
 		}
 	}
 	for (auto iter = startLabels.begin(); iter != startLabels.end(); ++iter) {
@@ -237,8 +253,8 @@ Menu::~Menu() {
 	}
 	for (auto iter = to_remove.begin(); iter != to_remove.end(); ++iter) {
 		if (*iter) {
-			//qDebug() << "called"<<'\n';
-			delete* iter;
+			// qDebug() << "called"<<'\n';
+			delete *iter;
 		}
 	}
 	delete stackWidget;

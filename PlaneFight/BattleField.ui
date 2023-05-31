@@ -30,6 +30,12 @@
   <property name="windowTitle">
    <string>BattleField</string>
   </property>
+  <property name="autoFillBackground">
+   <bool>false</bool>
+  </property>
+  <property name="styleSheet">
+   <string notr="true">#BattleFieldClass{background-color:rgb(0, 0, 0)}</string>
+  </property>
   <widget class="QLabel" name="score_label">
    <property name="geometry">
     <rect>
@@ -46,8 +52,14 @@
      <italic>false</italic>
     </font>
    </property>
+   <property name="layoutDirection">
+    <enum>Qt::LeftToRight</enum>
+   </property>
+   <property name="styleSheet">
+    <string notr="true"/>
+   </property>
    <property name="text">
-    <string>Score:</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;Score:&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
   <widget class="QLabel" name="hp_label">
@@ -67,11 +79,13 @@
     </font>
    </property>
    <property name="text">
-    <string>HP:400/500</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;span style=&quot; color:#ff0000;&quot;&gt;HP:400/500&lt;/span&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
   </widget>
  </widget>
  <layoutdefault spacing="6" margin="11"/>
- <resources/>
+ <resources>
+  <include location="PlaneFight.qrc"/>
+ </resources>
  <connections/>
 </ui>

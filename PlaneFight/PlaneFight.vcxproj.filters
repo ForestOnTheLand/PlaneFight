@@ -127,6 +127,12 @@
     <ClCompile Include="Ranking.cpp">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
+    <ClCompile Include="TrackMissile.cpp">
+      <Filter>Source Files\Missile</Filter>
+    </ClCompile>
+    <ClCompile Include="BackgroundMusic.cpp">
+      <Filter>Source Files\Effect</Filter>
+    </ClCompile>
     <ClCompile Include="Rule.cpp">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
@@ -176,6 +182,12 @@
     </ClInclude>
     <ClInclude Include="BossEnemyPlane.h">
       <Filter>Header Files\Plane</Filter>
+    </ClInclude>
+    <ClInclude Include="TrackMissile.h">
+      <Filter>Header Files\Missile</Filter>
+    </ClInclude>
+    <ClInclude Include="BackgroundMusic.h">
+      <Filter>Header Files\Effect</Filter>
     </ClInclude>
     <ClInclude Include="Rule.h">
       <Filter>Header Files\UI</Filter>
