@@ -189,9 +189,6 @@
     <ClInclude Include="BackgroundMusic.h">
       <Filter>Header Files\Effect</Filter>
     </ClInclude>
-    <ClInclude Include="Rule.h">
-      <Filter>Header Files\UI</Filter>
-    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="BattleField.ui">
@@ -221,6 +218,9 @@
       <Filter>Header Files\UI</Filter>
     </QtMoc>
     <QtMoc Include="Ranking.h">
+      <Filter>Header Files\UI</Filter>
+    </QtMoc>
+    <QtMoc Include="Rule.h">
       <Filter>Header Files\UI</Filter>
     </QtMoc>
   </ItemGroup>

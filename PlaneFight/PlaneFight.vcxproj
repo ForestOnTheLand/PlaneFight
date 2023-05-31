@@ -133,8 +133,8 @@
     <ClInclude Include="PointBonus.h" />
     <ClInclude Include="PowerBonus.h" />
     <QtMoc Include="Ranking.h" />
+    <QtMoc Include="Rule.h" />
     <ClInclude Include="TrackMissile.h" />
-    <ClInclude Include="Rule.h" />
     <ClInclude Include="util.h" />
     <ClInclude Include="PlayerPlane.h" />
     <ClInclude Include="SteadyMissile.h" />
