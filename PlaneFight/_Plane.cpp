@@ -41,7 +41,7 @@ void _Plane::moveBy(int __dx, int __dy) {
 void _Plane::hurt(_Plane* __other) {
 	if (box().intersects(__other->box())) {
 		__other->health() -= 100;
-		this->_health -= 100;
+		// this->_health -= 100;
 	}
 }
 
@@ -50,7 +50,7 @@ bool _Plane::dead() const {
 }
 
 bool _Plane::out() const {
-	return (_rect.bottom() >= battlefield_border.bottom());
+	return !_rect.intersects(battlefield_border);
 }
 
 void _Plane::drawOn(QPainter& painter) {
