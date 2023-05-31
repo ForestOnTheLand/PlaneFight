@@ -98,6 +98,7 @@
     <ClCompile Include="PowerBonus.cpp" />
     <ClCompile Include="PlayerPlane.cpp" />
     <ClCompile Include="Ranking.cpp" />
+    <ClCompile Include="Rule.cpp" />
     <ClCompile Include="SteadyMissile.cpp" />
     <ClCompile Include="_Effect.cpp" />
     <ClCompile Include="_Entity.cpp" />
@@ -108,6 +109,7 @@
     <QtUic Include="GameReview.ui" />
     <QtUic Include="Menu.ui" />
     <QtUic Include="Ranking.ui" />
+    <QtUic Include="Rule.ui" />
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="BattleField.h" />
@@ -123,6 +125,7 @@
     <ClInclude Include="PointBonus.h" />
     <ClInclude Include="PowerBonus.h" />
     <QtMoc Include="Ranking.h" />
+    <ClInclude Include="Rule.h" />
     <ClInclude Include="util.h" />
     <ClInclude Include="PlayerPlane.h" />
     <ClInclude Include="SteadyMissile.h" />
