@@ -37,8 +37,8 @@ void BossEnemyPlane::shootMissilesRound(BattleField* field) {
 	timer = 0;
 	for (double angle = 0; angle < 2*M_PI; angle += M_PI/20) {
 		field->_enemyMissile.push_back(new SteadyMissileF(
-			round_missile_path, _rect.center().x() + 10 * cos(angle),
-			_rect.center().y() + 10 * sin(angle), 3 * cos(angle), 3 * sin(angle), 50));
+		    round_missile_path, _rect.center().x() + 10 * cos(angle),
+		    _rect.center().y() + 10 * sin(angle), 3 * cos(angle), 3 * sin(angle), 50));
 	}
 	if (++counter >= 5) {
 		counter = 0, timer = 0;
@@ -60,6 +60,15 @@ void BossEnemyPlane::shootMissilesArc(BattleField* field) {
 	if (++counter >= 5) {
 		counter = 0, timer = 0;
 		_shoot_state = 0;
+	}
+}
+
+void BossEnemyPlane::shootLaser(BattleField* field) {
+	_laser.src = _rect.center();
+	if ((_laser.theta += 0.01) > 2 * M_PI) {
+		_shoot_state = 0;
+		_laser.theta = 0;
+		return;
 	}
 }
 
@@ -92,7 +101,8 @@ void BossEnemyPlane::shootMissiles(BattleField* field) {
 		case 1: shootMissilesAround(field); break;
 		case 2: shootMissilesArc(field); break;
 		case 3: shootMissilesRound(field); break;
-		case 4: shootMissilesTrack(field); break;
+		case 4: shootLaser(field); break;
+		case 5: shootMissilesTrack(field); break;
 	}
 }
 
@@ -106,8 +116,17 @@ void BossEnemyPlane::drawOn(QPainter& painter) {
 	painter.fillRect(QRect(_rect.x(), _rect.y() - 3, _rect.width(), 3), Qt::red);
 	painter.fillRect(
 	    QRect(_rect.x(), _rect.y() - 3, _rect.width() * 1.0 * _health / _max_health, 3), Qt::green);
+	if (_shoot_state == 4)
+		_laser.drawOn(painter);
 }
 
 bool BossEnemyPlane::out() const {
 	return false;
+}
+
+void BossEnemyPlane::hurt(_Plane* plane) {
+	_Plane::hurt(plane);
+	if (_shoot_state == 4) {
+		_laser.hurt();
+	}
 }
