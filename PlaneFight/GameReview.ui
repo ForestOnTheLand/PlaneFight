@@ -18,8 +18,8 @@
     <rect>
      <x>49</x>
      <y>49</y>
-     <width>811</width>
-     <height>701</height>
+     <width>731</width>
+     <height>651</height>
     </rect>
    </property>
    <layout class="QVBoxLayout" name="verticalLayout" stretch="3,6,6">
@@ -32,7 +32,7 @@
        </font>
       </property>
       <property name="text">
-       <string>          Game Review</string>
+       <string>        Game Review</string>
       </property>
      </widget>
     </item>
@@ -153,8 +153,8 @@
   <widget class="QCommandLinkButton" name="commandLinkButton">
    <property name="geometry">
     <rect>
-     <x>670</x>
-     <y>760</y>
+     <x>630</x>
+     <y>710</y>
      <width>186</width>
      <height>41</height>
     </rect>

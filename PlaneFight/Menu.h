@@ -9,6 +9,7 @@
 #include <QHBoxLayout>
 #include <QVBoxLayout>
 #include <vector>
+#include <qcommandlinkbutton.h>
 
 namespace Ui {
 	class MenuClass;
@@ -22,7 +23,11 @@ public:
 	~Menu();
 	QStackedWidget* stackWidget;
 	std::vector<QPushButton*> startButtons;
-	std::vector<QPushButton*> gameModes;
+	QLabel* Title;
+	std::vector<QLabel*> startLabels;
+	std::vector<QCommandLinkButton*> gameModes;
+	QPushButton* toFirstPage;
+	std::vector<QLabel*> modeLabels;
 	std::vector<QWidget*> gameWidgets;
 	QVBoxLayout menuButtonLayout;
 	QHBoxLayout mainLayout;
@@ -35,6 +40,9 @@ public slots:
 	void StartGame();
 	void Leave();
 	void ShowRules();
+	void mouseMoveEvent(QMouseEvent* _event);
+	void ToFirstPage();
+
 private:
 	Ui::MenuClass* ui;
 };

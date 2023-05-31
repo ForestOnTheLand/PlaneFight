@@ -1,5 +1,32 @@
 <RCC>
     <qresource prefix="/PlaneFight">
+        <file>img/newRecord.svg</file>
+        <file>img/newRecord.svg</file>
+        <file>img/first.svg</file>
+        <file>img/second.svg</file>
+        <file>img/third.svg</file>
+        <file>img/player.png</file>
+        <file>img/enemy.png</file>
+        <file>img/missile_0.png</file>
+        <file>img/explosion_1.png</file>
+        <file>img/explosion_2.png</file>
+        <file>img/bullet/scale_bullet_red.png</file>
+        <file>img/bullet/small_bullet_purple.png</file>
+        <file>img/bullet/mid_bullet_green.png</file>
+        <file>img/bullet/small_bullet_orange.png</file>
+        <file>img/point.png</file>
+        <file>img/life.png</file>
+        <file>img/power.png</file>
+        <file>img/bullet/etama6_6.png</file>
+        <file>img/bullet/etama6_4.png</file>
+        <file>img/bullet/small_bullet_darkBlue.png</file>
+        <file>img/bullet/small_bullet_lightBlue.png</file>
+        <file>img/bosswarning.png</file>
+        <file>img/Boss1.png</file>
+        <file>img/Boss2.png</file>
+        <file>img/planeIcon.svg</file>
+    </qresource>
+    <qresource prefix="/PlaneFight">
         <file>img/player.png</file>
         <file>img/enemy.png</file>
         <file>img/missile_0.png</file>
@@ -36,6 +63,8 @@
         <file>img/newRecord.svg</file>
         <file>sound/lockdown.wav</file>
         <file>sound/effect_sound/se_enep00.wav</file>
+
+        <file>img/planeIcon.svg</file>
         <file>img/player_hurt.png</file>
     </qresource>
 </RCC>
