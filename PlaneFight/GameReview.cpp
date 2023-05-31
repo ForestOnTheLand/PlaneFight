@@ -4,19 +4,26 @@
 #include <stdio.h>
 #include <iostream>
 #include <ctime>
-struct data {
+#include "Menu.h"
+
+struct Data_GR {
 	std::string day="";
 	std::string time="";
 	std::int32_t score=0;
-	bool operator<(const data& obj2) const{
+	bool operator<(const Data_GR& obj2) const{
 		return score > obj2.score;
 	}
 }history[7];
-GameReview::GameReview(QWidget *parent)
+GameReview::GameReview(QWidget *parent,Menu* menu)
 	: QWidget(parent)
-	, ui(new Ui::GameReviewClass()),score(0)
+	, ui(new Ui::GameReviewClass()),score(0),mainMenu(menu)
 {
 	ui->setupUi(this);
+	connect(ui->commandLinkButton, &QPushButton::clicked, this, &GameReview::Return);
+}
+
+void GameReview::Return() {
+	mainMenu->stackWidget->setCurrentIndex(1);
 }
 
 void GameReview::refill() {
@@ -64,13 +71,14 @@ void GameReview::refill() {
 				std::cout << history[i].day << '\n';
 				std::cout << history[i].time << '\n';
 				std::cout << history[i].score << '\n';
-				flag = 1;
+				//flag = 1;
 				cnt++;
 			}
 			else {
 				std::printf("%02d/%02d\n", month, day);
 				std::printf("%02d:%02d\n", hour, min);
 				std::printf("%d\n", score);
+				flag = 1;
 				cnt++;
 				i--;
 			}

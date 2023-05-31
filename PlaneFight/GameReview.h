@@ -2,6 +2,7 @@
 
 #include <QWidget>
 #include "ui_GameReview.h"
+#include "Menu.h"
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class GameReviewClass; };
@@ -12,10 +13,14 @@ class GameReview : public QWidget
 	Q_OBJECT
 
 public:
-	GameReview(QWidget *parent = nullptr);
+	GameReview(QWidget *parent = nullptr,Menu* menu=nullptr);
 	~GameReview();
 	int score;
 	void refill();
+	Menu* mainMenu;
+
+public slots:
+	void Return();
 
 private:
 	Ui::GameReviewClass *ui;
