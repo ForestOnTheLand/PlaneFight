@@ -154,7 +154,7 @@ void BossEnemyPlane::shootMissiles(BattleField* field) {
 		case 3: shootMissilesRound(field); break;
 		case 4: shootLaser(field); break;
 		case 5: shootMissilesTrack(field); break;
-		case 6 shootMissilesCrossing(field); break;
+		case 6: shootMissilesCrossing(field); break;
 		case 7: shootMissilesTarget(field); break;
 	}
 }
