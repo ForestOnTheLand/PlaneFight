@@ -1,4 +1,5 @@
 #include "ExplosionEffect.h"
+#include <QtMultimedia/QSoundEffect>
 
 ExplosionEffect::ExplosionEffect(const QPoint& __pos)
     : _Effect({":/PlaneFight/img/explosion_1.png", ":/PlaneFight/img/explosion_2.png"}),

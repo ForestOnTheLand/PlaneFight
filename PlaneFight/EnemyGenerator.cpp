@@ -9,6 +9,8 @@ void Policy::draw(QPainter& painter) {
 EnemyGeneratingPolicy::EnemyGeneratingPolicy(const std::function<void(BattleField*)>& __f,
                                              int __time)
     : _call(__f), _time(__time * (1000 / update_rate)) {}
+
+
 void EnemyGeneratingPolicy::execute(BattleField* b) {
 	_call(b);
 	++_timer;
@@ -22,7 +24,7 @@ void EnemyClearingPolicy::execute(BattleField* b) {
 		_finish = true;
 	} else {
 		for (_EnemyPlane* enemy : b->_enemies) {
-			enemy->moveBy(0, 10);
+			enemy->_rect.moveCenter({0, 10});
 		}
 	}
 }

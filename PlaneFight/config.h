@@ -5,7 +5,7 @@
 #include <QTimer>
 #include <qevent.h>
 #include <QWidget>
-#include <QtMultimedia/QSoundEffect>
+// #include <QtMultimedia/QSoundEffect>
 
 inline constexpr QRect battlefield_border(10, 10, 480, 680);
 inline constexpr int update_rate = 10;

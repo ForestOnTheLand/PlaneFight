@@ -1,6 +1,8 @@
 #include "BackgroundMusic.h"
+#include <QtMultimedia/QSoundEffect>
 
-QSoundEffect BackgroundMusic::_sound;
+// QSoundEffect BackgroundMusic::_sound;
+QSoundEffect _sound;
 
 void BackgroundMusic::load(const QString& path) {
 	_sound.setSource(QUrl::fromLocalFile(path));

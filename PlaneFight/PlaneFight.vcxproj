@@ -98,6 +98,7 @@
     <ClCompile Include="ExplosionEffect.cpp" />
     <ClCompile Include="GameReview.cpp" />
     <ClCompile Include="Generator.cpp" />
+    <ClCompile Include="Laser.cpp" />
     <ClCompile Include="LifeBonus.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="PointBonus.cpp" />
@@ -127,6 +128,7 @@
     <ClInclude Include="ExplosionEffect.h" />
     <QtMoc Include="GameReview.h" />
     <ClInclude Include="Generator.h" />
+    <ClInclude Include="Laser.h" />
     <ClInclude Include="LifeBonus.h" />
     <QtMoc Include="Menu.h" />
     <ClInclude Include="PointBonus.h" />

@@ -1,5 +1,6 @@
 #pragma once
 #include "_Effect.h"
+class QSoundEffect;
 
 class ExplosionEffect : public _Effect {
 	QPoint _pos;

@@ -163,6 +163,7 @@ void BattleField::paintEvent(QPaintEvent* _event) {
 	painter.setBrush(Qt::NoBrush);
 	painter.drawPixmap(battlefield_border, pic2);
 	painter.drawRect(battlefield_border);
+	painter.setClipRect(battlefield_border);
 	PlayerPlane::plane()->drawOn(painter);
 	for (_EnemyPlane* enemy : _enemies) {
 		enemy->drawOn(painter);
