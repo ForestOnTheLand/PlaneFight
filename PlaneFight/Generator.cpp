@@ -1,6 +1,7 @@
 #include "Generator.h"
 #include "EnemyPlane.h"
 #include "BattleField.h"
+#include "TargetEffect.h"
 
 namespace Generator {
 	static constexpr const char* enemy_plane_path = ":/PlaneFight/img/enemy.png";      // @IMAGE
@@ -25,7 +26,7 @@ namespace Generator {
 namespace Generator {
 	EnemyGenerator* level_1() {
 		return new EnemyGenerator({
-		    new EnemyGeneratingPolicy(PolicyFucntion::example, 30),
+		    new EnemyGeneratingPolicy(PolicyFucntion::example, 5),
 		    new PictureDisplay({{warning_path, battlefield_border.center()}},
              2),
 		    new EnemyClearingPolicy(),

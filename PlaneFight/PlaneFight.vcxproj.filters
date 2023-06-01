@@ -133,8 +133,8 @@
     <ClCompile Include="BackgroundMusic.cpp">
       <Filter>Source Files\Effect</Filter>
     </ClCompile>
-    <ClCompile Include="Rule.cpp">
-      <Filter>Source Files\UI</Filter>
+    <ClCompile Include="TargetEffect.cpp">
+      <Filter>Source Files\Effect</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -189,8 +189,8 @@
     <ClInclude Include="BackgroundMusic.h">
       <Filter>Header Files\Effect</Filter>
     </ClInclude>
-    <ClInclude Include="Rule.h">
-      <Filter>Header Files\UI</Filter>
+    <ClInclude Include="TargetEffect.h">
+      <Filter>Header Files\Effect</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -204,9 +204,6 @@
       <Filter>Form Files</Filter>
     </QtUic>
     <QtUic Include="Ranking.ui">
-      <Filter>Form Files</Filter>
-    </QtUic>
-    <QtUic Include="Rule.ui">
       <Filter>Form Files</Filter>
     </QtUic>
   </ItemGroup>

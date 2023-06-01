@@ -7,6 +7,8 @@ private:
 	void shootMissilesArc(BattleField* field);
 	void shootMissilesRound(BattleField* field);
 	void shootMissilesTrack(BattleField* field);
+	void shootMissilesTarget(BattleField* field);
+	void shootMissilesCrossing(BattleField* field);
 	int _shoot_state = 0;
 	int _max_health;
 

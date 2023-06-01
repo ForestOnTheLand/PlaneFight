@@ -9,7 +9,6 @@
  */
 class PlayerPlane : public _Plane {
 private:
-	int bombs;
 	int _hurt_state = 0;
 	QPixmap _hurt_image;
 	std::vector<_Missile*> _missiles;    // Missiles of plane
@@ -27,6 +26,7 @@ public:
 	static void free();
 
 public:
+	int bombs;
 	int score;
 	int power;
 	void shootMissiles();

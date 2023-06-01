@@ -2,11 +2,18 @@
 #include "BattleField.h"
 #include "SteadyMissile.h"
 #include "TrackMissile.h"
+#include "TargetEffect.h"
+#include "Generator.h"
+#include "EnemyPlane.h"
+#include "util.h"
 #define _MATH_DEFINES_DEFINED
 
 static constexpr const char* around_missile_path = ":/PlaneFight/img/bullet/flame_bullet_red_1.png";
 static constexpr const char* round_missile_path = ":/PlaneFight/img/bullet/orb_bullet_orange.png";
 static constexpr const char* arc_missile_path = ":/PlaneFight/img/bullet/star_bullet_purple.png";
+static constexpr const char* knife_down_missile_path = ":/PlaneFight/img/bullet/etama6_4_down.png";
+static constexpr const char* knife_right_missile_path = ":/PlaneFight/img/bullet/etama6_4_right.png";
+static constexpr const char* big_missile_path = ":/PlaneFight/img/bullet/big_bullet_blue.png";
 
 
 BossEnemyPlane::BossEnemyPlane(const char* __image_path, int __health)
@@ -72,9 +79,53 @@ void BossEnemyPlane::shootMissilesTrack(BattleField* field) {
 	for (double angle = 0; angle <= M_PI; angle += M_PI/10) {
 		field->_enemyMissile.push_back(new TrackMissile(
 			round_missile_path, _rect.center().x() + 10 * cos(angle),
-			_rect.center().y() + 10 * sin(angle), 3 * cos(angle), 3 * sin(angle), 50));
+			_rect.center().y() + 10 * sin(angle), 3 * cos(angle), 3 * sin(angle), 50,30));
 	}
 	if (++counter >= 3) {
+		counter = 0, timer = 0;
+		_shoot_state = 0;
+	}
+}
+
+void BossEnemyPlane::shootMissilesTarget(BattleField* field) {
+	static int counter = 0;
+	static int timer = 0;
+	static int x = 0;
+	static int y = 0;
+	if (++timer <= 10)
+		return;
+	timer = 0;
+	if (counter == 0) {
+		x = randint(100, 400);
+		y = randint(100, 600);
+		field->_effects.push_back(new TargetEffect(QPoint(x, y)));
+	}
+	if (counter == 1) {
+		field->_enemyMissile.push_back(new TrackMissile(
+			big_missile_path, x, y, 0, 3, 50, 0));
+	}
+	if (++counter >= 2) {
+		counter = 0, timer = 0;
+		x = 0, y = 0;
+		_shoot_state = 0;
+	}
+}
+
+void BossEnemyPlane::shootMissilesCrossing(BattleField* field) {
+	static int counter = 0;
+	static int timer = 0;
+	if (++timer <= 50)
+		return;
+	timer = 0;
+	for (int i = 0; i <= 500; i += 50) {
+		field->_enemyMissile.push_back(new SteadyMissile(
+			knife_down_missile_path, i, 50, 0, 1, 50));
+	}
+	for (int i = 0; i <= 700; i += 50) {
+		field->_enemyMissile.push_back(new SteadyMissile(
+			knife_right_missile_path, 50, i, 1, 0, 50));
+	}
+	if (++counter >= 10) {
 		counter = 0, timer = 0;
 		_shoot_state = 0;
 	}
@@ -88,11 +139,13 @@ void BossEnemyPlane::updatePosition() {
 
 void BossEnemyPlane::shootMissiles(BattleField* field) {
 	switch (_shoot_state) {
-		case 0: _shoot_state = with_probability(0.5) ? 0 : randint(1, 5); break;
+		case 0: _shoot_state = with_probability(0.5) ? 0 : randint(1, 7); break;
 		case 1: shootMissilesAround(field); break;
 		case 2: shootMissilesArc(field); break;
 		case 3: shootMissilesRound(field); break;
 		case 4: shootMissilesTrack(field); break;
+		case 5: shootMissilesCrossing(field); break;
+		case 6: shootMissilesTarget(field); break;
 	}
 }
 

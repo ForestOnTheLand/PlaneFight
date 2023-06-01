@@ -65,7 +65,7 @@ namespace Plane {
 		void ThreeWays::operator()(EnemyPlane* plane, BattleField* field) {
 
 			field->_enemyMissile.push_back(new TrackMissile(track_missile_path, plane->rect().center().x(),
-				plane->rect().center().y() + 20, 0, 5, 50));
+				plane->rect().center().y() + 20, 0, 5, 50,30));
 			field->_enemyMissile.push_back(new SteadyMissile(stable_missile_path,
 			                                                 plane->rect().center().x(),
 			                                                 plane->rect().bottom(), -2, 3, 50));

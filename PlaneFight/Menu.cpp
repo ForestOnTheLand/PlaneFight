@@ -193,7 +193,7 @@ void Menu::mouseMoveEvent(QMouseEvent* _event) {
 	}
 	if (_x > 755 && _x < 945 && stackWidget->currentIndex() == 1) {
 		if (_y > 273 && _y < 341) {
-			modeLabels[0]->setPixmap(QPixmap(QString::fromUtf8(":/PlaneFight/img/planeIcon.svg")));
+			modeLabels[0]->setPixmap(QPixmap(":/PlaneFight/img/planeIcon.svg"));
 			modeLabels[1]->setPixmap(QPixmap("none"));
 			modeLabels[2]->setPixmap(QPixmap("none"));
 		}

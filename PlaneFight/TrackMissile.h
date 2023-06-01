@@ -11,7 +11,7 @@ private:
 
 public:
 	TrackMissile(const char* __image_path, int __init_x, int __init_y, double __speed_x,
-		double __speed_y, int __attack_point);
+		double __speed_y, int __attack_point,int __track_time);
 
 public:
 	void updatePosition() final;
