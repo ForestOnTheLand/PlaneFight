@@ -6,6 +6,7 @@ class BattleField;
 class _EnemyPlane : public _Plane {
 protected:
 	void _setPosition(int __x, int __y) override;
+	virtual void _clearOut();
 
 public:
 	_EnemyPlane(const char* __image_path, int __health, QPoint __init_pos);
@@ -25,6 +26,9 @@ class EnemyPlane : public _EnemyPlane {
 	std::function<void(EnemyPlane*, BattleField*)> _shoot;
 	std::vector<double> _prob;
 	int _shoot_timer = 0, _move_timer = 0, _shoot_interval;
+
+private:
+	void _clearOut() override;
 
 public:
 	EnemyPlane(const char* __image_path, int __health, int __shoot_interval,
@@ -74,35 +78,21 @@ namespace Plane {
 			int operator()(int t);
 		};
 	}    // namespace Speed
+	namespace Timer {
+		class Gap {
+			int _time;
+			int _timer = 0;
 
+		public:
+			inline explicit Gap(int __time) : _time(__time) {}
+			inline bool operator()() {
+				if (++_timer >= _time) {
+					_timer = 0;
+					return true;
+				} else {
+					return false;
+				}
+			}
+		};
+	}    // namespace Timer
 }    // namespace Plane
-
-#if 0
-class TrivialEnemyPlane : public EnemyPlane {
-private:
-	int _speed_x, _speed_y;
-
-public:
-	TrivialEnemyPlane(const char* __image_path, int __health);
-
-public:
-	void updatePosition() final;
-	void shootMissiles(BattleField* field) final;
-	void Drop(BattleField* field) final;
-};
-
-
-class StableEnemyPlane : public EnemyPlane {
-private:
-	int _speed_x, _speed_y;
-	int _height;
-
-public:
-	StableEnemyPlane(const char* __image_path, int __health, int __height);
-
-public:
-	void updatePosition() final;
-	void shootMissiles(BattleField* field) final;
-	void Drop(BattleField* field) final;
-};
-#endif

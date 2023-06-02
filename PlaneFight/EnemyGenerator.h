@@ -5,6 +5,7 @@
 #include <deque>
 
 class BattleField;
+class EnemyPlane;
 
 class Policy {
 public:
@@ -17,12 +18,19 @@ public:
 
 
 class EnemyGeneratingPolicy : public Policy {
+public:
+	typedef std::function<EnemyPlane*()> plane_t;
+	typedef std::function<bool()> flag_t;
+
+private:
 	int _time;
 	int _timer = 0;
-	std::function<void(BattleField*)> _call;
+	// std::function<void(BattleField*)> _call;
+	std::vector<std::pair<plane_t, flag_t>> _policy;
 
 public:
-	EnemyGeneratingPolicy(const std::function<void(BattleField*)>& __f, int __time);
+	// EnemyGeneratingPolicy(const std::function<void(BattleField*)>& __f, int __time);
+	EnemyGeneratingPolicy(std::initializer_list<std::pair<plane_t, flag_t>> __policy, int __time);
 	void execute(BattleField* b) override;
 	bool terminal() override;
 };
@@ -30,9 +38,10 @@ public:
 
 class BossGeneratingPolicy : public Policy {
 	BattleField* _field = nullptr;
+	int _health, _attack;
 
 public:
-	BossGeneratingPolicy() = default;
+	BossGeneratingPolicy(int __health, int __attack);
 	void execute(BattleField* b) final;
 	bool terminal() final;
 };
@@ -40,12 +49,14 @@ public:
 
 class EnemyClearingPolicy : public Policy {
 	bool _finish = false;
+	bool _start = false;
 
 public:
 	EnemyClearingPolicy() = default;
 	void execute(BattleField* b) override;
 	bool terminal() override;
 };
+
 
 class PictureDisplay : public Policy {
 	std::vector<std::pair<const char* const, QPoint>> _list;
@@ -59,6 +70,19 @@ public:
 	bool terminal() override;
 	void draw(QPainter& painter) override;
 };
+
+
+class MessageDisplay : public Policy {
+	QString _msg;
+	int _timer = 0, _time;
+	BattleField* _b = nullptr;
+
+public:
+	MessageDisplay(const QString& __msg, int __time);
+	void execute(BattleField* b) override;
+	bool terminal() override;
+};
+
 
 class EnemyGenerator {
 protected:

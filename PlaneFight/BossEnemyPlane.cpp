@@ -16,9 +16,9 @@ static constexpr const char* knife_right_missile_path = ":/PlaneFight/img/bullet
 static constexpr const char* big_missile_path = ":/PlaneFight/img/bullet/big_bullet_blue.png";
 
 
-BossEnemyPlane::BossEnemyPlane(const char* __image_path, int __health)
+BossEnemyPlane::BossEnemyPlane(const char* __image_path, int __health, int __attack)
     : _EnemyPlane(__image_path, __health, {battlefield_border.center().x(), 0}),
-      _max_health(_health) {}
+      _max_health(_health), _attack(__attack) {}
 
 void BossEnemyPlane::shootMissilesAround(BattleField* field) {
 	static double angle = 0;
@@ -26,9 +26,9 @@ void BossEnemyPlane::shootMissilesAround(BattleField* field) {
 	if (++timer <= 3)
 		return;
 	angle += 7, timer = 0;
-	field->_enemyMissile.push_back(new SteadyMissileF(
+	field->enemy_missiles.push_back(new SteadyMissileF(
 	    around_missile_path, _rect.center().x() + 10 * cos(angle),
-	    _rect.center().y() + 10 * sin(angle), 2 * cos(angle), 2 * sin(angle), 50));
+	    _rect.center().y() + 10 * sin(angle), 2 * cos(angle), 2 * sin(angle), _attack));
 	if (angle > 720) {
 		angle = 0, timer = 0;
 		_shoot_state = 0;
@@ -42,10 +42,10 @@ void BossEnemyPlane::shootMissilesRound(BattleField* field) {
 	if (++timer <= 10)
 		return;
 	timer = 0;
-	for (double angle = 0; angle < 2*M_PI; angle += M_PI/20) {
-		field->_enemyMissile.push_back(new SteadyMissileF(
+	for (double angle = 0; angle < 2 * M_PI; angle += M_PI / 20) {
+		field->enemy_missiles.push_back(new SteadyMissileF(
 		    round_missile_path, _rect.center().x() + 10 * cos(angle),
-		    _rect.center().y() + 10 * sin(angle), 3 * cos(angle), 3 * sin(angle), 50));
+		    _rect.center().y() + 10 * sin(angle), 3 * cos(angle), 3 * sin(angle), _attack));
 	}
 	if (++counter >= 5) {
 		counter = 0, timer = 0;
@@ -60,9 +60,9 @@ void BossEnemyPlane::shootMissilesArc(BattleField* field) {
 		return;
 	timer = 0;
 	for (double angle = randdouble(40, 50); angle < 140; angle += 10) {
-		field->_enemyMissile.push_back(new SteadyMissileF(
+		field->enemy_missiles.push_back(new SteadyMissileF(
 		    arc_missile_path, _rect.center().x() + 10 * cos(angle),
-		    _rect.center().y() + 10 * sin(angle), 3 * cos(angle), 3 * sin(angle), 50));
+		    _rect.center().y() + 10 * sin(angle), 3 * cos(angle), 3 * sin(angle), _attack));
 	}
 	if (++counter >= 5) {
 		counter = 0, timer = 0;
@@ -85,10 +85,10 @@ void BossEnemyPlane::shootMissilesTrack(BattleField* field) {
 	if (++timer <= 10)
 		return;
 	timer = 0;
-	for (double angle = 0; angle <= M_PI; angle += M_PI/10) {
-		field->_enemyMissile.push_back(new TrackMissile(
-			round_missile_path, _rect.center().x() + 10 * cos(angle),
-			_rect.center().y() + 10 * sin(angle), 3 * cos(angle), 3 * sin(angle), 50,30));
+	for (double angle = 0; angle <= M_PI; angle += M_PI / 10) {
+		field->enemy_missiles.push_back(new TrackMissile(
+		    round_missile_path, _rect.center().x() + 10 * cos(angle),
+		    _rect.center().y() + 10 * sin(angle), 3 * cos(angle), 3 * sin(angle), _attack));
 	}
 	if (++counter >= 3) {
 		counter = 0, timer = 0;
@@ -160,6 +160,8 @@ void BossEnemyPlane::shootMissiles(BattleField* field) {
 }
 
 void BossEnemyPlane::afterDeath(BattleField* field) {
+	field->effects.push_back(new ExplosionEffect(_rect.topLeft()));
+	field->effects.push_back(new ExplosionEffect(_rect.bottomRight()));
 	return;
 }
 
