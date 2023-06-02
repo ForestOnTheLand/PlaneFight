@@ -6,6 +6,7 @@
 #include "Generator.h"
 #include "EnemyPlane.h"
 #include "util.h"
+#include "Laser.h"
 #define _MATH_DEFINES_DEFINED
 
 static constexpr const char* around_missile_path = ":/PlaneFight/img/bullet/flame_bullet_red_1.png";
@@ -148,14 +149,14 @@ void BossEnemyPlane::updatePosition() {
 
 void BossEnemyPlane::shootMissiles(BattleField* field) {
 	switch (_shoot_state) {
-		case 0: _shoot_state = with_probability(0.5) ? 0 : randint(1, 8); break;
+		case 0: _shoot_state = with_probability(0.5) ? 0 : randint(1, 7); break;
 		case 1: shootMissilesAround(field); break;
 		case 2: shootMissilesArc(field); break;
 		case 3: shootMissilesRound(field); break;
 		case 4: shootLaser(field); break;
 		case 5: shootMissilesTrack(field); break;
 		case 6: shootMissilesCrossing(field); break;
-		case 7: shootMissilesTarget(field); break;
+		//case 7: shootMissilesTarget(field); break;
 	}
 }
 
