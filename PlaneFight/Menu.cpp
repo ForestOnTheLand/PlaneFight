@@ -6,7 +6,7 @@
 #include "qpixmap.h"
 #include "qpoint.h"
 #include "GameReview.h"
-#include "Rule.h"
+//#include "Rule.h"
 #include "Ranking.h"
 #include <stdio.h>
 #include <iostream>
@@ -28,7 +28,7 @@ Menu::Menu(QWidget* parent) : QWidget(parent), ui(new Ui::MenuClass) {
 	gameWidgets.push_back(new QWidget());			           //3 interface for choosing level mode
 	gameWidgets.push_back(new Ranking(nullptr,this));		   //4 interface for ranking
 	gameWidgets.push_back(new GameReview(nullptr, this));	   //5 interface for game review
-	gameWidgets.push_back(new Rule(nullptr,this));					   //6 interface for rule
+	gameWidgets.push_back(new QWidget());					   //6 interface for rule
 	gameWidgets.push_back(new QWidget());					   //7 interface for levels
 	gameWidgets.push_back(new QWidget());					   //8 interface for levels
 
