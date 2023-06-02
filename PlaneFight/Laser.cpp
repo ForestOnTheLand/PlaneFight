@@ -1,6 +1,11 @@
 #include "Laser.h"
 #include "PlayerPlane.h"
 #include <qdebug.h>
+#include <qtransform.h>
+
+Laser::Laser() {
+	_picture.load(":/PlaneFight/img/laser_0.png");
+}
 
 void Laser::hurt() {
 	static int _hurt_timer = 0;
@@ -15,13 +20,11 @@ void Laser::hurt() {
 }
 
 void Laser::drawOn(QPainter& painter) {
-	QPen pen = painter.pen(), _pen = pen;
-	pen.setWidth(_width);
-	pen.setColor(Qt::white);
-	painter.setPen(pen);
-	QRectF rect = painter.clipBoundingRect();
-	painter.setClipRect(battlefield_border);
-	painter.drawLine(src, QPoint(src.x() + 1000 * cos(theta), src.y() + 1000 * sin(theta)));
-	painter.setPen(_pen);
-	painter.setClipRect(rect);
+	painter.save();
+	QTransform transform;
+	transform.translate(src.x(), src.y());
+	transform.rotate(to_deg(theta));
+	painter.setWorldTransform(transform);
+	painter.drawPixmap(QPoint(10, -_picture.height() / 2), _picture);
+	painter.restore();
 }

@@ -54,3 +54,11 @@ inline int distribution_as(T __list) {
 	}
 	return i;
 }
+
+inline constexpr double to_rad(double degree) {
+	return degree * (M_PI / 180);
+}
+
+inline constexpr double to_deg(double radius) {
+	return radius * (180 / M_PI);
+}

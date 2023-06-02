@@ -11,10 +11,11 @@ private:
 	void shootLaser(BattleField* field);
 	int _shoot_state = 0;
 	int _max_health;
+	int _attack;
 	Laser _laser;
 
 public:
-	BossEnemyPlane(const char* __image_path, int __health);
+	BossEnemyPlane(const char* __image_path, int __health, int __attack);
 	void updatePosition() final;
 	void shootMissiles(BattleField* field) final;
 	void afterDeath(BattleField* field) final;

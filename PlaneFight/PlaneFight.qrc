@@ -25,8 +25,6 @@
         <file>img/Boss1.png</file>
         <file>img/Boss2.png</file>
         <file>img/planeIcon.svg</file>
-    </qresource>
-    <qresource prefix="/PlaneFight">
         <file>img/player.png</file>
         <file>img/enemy.png</file>
         <file>img/missile_0.png</file>
@@ -65,5 +63,7 @@
         <file>sound/effect_sound/se_enep00.wav</file>
         <file>sound/th11_09.mp3</file>
         <file>img/planeIcon.svg</file>
+        <file>img/laser_0.png</file>
+        <file>img/Boss_2.png</file>
     </qresource>
 </RCC>

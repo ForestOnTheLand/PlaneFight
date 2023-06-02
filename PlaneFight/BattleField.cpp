@@ -3,10 +3,14 @@
 #include "Menu.h"
 #include "GameReview.h"
 #include <QtMultimedia/qsoundeffect.h>
-BattleField::BattleField(QWidget* parent,Menu* menu)
+#include <algorithm>
+#include <QDebug>
+
+BattleField::BattleField(QWidget* parent, Menu* menu)
     : QWidget(parent), ui(new Ui::BattleFieldClass()), _timer(new QTimer),
       _generator(Generator::level_1()), mainMenu(menu) {
 	ui->setupUi(this);
+	this->setAutoFillBackground(true);
 	this->setFixedSize(800, 800);
 	pic1.load(":/PlaneFight/img/battleBackground.jpg");
 	pic2.load(":/PlaneFight/img/background22.png");
@@ -40,7 +44,7 @@ void BattleField::updateAll() {
 	generateEnemy();
 	checkCollision();
 	checkDeadPlane();
-	for (_EnemyPlane* enemy : _enemies) {
+	for (_EnemyPlane* enemy : enemy_planes) {
 		enemy->updatePosition();
 		enemy->shootMissiles(this);
 	}
@@ -58,7 +62,6 @@ void BattleField::gameOver() {
 	mainMenu->gameWidgets[2] = new BattleField(nullptr, mainMenu);
 	mainMenu->stackWidget->insertWidget(2, mainMenu->gameWidgets[2]);
 	mainMenu->stackWidget->removeWidget(this);
-	// exit(0);
 }
 
 void BattleField::pause() {
@@ -67,25 +70,34 @@ void BattleField::pause() {
 
 void BattleField::generateEnemy() {
 	_generator->execute(this);
+	if (_generator->free())
+		gameWin();
+}
+
+void BattleField::gameWin() {
+	gameOver();
 }
 
 void BattleField::updateMissiles() {
-	for (auto iter = _enemyMissile.begin(); iter != _enemyMissile.end();) {
-		if ((*iter)->free()) {
-			delete *iter;
-			iter = _enemyMissile.erase(iter);
-		} else {
-			(*iter)->updatePosition();
-			++iter;
-		}
-	}
+	enemy_missiles.erase(std::copy_if(enemy_missiles.begin(), enemy_missiles.end(),
+	                                  enemy_missiles.begin(),
+	                                  [](_Missile* missile) -> bool {
+		                                  if (missile->free()) {
+			                                  delete missile;
+			                                  return false;
+		                                  } else {
+			                                  missile->updatePosition();
+			                                  return true;
+		                                  }
+	                                  }),
+	                     enemy_missiles.end());
 }
 
 void BattleField::updateDrops() {
-	for (auto iter = _drops.begin(); iter != _drops.end();) {
+	for (auto iter = drops.begin(); iter != drops.end();) {
 		if ((*iter)->free()) {
 			delete *iter;
-			iter = _drops.erase(iter);
+			iter = drops.erase(iter);
 		} else {
 			(*iter)->updatePosition();
 			++iter;
@@ -94,15 +106,15 @@ void BattleField::updateDrops() {
 }
 
 void BattleField::checkDeadPlane() {
-	for (auto iter = _enemies.begin(); iter != _enemies.end();) {
+	for (auto iter = enemy_planes.begin(); iter != enemy_planes.end();) {
 		if ((*iter)->dead() || (*iter)->out()) {
 			if ((*iter)->dead()) {
 				PlayerPlane::plane()->score += 100;
-				//_effects.push_back(new ExplosionEffect((*iter)->rect().center()));
+				// effects.push_back(new ExplosionEffect((*iter)->rect().center()));
 				(*iter)->afterDeath(this);
 			}
 			delete *iter;
-			iter = _enemies.erase(iter);
+			iter = enemy_planes.erase(iter);
 		} else {
 			++iter;
 		}
@@ -112,26 +124,26 @@ void BattleField::checkDeadPlane() {
 }
 
 void BattleField::checkCollision() {
-	for (_EnemyPlane* enemy : _enemies) {
+	for (_EnemyPlane* enemy : enemy_planes) {
 		enemy->hurt(PlayerPlane::plane());
 		PlayerPlane::plane()->hurt(enemy);
 	}
-	for (_Missile* missile : _enemyMissile) {
+	for (_Missile* missile : enemy_missiles) {
 		missile->collide(PlayerPlane::plane());
 	}
-	for (_Bonus* drop : _drops) {
+	for (_Bonus* drop : drops) {
 		drop->collide();
 	}
 }
 
 void BattleField::paintEffect(QPainter& painter) {
-	for (auto iter = _effects.begin(); iter != _effects.end();) {
+	for (auto iter = effects.begin(); iter != effects.end();) {
 		if ((*iter)->valid()) {
 			(*iter)->display(painter);
 			++iter;
 		} else {
 			delete *iter;
-			iter = _effects.erase(iter);
+			iter = effects.erase(iter);
 		}
 	}
 }
@@ -147,9 +159,9 @@ void BattleField::processKeyEvent() {
 		PlayerPlane::plane()->moveBy(3, 0);
 	if (_key.K) {
 		PlayerPlane::plane()->Bomb();
-		for (auto iter = _enemyMissile.begin(); iter != _enemyMissile.end();) {
+		for (auto iter = enemy_missiles.begin(); iter != enemy_missiles.end();) {
 			delete *iter;
-			iter = _enemyMissile.erase(iter);
+			iter = enemy_missiles.erase(iter);
 		}
 		_key.K = 0;
 	}
@@ -158,20 +170,20 @@ void BattleField::processKeyEvent() {
 
 void BattleField::paintEvent(QPaintEvent* _event) {
 	QPainter painter(this);
-	painter.setBrush(Qt::gray);
+	/*painter.setBrush(Qt::gray);
 	painter.drawRect(this->rect());
-	painter.setBrush(Qt::NoBrush);
+	painter.setBrush(Qt::NoBrush);*/
 	painter.drawPixmap(battlefield_border, pic2);
 	painter.drawRect(battlefield_border);
 	painter.setClipRect(battlefield_border);
 	PlayerPlane::plane()->drawOn(painter);
-	for (_EnemyPlane* enemy : _enemies) {
+	for (_EnemyPlane* enemy : enemy_planes) {
 		enemy->drawOn(painter);
 	}
-	for (_Missile* missile : _enemyMissile) {
+	for (_Missile* missile : enemy_missiles) {
 		painter.drawPixmap(missile->rect(), missile->picture());
 	}
-	for (_Bonus* drop : _drops) {
+	for (_Bonus* drop : drops) {
 		painter.drawPixmap(drop->rect(), drop->picture());
 	}
 	paintEffect(painter);
@@ -179,8 +191,6 @@ void BattleField::paintEvent(QPaintEvent* _event) {
 	ui->score_label->setText(QString("Score: ") + QString::number(PlayerPlane::plane()->score));
 	ui->hp_label->setText(QString("HP: ") + QString::number(PlayerPlane::plane()->health()) + "/" +
 	                      QString::number(player_max_health));
-	ui->score_label->setStyleSheet("color:rgb(255,0,0)");
-	ui->hp_label->setStyleSheet("color:rgb(255,0,0)");
 }
 
 void BattleField::mouseMoveEvent(QMouseEvent* _event) {

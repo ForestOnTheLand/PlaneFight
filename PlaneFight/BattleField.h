@@ -27,13 +27,14 @@ private:
 	Menu* mainMenu;
 
 public:
-	BattleField(QWidget* parent = nullptr,Menu* menu=nullptr);
+	BattleField(QWidget* parent = nullptr, Menu* menu = nullptr);
 	~BattleField();
 
 public:
 	void start();
 	void updateAll();
 	void gameOver();
+	void gameWin();
 
 private:
 	void generateEnemy();
@@ -47,12 +48,14 @@ private:
 
 public:
 	QPixmap pic1, pic2;
-	std::vector<_EnemyPlane*> _enemies;
-	std::vector<_Effect*> _effects;
-	std::vector<_Missile*> _enemyMissile;
-	std::vector<_Bonus*> _drops;
+	std::vector<_EnemyPlane*> enemy_planes;
+	std::vector<_Effect*> effects;
+	std::vector<_Missile*> enemy_missiles;
+	std::vector<_Bonus*> drops;
 	void paintEvent(QPaintEvent* _event) final;
 	void mouseMoveEvent(QMouseEvent* _event) final;
 	void keyPressEvent(QKeyEvent* _event) final;
 	void keyReleaseEvent(QKeyEvent* _event) final;
+
+	friend class MessageDisplay;
 };
