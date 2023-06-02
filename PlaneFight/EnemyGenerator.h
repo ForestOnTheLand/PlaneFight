@@ -59,13 +59,13 @@ public:
 
 
 class PictureDisplay : public Policy {
-	std::vector<std::pair<const char* const, QPoint>> _list;
-	std::vector<std::pair<QPixmap, QRect>> _picture;
+	std::vector<std::pair<const char* const, QPointF>> _list;
+	std::vector<std::pair<QPixmap, QRectF>> _picture;
 	int _time;
 	int _timer = 0;
 
 public:
-	PictureDisplay(std::initializer_list<std::pair<const char* const, QPoint>> __list, int __time);
+	PictureDisplay(std::initializer_list<std::pair<const char* const, QPointF>> __list, int __time);
 	void execute(BattleField* b) override;
 	bool terminal() override;
 	void draw(QPainter& painter) override;

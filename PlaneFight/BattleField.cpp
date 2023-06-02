@@ -173,7 +173,7 @@ void BattleField::paintEvent(QPaintEvent* _event) {
 	/*painter.setBrush(Qt::gray);
 	painter.drawRect(this->rect());
 	painter.setBrush(Qt::NoBrush);*/
-	painter.drawPixmap(battlefield_border, pic2);
+	painter.drawPixmap(battlefield_border, pic2, QRectF());
 	painter.drawRect(battlefield_border);
 	painter.setClipRect(battlefield_border);
 	PlayerPlane::plane()->drawOn(painter);
@@ -181,17 +181,18 @@ void BattleField::paintEvent(QPaintEvent* _event) {
 		enemy->drawOn(painter);
 	}
 	for (_Missile* missile : enemy_missiles) {
-		painter.drawPixmap(missile->rect(), missile->picture());
+		painter.drawPixmap(missile->rect(), missile->picture(), QRectF());
 	}
 	for (_Bonus* drop : drops) {
-		painter.drawPixmap(drop->rect(), drop->picture());
+		painter.drawPixmap(drop->rect(), drop->picture(), QRectF());
 	}
 	paintEffect(painter);
 	_generator->draw(painter);
 	ui->score_label->setText(QString("Score: ") + QString::number(PlayerPlane::plane()->score));
 	ui->hp_label->setText(QString("HP: ") + QString::number(PlayerPlane::plane()->health()) + "/" +
 	                      QString::number(player_max_health));
-	ui->bomb_label->setText(QString("Bomb: ") + QString::number(PlayerPlane::plane()->bombs)+ "/3");
+	ui->bomb_label->setText(QString("Bomb: ") + QString::number(PlayerPlane::plane()->bombs) +
+	                        "/3");
 	ui->score_label->setStyleSheet("color:rgb(255,0,0)");
 	ui->hp_label->setStyleSheet("color:rgb(255,0,0)");
 	ui->bomb_label->setStyleSheet("color:rgb(255,0,0)");

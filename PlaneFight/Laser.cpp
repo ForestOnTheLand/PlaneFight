@@ -12,7 +12,7 @@ void Laser::hurt() {
 	if (_hurt_timer > 0) {
 		--_hurt_timer;
 	}
-	if (QPolygon({src, QPoint(src.x() + 1000 * cos(theta), src.y() + 1000 * sin(theta))})
+	if (QPolygonF({src, QPoint(src.x() + 1000 * cos(theta), src.y() + 1000 * sin(theta))})
 	        .intersects(PlayerPlane::plane()->rect())) {
 		PlayerPlane::plane()->health() -= 100;
 		_hurt_timer = 50;    // Ensure no hurt in 50 ticks
@@ -25,6 +25,6 @@ void Laser::drawOn(QPainter& painter) {
 	transform.translate(src.x(), src.y());
 	transform.rotate(to_deg(theta));
 	painter.setWorldTransform(transform);
-	painter.drawPixmap(QPoint(10, -_picture.height() / 2), _picture);
+	painter.drawPixmap(QPointF(10, -_picture.height() / 2.0), _picture);
 	painter.restore();
 }

@@ -13,29 +13,29 @@ static constexpr const char* stable_missile_path =
     ":/PlaneFight/img/bullet/small_bullet_darkBlue.png";
 static constexpr const char* track_missile_path = ":/PlaneFight/img/bullet/small_bullet_orange.png";
 
-_EnemyPlane::_EnemyPlane(const char* __image_path, int __health, QPoint __init_pos)
+_EnemyPlane::_EnemyPlane(const char* __image_path, int __health, QPointF __init_pos)
     : _Plane(__image_path, __health) {
 	setPosition(__init_pos);
 }
 
-void _EnemyPlane::_setPosition(int __x, int __y) {
-	_rect.moveCenter({_checked(__x, battlefield_border.left() + _rect.width() / 2,
+void _EnemyPlane::_setPosition(double __x, double __y) {
+	_rect.moveCenter({_checked(__x, battlefield_border.left() + _rect.width() / 2.0,
 	                           battlefield_border.right() - _rect.width() / 2),
-	                  std::max(__y, battlefield_border.top() + _rect.height() / 2)});
+	                  std::max(__y, battlefield_border.top() + _rect.height() / 2.0)});
 }
 
 void _EnemyPlane::_clearOut() {
 	return;
 }
 
-QPolygon _EnemyPlane::box() const {
-	return QPolygon(_rect);
+QPolygonF _EnemyPlane::box() const {
+	return QPolygonF(_rect);
 }
 
 
 EnemyPlane::EnemyPlane(const char* __image_path, int __health, int __shoot_inteval,
                        std::function<void(EnemyPlane*, BattleField*)> __shoot,
-                       std::function<int(int)> __x, std::function<int(int)> __y,
+                       std::function<double(int)> __x, std::function<double(int)> __y,
                        std::initializer_list<double> __prob)
     : _EnemyPlane(__image_path, __health, {__x(0), __y(0)}), _shoot_interval(__shoot_inteval),
       _shoot(__shoot), _x(__x), _y(__y), _prob(__prob) {}
@@ -75,7 +75,7 @@ namespace Plane {
 		void ThreeWays::operator()(EnemyPlane* plane, BattleField* field) {
 			field->enemy_missiles.push_back(
 			    new TrackMissile(track_missile_path, plane->rect().center().x(),
-			                     plane->rect().center().y() + 20, 0, 5, 50));
+			                     plane->rect().center().y() + 20, 0, 5, 50, 30));
 			field->enemy_missiles.push_back(new SteadyMissile(stable_missile_path,
 			                                                  plane->rect().center().x(),
 			                                                  plane->rect().bottom(), -2, 3, 50));
@@ -84,19 +84,19 @@ namespace Plane {
 		}
 	}    // namespace Shoot
 	namespace Speed {
-		Steady::Steady(int __init, int __v) : _init(__init), _v(__v) {}
-		int Steady::operator()(int t) {
+		Steady::Steady(double __init, double __v) : _init(__init), _v(__v) {}
+		double Steady::operator()(int t) {
 			return t * _v + _init;
 		}
 
-		Stable::Stable(int __init, int __v, int __limit, int __limit_time)
+		Stable::Stable(double __init, double __v, double __limit, int __limit_time)
 		    : _init(__init), _v(__v), _limit(__limit), _limit_time(__limit_time) {}
-		int Stable::operator()(int t) {
+		double Stable::operator()(int t) {
 			return t < _limit_time ? std::min(t * _v + _init, _limit)
 			                       : _limit + (t - _limit_time) * _v;
 		}
 
-		int RandomX::operator()(int t) {
+		double RandomX::operator()(int t) {
 			if (--_timer <= 0) {
 				_timer = randint(1, 50);
 				_speed = randint(-3, 4);

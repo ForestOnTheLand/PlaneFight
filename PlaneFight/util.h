@@ -34,7 +34,8 @@ inline double randdouble(double begin, double end) {
 	return _rand_double() * (end - begin) + begin;
 }
 
-inline int _checked(int t, int begin, int end) {
+template <typename T>
+inline T _checked(T t, T begin, T end) {
 	return t <= begin ? begin : t >= end ? end : t;
 }
 

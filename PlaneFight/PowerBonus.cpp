@@ -3,7 +3,7 @@
 
 static constexpr const char* power_drop_path = ":/PlaneFight/img/power.png";
 
-PowerBonus::PowerBonus(int __init_x, int __init_y, int __speed_x, int __speed_y,
+PowerBonus::PowerBonus(double __init_x, double __init_y, double __speed_x, double __speed_y,
                        int __strengthen_point)
     : _Bonus(power_drop_path, __init_x, __init_y), _speed_x(__speed_x), _speed_y(__speed_y),
       _strengthen_point(__strengthen_point) {}

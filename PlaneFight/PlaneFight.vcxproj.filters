@@ -195,9 +195,6 @@
     <ClInclude Include="Laser.h">
       <Filter>Header Files</Filter>
     </ClInclude>
-    <ClInclude Include="Rule.h">
-      <Filter>Header Files\UI</Filter>
-    </ClInclude>
     <ClInclude Include="TargetEffect.h">
       <Filter>Header Files\Effect</Filter>
     </ClInclude>

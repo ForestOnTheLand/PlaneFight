@@ -5,17 +5,17 @@ class BattleField;
 
 class _EnemyPlane : public _Plane {
 protected:
-	void _setPosition(int __x, int __y) override;
+	void _setPosition(double __x, double __y) override;
 	virtual void _clearOut();
 
 public:
-	_EnemyPlane(const char* __image_path, int __health, QPoint __init_pos);
+	_EnemyPlane(const char* __image_path, int __health, QPointF __init_pos);
 
 public:
 	virtual void shootMissiles(BattleField* field) = 0;
 	virtual void afterDeath(BattleField* field) = 0;
 	virtual void updatePosition() = 0;
-	QPolygon box() const override;
+	QPolygonF box() const override;
 
 	friend class EnemyClearingPolicy;
 };
@@ -32,8 +32,9 @@ private:
 
 public:
 	EnemyPlane(const char* __image_path, int __health, int __shoot_interval,
-	           std::function<void(EnemyPlane*, BattleField*)> __shoot, std::function<int(int)> __x,
-	           std::function<int(int)> __y, std::initializer_list<double> __prob);
+	           std::function<void(EnemyPlane*, BattleField*)> __shoot,
+	           std::function<double(int)> __x, std::function<double(int)> __y,
+	           std::initializer_list<double> __prob);
 	void shootMissiles(BattleField* field) final;
 	void afterDeath(BattleField* field) final;
 	void updatePosition() final;
@@ -55,27 +56,29 @@ namespace Plane {
 
 	namespace Speed {
 		class Steady {
-			int _init, _v;
+			double _init, _v;
 
 		public:
-			explicit Steady(int __init, int __v = 0);
-			int operator()(int t);
+			explicit Steady(double __init, double __v = 0);
+			double operator()(int t);
 		};
 
 		class Stable {
-			int _init, _v, _limit, _limit_time;
+			double _init, _v;
+			double _limit;
+			int _limit_time;
 
 		public:
-			explicit Stable(int __init, int __v, int __limit, int __limit_time);
-			int operator()(int t);
+			explicit Stable(double __init, double __v, double __limit, int __limit_time);
+			double operator()(int t);
 		};
 
 		class RandomX {
-			int _speed = 0, _before = random_x(), _timer = 0;
+			double _speed = 0, _before = random_x(), _timer = 0;
 
 		public:
 			RandomX() = default;
-			int operator()(int t);
+			double operator()(int t);
 		};
 	}    // namespace Speed
 	namespace Timer {
