@@ -34,4 +34,5 @@ public:
 	void moveBy(int __dx, int __dy);
 	virtual void hurt(_Plane* __other);
 	virtual void drawOn(QPainter& painter);
+	virtual void hurtUpdate();
 };

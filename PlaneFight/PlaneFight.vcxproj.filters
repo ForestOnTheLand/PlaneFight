@@ -133,6 +133,9 @@
     <ClCompile Include="BackgroundMusic.cpp">
       <Filter>Source Files\Effect</Filter>
     </ClCompile>
+    <ClCompile Include="TargetEffect.cpp">
+      <Filter>Source Files\Effect</Filter>
+    </ClCompile>
     <ClCompile Include="Laser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
@@ -191,6 +194,12 @@
     </ClInclude>
     <ClInclude Include="Laser.h">
       <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Rule.h">
+      <Filter>Header Files\UI</Filter>
+    </ClInclude>
+    <ClInclude Include="TargetEffect.h">
+      <Filter>Header Files\Effect</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

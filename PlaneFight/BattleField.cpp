@@ -191,6 +191,10 @@ void BattleField::paintEvent(QPaintEvent* _event) {
 	ui->score_label->setText(QString("Score: ") + QString::number(PlayerPlane::plane()->score));
 	ui->hp_label->setText(QString("HP: ") + QString::number(PlayerPlane::plane()->health()) + "/" +
 	                      QString::number(player_max_health));
+	ui->bomb_label->setText(QString("Bomb: ") + QString::number(PlayerPlane::plane()->bombs)+ "/3");
+	ui->score_label->setStyleSheet("color:rgb(255,0,0)");
+	ui->hp_label->setStyleSheet("color:rgb(255,0,0)");
+	ui->bomb_label->setStyleSheet("color:rgb(255,0,0)");
 }
 
 void BattleField::mouseMoveEvent(QMouseEvent* _event) {

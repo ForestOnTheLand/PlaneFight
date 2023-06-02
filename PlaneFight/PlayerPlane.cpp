@@ -3,8 +3,10 @@
 
 static constexpr const char* player_plane_path = ":/PlaneFight/img/player.png";         // @IMAGE
 static constexpr const char* player_missile_path = ":/PlaneFight/img/missile_0.png";    // @IMAGE
+static constexpr const char* player_hurt_path = ":/PlaneFight/img/player_hurt.png";    // @IMAGE
 static constexpr const char* player_bomb_path =
     ":/PlaneFight/img/bullet/scale_bullet_red.png";    // @IMAGE
+
 
 static constexpr int player_plane_shoot_interval_1 = 20;
 static constexpr int player_plane_shoot_interval_2 = 20;
@@ -14,7 +16,9 @@ static constexpr int player_plane_bombs = 3;
 PlayerPlane* PlayerPlane::_plane = nullptr;
 
 PlayerPlane::PlayerPlane(const char* const __image_path, int _bombs)
-    : _Plane(__image_path, player_max_health), bombs(_bombs), score(0), power(0) {}
+    : _Plane(__image_path, player_max_health), bombs(_bombs), score(0), power(0) {
+	_hurt_image.load(player_hurt_path);
+}
 
 void PlayerPlane::init() {
 	if (_plane) {
@@ -127,7 +131,17 @@ void PlayerPlane::hurt(_Plane* __other) {
 }
 
 void PlayerPlane::drawOn(QPainter& painter) {
-	painter.drawPixmap(_rect, _picture);
+	if (_hurt_state) {
+		painter.drawPixmap(_rect, _hurt_image);
+		_hurt_state--;
+	}
+	else {
+		painter.drawPixmap(_rect, _picture);
+	}
 	drawMissiles(painter);
 	drawHP(painter);
+}
+
+void PlayerPlane::hurtUpdate() {
+	_hurt_state = 3;
 }

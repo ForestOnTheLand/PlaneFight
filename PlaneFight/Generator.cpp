@@ -1,6 +1,7 @@
 #include "Generator.h"
 #include "EnemyPlane.h"
 #include "BattleField.h"
+#include "TargetEffect.h"
 
 static constexpr const char* enemy_plane_path = ":/PlaneFight/img/enemy.png";      // @IMAGE
 static constexpr const char* warning_path = ":/PlaneFight/img/bosswarning.png";    // @IMAGE
