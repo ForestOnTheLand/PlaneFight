@@ -23,9 +23,6 @@
         <file>img/bosswarning.png</file>
         <file>img/Boss1.png</file>
         <file>img/Boss2.png</file>
-
-    </qresource>
-    <qresource prefix="/PlaneFight">
         <file>img/player.png</file>
         <file>img/enemy.png</file>
         <file>img/missile_0.png</file>
@@ -63,7 +60,6 @@
         <file>sound/lockdown.wav</file>
         <file>sound/effect_sound/se_enep00.wav</file>
         <file>img/planeIcon.svg</file>
-        <file>text/rule.md</file>
         <file>img/laser_0.png</file>
         <file>img/Boss_2.png</file>
         <file>img/player_hurt.png</file>
