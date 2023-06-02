@@ -4,11 +4,12 @@
 
 class LifeBonus : public _Bonus {
 private:
-	int _speed_x, _speed_y;
+	double _speed_x, _speed_y;
 	int _heal_point;
 
 public:
-	LifeBonus(int __init_x, int __init_y, int __speed_x, int __speed_y, int __heal_point);
+	LifeBonus(double __init_x, double __init_y, double __speed_x, double __speed_y,
+	          int __heal_point);
 
 public:
 	void updatePosition() final;

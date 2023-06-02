@@ -6,13 +6,16 @@ void Policy::draw(QPainter& painter) {
 	return;
 }
 
-EnemyGeneratingPolicy::EnemyGeneratingPolicy(const std::function<void(BattleField*)>& __f,
-                                             int __time)
-    : _call(__f), _time(__time * (1000 / update_rate)) {}
-
+EnemyGeneratingPolicy::EnemyGeneratingPolicy(
+    std::initializer_list<std::pair<plane_t, flag_t>> __policy, int __time)
+    : _policy(__policy), _time(__time * (1000 / update_rate)) {}
 
 void EnemyGeneratingPolicy::execute(BattleField* b) {
-	_call(b);
+	for (auto& [plane, flag] : _policy) {
+		if (flag()) {
+			b->enemy_planes.push_back(plane());
+		}
+	}
 	++_timer;
 }
 bool EnemyGeneratingPolicy::terminal() {
@@ -20,11 +23,12 @@ bool EnemyGeneratingPolicy::terminal() {
 }
 
 void EnemyClearingPolicy::execute(BattleField* b) {
-	if (b->_enemies.empty()) {
+	if (b->enemy_planes.empty()) {
 		_finish = true;
-	} else {
-		for (_EnemyPlane* enemy : b->_enemies) {
-			enemy->_rect.moveCenter({0, 10});
+	} else if (!_start) {
+		_start = true;
+		for (_EnemyPlane* enemy : b->enemy_planes) {
+			enemy->_clearOut();
 		}
 	}
 }
@@ -32,18 +36,21 @@ bool EnemyClearingPolicy::terminal() {
 	return _finish;
 }
 
+BossGeneratingPolicy::BossGeneratingPolicy(int __health, int __attack)
+    : _health(__health), _attack(__attack) {}
 void BossGeneratingPolicy::execute(BattleField* b) {
 	if (!_field) {
 		_field = b;
-		_field->_enemies.push_back(new BossEnemyPlane(":/PlaneFight/img/enemy.png", 10000));
+		_field->enemy_planes.push_back(
+		    new BossEnemyPlane(":/PlaneFight/img/Boss_2.png", _health, _attack));
 	}
 }
 bool BossGeneratingPolicy::terminal() {
-	return _field != nullptr && _field->_enemies.empty();
+	return _field != nullptr && _field->enemy_planes.empty();
 }
 
 
-PictureDisplay::PictureDisplay(std::initializer_list<std::pair<const char* const, QPoint>> __list,
+PictureDisplay::PictureDisplay(std::initializer_list<std::pair<const char* const, QPointF>> __list,
                                int __time)
     : _time(__time * (1000 / update_rate)), _list(__list) {}
 void PictureDisplay::execute(BattleField* b) {
@@ -54,16 +61,16 @@ bool PictureDisplay::terminal() {
 }
 void PictureDisplay::draw(QPainter& painter) {
 	if (_list.size() != _picture.size()) {
-		for (auto [path, pos] : _list) {
+		for (auto& [path, pos] : _list) {
 			QPixmap picture;
 			picture.load(path);
 			_picture.push_back(
-			    {picture, QRect(pos.x() - picture.width() / 2, pos.y() - picture.height() / 2,
-			                    picture.width(), picture.height())});
+			    {picture, QRectF(pos.x() - picture.width() / 2.0, pos.y() - picture.height() / 2.0,
+			                     picture.width(), picture.height())});
 		}
 	} else {
-		for (auto [pixmap, rect] : _picture) {
-			painter.drawPixmap(rect, pixmap);
+		for (auto& [pixmap, rect] : _picture) {
+			painter.drawPixmap(rect, pixmap, QRectF());
 		}
 	}
 }
@@ -75,6 +82,25 @@ EnemyGenerator::~EnemyGenerator() {
 		delete policy;
 	}
 }
+
+
+MessageDisplay::MessageDisplay(const QString& __msg, int __time)
+    : _msg(__msg), _time(__time * (1000 / update_rate)) {}
+void MessageDisplay::execute(BattleField* b) {
+	if (!_b) {
+		_b = b;
+		_b->ui->msg_label->setText(_msg);
+	}
+}
+bool MessageDisplay::terminal() {
+	if (++_timer > _time) {
+		_b->ui->msg_label->setText(" ");
+		return true;
+	} else {
+		return false;
+	}
+}
+
 
 void EnemyGenerator::execute(BattleField* b) {
 	if (_policies.empty()) {

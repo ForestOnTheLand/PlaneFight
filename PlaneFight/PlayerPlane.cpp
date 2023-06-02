@@ -3,8 +3,10 @@
 
 static constexpr const char* player_plane_path = ":/PlaneFight/img/player.png";         // @IMAGE
 static constexpr const char* player_missile_path = ":/PlaneFight/img/missile_0.png";    // @IMAGE
+static constexpr const char* player_hurt_path = ":/PlaneFight/img/player_hurt.png";     // @IMAGE
 static constexpr const char* player_bomb_path =
     ":/PlaneFight/img/bullet/scale_bullet_red.png";    // @IMAGE
+
 
 static constexpr int player_plane_shoot_interval_1 = 20;
 static constexpr int player_plane_shoot_interval_2 = 20;
@@ -14,7 +16,9 @@ static constexpr int player_plane_bombs = 3;
 PlayerPlane* PlayerPlane::_plane = nullptr;
 
 PlayerPlane::PlayerPlane(const char* const __image_path, int _bombs)
-    : _Plane(__image_path, player_max_health), bombs(_bombs), score(0), power(0) {}
+    : _Plane(__image_path, player_max_health), bombs(_bombs), score(0), power(0) {
+	_hurt_image.load(player_hurt_path);
+}
 
 void PlayerPlane::init() {
 	if (_plane) {
@@ -26,7 +30,7 @@ void PlayerPlane::init() {
 }
 
 
-void PlayerPlane::_setPosition(int __x, int __y) {
+void PlayerPlane::_setPosition(double __x, double __y) {
 	_rect.moveCenter({_checked(__x, battlefield_border.left() + _rect.width() / 2,
 	                           battlefield_border.right() - _rect.width() / 2),
 	                  _checked(__y, battlefield_border.top() + _rect.height() / 2,
@@ -86,16 +90,16 @@ void PlayerPlane::Bomb() {
 
 void PlayerPlane::drawMissiles(QPainter& painter) {
 	for (_Missile* missile : _missiles) {
-		painter.drawPixmap(missile->rect(), missile->picture());
+		painter.drawPixmap(missile->rect(), missile->picture(), QRectF());
 	}
 }
 
 
 void PlayerPlane::drawHP(QPainter& painter) {
-	painter.drawRect(QRect(_rect.x(), _rect.y() - 3, _rect.width(), 3));
-	painter.fillRect(QRect(_rect.x(), _rect.y() - 3, _rect.width(), 3), Qt::red);
+	painter.drawRect(QRectF(_rect.x(), _rect.y() - 3, _rect.width(), 3));
+	painter.fillRect(QRectF(_rect.x(), _rect.y() - 3, _rect.width(), 3), Qt::red);
 	painter.fillRect(
-	    QRect(_rect.x(), _rect.y() - 3, _rect.width() * 1.0 * _health / player_max_health, 3),
+	    QRectF(_rect.x(), _rect.y() - 3, _rect.width() * 1.0 * _health / player_max_health, 3),
 	    Qt::green);
 }
 
@@ -115,8 +119,8 @@ PlayerPlane* PlayerPlane::plane() {
 	return _plane;
 }
 
-QPolygon PlayerPlane::box() const {
-	return QPolygon(QRect(_rect.center(), QSize(1, 1)));
+QPolygonF PlayerPlane::box() const {
+	return QPolygonF(QRectF(_rect.center(), QSize(1, 1)));
 }
 
 void PlayerPlane::hurt(_Plane* __other) {
@@ -127,7 +131,16 @@ void PlayerPlane::hurt(_Plane* __other) {
 }
 
 void PlayerPlane::drawOn(QPainter& painter) {
-	painter.drawPixmap(_rect, _picture);
+	if (_hurt_state) {
+		painter.drawPixmap(_rect, _hurt_image, QRectF());
+		_hurt_state--;
+	} else {
+		painter.drawPixmap(_rect, _picture, QRectF());
+	}
 	drawMissiles(painter);
 	drawHP(painter);
+}
+
+void PlayerPlane::hurtUpdate() {
+	_hurt_state = 3;
 }

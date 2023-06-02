@@ -10,11 +10,11 @@
 class _Plane {
 protected:
 	QPixmap _picture;    // Picture of plane
-	QRect _rect;         // Border of picture
+	QRectF _rect;        // Border of picture
 	int _health;
 
 protected:
-	virtual void _setPosition(int __x, int __y) = 0;
+	virtual void _setPosition(double __x, double __y) = 0;
 
 public:
 	_Plane(const char* const __image_path, int __health);
@@ -22,16 +22,17 @@ public:
 
 public:
 	const QPixmap& picture() const;
-	const QRect& rect() const;
-	virtual QPolygon box() const = 0;
+	const QRectF& rect() const;
+	virtual QPolygonF box() const = 0;
 	int& health();
 	bool dead() const;
 	virtual bool out() const;
 
 public:
-	void setPosition(int __x, int __y);
-	void setPosition(QPoint p);
-	void moveBy(int __dx, int __dy);
+	void setPosition(double __x, double __y);
+	void setPosition(QPointF p);
+	void moveBy(double __dx, double __dy);
 	virtual void hurt(_Plane* __other);
 	virtual void drawOn(QPainter& painter);
+	virtual void hurtUpdate();
 };

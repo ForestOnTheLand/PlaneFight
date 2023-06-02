@@ -8,18 +8,19 @@
 #include "GameReview.h"
 #include "Rule.h"
 #include "Ranking.h"
-#include "stdio.h"
-#include "iostream"
-#include "string"
+#include <stdio.h>
+#include <iostream>
+#include <string>
 #include <qevent.h>
 #include "BackgroundMusic.h"
+#include <QDebug>
 
 Menu::Menu(QWidget* parent) : QWidget(parent), ui(new Ui::MenuClass) {
 	BackgroundMusic::load(":/PlaneFight/sound/lockdown.wav");
 	BackgroundMusic::play();
 
 	ui->setupUi(this);
-	
+
 	stackWidget = new QStackedWidget();
 	gameWidgets.push_back(new QWidget());				       //0 interface for start menu
 	gameWidgets.push_back(new QWidget());				       //1 interface for choosing mode
@@ -69,25 +70,25 @@ Menu::Menu(QWidget* parent) : QWidget(parent), ui(new Ui::MenuClass) {
 		startButtons[i]->setStyleSheet(button_style);
 
 		switch (i) {
-		case 0:
-			startButtons[i]->setText("Start Now!");
-			startButtons[i]->setGeometry(QRect(280, 320, 191, 71));
-			startLabels[i]->setGeometry(QRect(210, 320, 65, 71));
-			connect(startButtons[i], &QPushButton::clicked, this, &Menu::StartGame);
-			break;
-		case 1:
-			startButtons[i]->setText("Rules");
-			startButtons[i]->setGeometry(QRect(280, 450, 191, 71));
-			startLabels[i]->setGeometry(QRect(210, 450, 65, 71));
-			connect(startButtons[i], &QPushButton::clicked, this, &Menu::ShowRules);
-			break;
-		case 2:
-			startButtons[i]->setText("Leave");
-			startButtons[i]->setGeometry(QRect(280, 580, 191, 71));
-			startLabels[i]->setGeometry(QRect(210, 580, 65, 71));
-			connect(startButtons[i], &QPushButton::clicked, this, &Menu::Leave);
-			break;
-		default: startButtons[i]->setText("bt"); break;
+			case 0:
+				startButtons[i]->setText("Start Now!");
+				startButtons[i]->setGeometry(QRect(280, 320, 191, 71));
+				startLabels[i]->setGeometry(QRect(210, 320, 65, 71));
+				connect(startButtons[i], &QPushButton::clicked, this, &Menu::StartGame);
+				break;
+			case 1:
+				startButtons[i]->setText("Rules");
+				startButtons[i]->setGeometry(QRect(280, 450, 191, 71));
+				startLabels[i]->setGeometry(QRect(210, 450, 65, 71));
+				connect(startButtons[i], &QPushButton::clicked, this, &Menu::ShowRules);
+				break;
+			case 2:
+				startButtons[i]->setText("Leave");
+				startButtons[i]->setGeometry(QRect(280, 580, 191, 71));
+				startLabels[i]->setGeometry(QRect(210, 580, 65, 71));
+				connect(startButtons[i], &QPushButton::clicked, this, &Menu::Leave);
+				break;
+			default: startButtons[i]->setText("bt"); break;
 		}
 	}
 
@@ -195,14 +196,12 @@ void Menu::mouseMoveEvent(QMouseEvent* _event) {
 			startLabels[0]->setPixmap(QPixmap("none"));
 			startLabels[1]->setPixmap(QPixmap("none"));
 			startLabels[2]->setPixmap(QPixmap(QString::fromUtf8(":/PlaneFight/img/planeIcon.svg")));
-		}
-		else {
+		} else {
 			startLabels[0]->setPixmap(QPixmap("none"));
 			startLabels[1]->setPixmap(QPixmap("none"));
 			startLabels[2]->setPixmap(QPixmap("none"));
 		}
-	}
-	else if(stackWidget->currentIndex() == 0) {
+	} else if (stackWidget->currentIndex() == 0) {
 		startLabels[0]->setPixmap(QPixmap("none"));
 		startLabels[1]->setPixmap(QPixmap("none"));
 		startLabels[2]->setPixmap(QPixmap("none"));
@@ -222,34 +221,31 @@ void Menu::mouseMoveEvent(QMouseEvent* _event) {
 			modeLabels[0]->setPixmap(QPixmap("none"));
 			modeLabels[1]->setPixmap(QPixmap("none"));
 			modeLabels[2]->setPixmap(QPixmap(QString::fromUtf8(":/PlaneFight/img/planeIcon.svg")));
-		}
-		else {
+		} else {
 			modeLabels[0]->setPixmap(QPixmap("none"));
 			modeLabels[1]->setPixmap(QPixmap("none"));
 			modeLabels[2]->setPixmap(QPixmap("none"));
 		}
-	}
-	else if(stackWidget->currentIndex()==0){
+	} else if (stackWidget->currentIndex() == 0) {
 		modeLabels[0]->setPixmap(QPixmap("none"));
 		modeLabels[1]->setPixmap(QPixmap("none"));
 		modeLabels[2]->setPixmap(QPixmap("none"));
 	}
-
 }
 
 Menu::~Menu() {
-	if(Title)
+	if (Title)
 		delete Title;
 	if (toFirstPage)
 		delete toFirstPage;
-	for (auto iter = gameModes.begin(); iter!=gameModes.end(); ++iter) {
+	for (auto iter = gameModes.begin(); iter != gameModes.end(); ++iter) {
 		if (*iter) {
 			delete *iter;
 		}
 	}
 	for (auto iter = modeLabels.begin(); iter != modeLabels.end(); ++iter) {
 		if (*iter) {
-			delete* iter;
+			delete *iter;
 		}
 	}
 	for (auto iter = startButtons.begin(); iter != startButtons.end(); ++iter) {
@@ -259,10 +255,10 @@ Menu::~Menu() {
 	}
 	for (auto iter = startLabels.begin(); iter != startLabels.end(); ++iter) {
 		if (*iter) {
-			delete* iter;
+			delete *iter;
 		}
 	}
-	for (auto iter = gameWidgets.begin(); iter != gameWidgets.end();++iter) {
+	for (auto iter = gameWidgets.begin(); iter != gameWidgets.end(); ++iter) {
 		if (*iter) {
 			delete *iter;
 		}

@@ -10,16 +10,16 @@ class _Plane;
 class _Entity {
 protected:
 	QPixmap _picture;
-	QRect _rect;
+	QRectF _rect;
 	bool _free = false;
 
 public:
-	explicit _Entity(const char* const __image_path, int __init_x, int __init_y);
+	explicit _Entity(const char* const __image_path, double __init_x, double __init_y);
 	virtual ~_Entity() = default;
 
 public:
 	const QPixmap& picture() const;
-	const QRect& rect() const;
+	const QRectF& rect() const;
 	bool free() const;
 
 public:
@@ -28,7 +28,7 @@ public:
 
 class _Missile : public _Entity {
 public:
-	explicit _Missile(const char* const __image_path, int __init_x, int __init_y);
+	explicit _Missile(const char* const __image_path, double __init_x, double __init_y);
 
 public:
 	virtual void collide(_Plane* plane) = 0;
@@ -36,7 +36,7 @@ public:
 
 class _Bonus : public _Entity {
 public:
-	explicit _Bonus(const char* const __image_path, int __init_x, int __init_y);
+	explicit _Bonus(const char* const __image_path, double __init_x, double __init_y);
 
 public:
 	virtual void collide() = 0;

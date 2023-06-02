@@ -3,11 +3,11 @@
 class QSoundEffect;
 
 class ExplosionEffect : public _Effect {
-	QPoint _pos;
+	QPointF _pos;
 	QSoundEffect* _sound;
 
 public:
-	explicit ExplosionEffect(const QPoint& __pos);
+	explicit ExplosionEffect(const QPointF& __pos);
 	~ExplosionEffect();
 	void display(QPainter& painter) final;
 };
