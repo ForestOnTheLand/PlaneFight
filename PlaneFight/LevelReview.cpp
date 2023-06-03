@@ -1,4 +1,7 @@
 #include "LevelReview.h"
+#include "iostream"
+#include "cmath"
+#include "algorithm"
 
 LevelReview::LevelReview(QWidget *parent,Menu* menu)
 	: QWidget(parent)
@@ -25,6 +28,27 @@ void LevelReview::refill(int win) {
 		ui->stackedWidget->setCurrentIndex(score>=5000?1:0);
 		ui->stackedWidget_2->setCurrentIndex(score>=7000?1:0);
 		ui->stackedWidget_3->setCurrentIndex(score>=9000?1:0);
+		int star[4] = { 0 };
+		freopen("levelPRdata.txt", "r", stdin);
+		std::cin >> star[1] >> star[2] >> star[3];
+		fclose(stdin);
+		freopen("levelPRdata.txt", "w", stdout);
+		if (score >= 9000) {
+			star[mainMenu->mode] = 3;
+		}
+		else if (score >= 7000) {
+			star[mainMenu->mode] = std::max(star[mainMenu->mode],2);
+		}
+		else if (score>=5000) {
+			star[mainMenu->mode] = std::max(star[mainMenu->mode], 1);
+		}
+		else {
+			star[mainMenu->mode] = std::max(star[mainMenu->mode], 0);
+		}
+		for (int i = 1; i <= 3; ++i) {
+			std::cout << star[i] << '\n';
+		}
+		fclose(stdout);
 	}
 	else {
 		ui->Title->setCurrentIndex(1);

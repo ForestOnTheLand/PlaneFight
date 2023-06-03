@@ -94,7 +94,8 @@ void BattleField::gameWin() {
 	mainMenu->gameWidgets[2] = new BattleField(nullptr, mainMenu);
 	mainMenu->stackWidget->insertWidget(2, mainMenu->gameWidgets[2]);
 	mainMenu->stackWidget->removeWidget(this);
-	gameOver();
+	//gameOver();
+	_timer->stop();
 }
 
 void BattleField::updateMissiles() {
