@@ -29,7 +29,7 @@ namespace Generator {
 		             },
 		             Timer::Gap(60),
 		         }},
-		        30),
+		        5),
 		    new PictureDisplay({{warning_path, battlefield_border.center()}},
                  2),
 		    new EnemyClearingPolicy(),
