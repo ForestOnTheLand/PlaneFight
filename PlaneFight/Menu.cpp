@@ -226,7 +226,7 @@ void Menu::mouseMoveEvent(QMouseEvent* _event) {
 			modeLabels[1]->setPixmap(QPixmap("none"));
 			modeLabels[2]->setPixmap(QPixmap("none"));
 		}
-	} else if (stackWidget->currentIndex() == 0) {
+	} else if (stackWidget->currentIndex() == 1) {
 		modeLabels[0]->setPixmap(QPixmap("none"));
 		modeLabels[1]->setPixmap(QPixmap("none"));
 		modeLabels[2]->setPixmap(QPixmap("none"));
