@@ -1,5 +1,9 @@
 <RCC>
     <qresource prefix="/PlaneFight">
+        <file>img/newRecord.svg</file>
+        <file>img/first.svg</file>
+        <file>img/second.svg</file>
+        <file>img/third.svg</file>
         <file>img/player.png</file>
         <file>img/enemy.png</file>
         <file>img/missile_0.png</file>
@@ -19,7 +23,6 @@
         <file>img/bosswarning.png</file>
         <file>img/Boss1.png</file>
         <file>img/Boss2.png</file>
-        <file>img/planeIcon.svg</file>
         <file>img/player.png</file>
         <file>img/enemy.png</file>
         <file>img/missile_0.png</file>

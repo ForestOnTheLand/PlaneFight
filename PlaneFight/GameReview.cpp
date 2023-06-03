@@ -14,6 +14,7 @@ struct Data_GR {
 		return score > obj2.score;
 	}
 }history[7];
+
 GameReview::GameReview(QWidget *parent,Menu* menu)
 	: QWidget(parent)
 	, ui(new Ui::GameReviewClass()),score(0),mainMenu(menu)

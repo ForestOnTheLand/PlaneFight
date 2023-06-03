@@ -25,7 +25,7 @@ public:
 	std::vector<QPushButton*> startButtons;
 	QLabel* Title;
 	std::vector<QLabel*> startLabels;
-	std::vector<QCommandLinkButton*> gameModes;
+	std::vector<QPushButton*> gameModes;
 	QPushButton* toFirstPage;
 	std::vector<QLabel*> modeLabels;
 	std::vector<QWidget*> gameWidgets;
