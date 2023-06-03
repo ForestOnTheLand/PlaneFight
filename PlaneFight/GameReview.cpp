@@ -87,7 +87,7 @@ void GameReview::refill() {
 		fclose(stdout);
 	}
 	else {
-		ui->newRecord_icon->setCurrentIndex(1);
+		ui->newRecord_icon->setCurrentIndex(0);
 	}
 }
 
