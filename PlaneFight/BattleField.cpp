@@ -61,8 +61,7 @@ void BattleField::gameOver() {
 		pGameReview->score = PlayerPlane::plane()->score;
 		pGameReview->refill();
 		mainMenu->stackWidget->setCurrentIndex(5);
-	}
-	else {
+	} else {
 		LevelReview* pLevelReview = qobject_cast<LevelReview*>(mainMenu->gameWidgets[7]);
 		pLevelReview->score = PlayerPlane::plane()->score;
 		pLevelReview->refill(0);
@@ -85,7 +84,6 @@ void BattleField::generateEnemy() {
 }
 
 void BattleField::gameWin() {
-		
 	LevelReview* pLevelReview = qobject_cast<LevelReview*>(mainMenu->gameWidgets[7]);
 	pLevelReview->score = PlayerPlane::plane()->score;
 	pLevelReview->refill(1);
@@ -95,7 +93,8 @@ void BattleField::gameWin() {
 	mainMenu->gameWidgets[2] = new BattleField(nullptr, mainMenu);
 	mainMenu->stackWidget->insertWidget(2, mainMenu->gameWidgets[2]);
 	mainMenu->stackWidget->removeWidget(this);
-	gameOver();
+	// gameOver();
+	_timer->stop();
 }
 
 void BattleField::updateMissiles() {
@@ -179,9 +178,11 @@ void BattleField::processKeyEvent() {
 		PlayerPlane::plane()->moveBy(3, 0);
 	if (_key.K) {
 		PlayerPlane::plane()->Bomb();
-		for (auto iter = enemy_missiles.begin(); iter != enemy_missiles.end();) {
-			delete *iter;
-			iter = enemy_missiles.erase(iter);
+		if (PlayerPlane::plane()->bombs) {
+			for (auto iter = enemy_missiles.begin(); iter != enemy_missiles.end();) {
+				delete *iter;
+				iter = enemy_missiles.erase(iter);
+			}
 		}
 		_key.K = 0;
 	}

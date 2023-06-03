@@ -214,6 +214,6 @@ void PlayerPlane::changeHealth(int m) {
 		}
 	} else {
 		// Healed
-		_health = std::max(_health + m, player_max_health);
+		_health = std::min(_health + m, player_max_health);
 	}
 }

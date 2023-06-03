@@ -31,7 +31,7 @@ public:
 	~BattleField();
 
 public:
-	void start(int level=0);
+	void start(int level = 0);
 	void updateAll();
 	void gameOver();
 	void gameWin();
