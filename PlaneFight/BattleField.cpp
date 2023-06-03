@@ -24,7 +24,7 @@ BattleField::~BattleField() {
 	delete _generator;
 }
 
-void BattleField::start() {
+void BattleField::start(int level) {
 	PlayerPlane::init();
 
 	_timer->setInterval(update_rate);

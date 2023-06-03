@@ -139,6 +139,9 @@
     <ClCompile Include="Laser.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="LevelChoose.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="_Plane.h">
@@ -212,6 +215,9 @@
     <QtUic Include="Ranking.ui">
       <Filter>Form Files</Filter>
     </QtUic>
+    <QtUic Include="LevelChoose.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="BattleField.h">
@@ -226,7 +232,7 @@
     <QtMoc Include="Ranking.h">
       <Filter>Header Files\UI</Filter>
     </QtMoc>
-    <QtMoc Include="Rule.h">
+    <QtMoc Include="LevelChoose.h">
       <Filter>Header Files\UI</Filter>
     </QtMoc>
   </ItemGroup>
