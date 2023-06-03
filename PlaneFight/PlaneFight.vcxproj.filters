@@ -145,6 +145,12 @@
     <ClCompile Include="Laser.cpp">
       <Filter>Source Files\Effect</Filter>
     </ClCompile>
+    <ClCompile Include="ShieldBonus.cpp">
+      <Filter>Source Files\Bonus</Filter>
+    </ClCompile>
+    <ClCompile Include="SpecialMissile.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="_Plane.h">
@@ -204,6 +210,12 @@
     <ClInclude Include="Laser.h">
       <Filter>Header Files\Effect</Filter>
     </ClInclude>
+    <ClInclude Include="ShieldBonus.h">
+      <Filter>Header Files\Bonus</Filter>
+    </ClInclude>
+    <ClInclude Include="SpecialMissile.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
   </ItemGroup>
   <ItemGroup>
     <QtUic Include="BattleField.ui">
@@ -230,9 +242,6 @@
       <Filter>Header Files\UI</Filter>
     </QtMoc>
     <QtMoc Include="Ranking.h">
-      <Filter>Header Files\UI</Filter>
-    </QtMoc>
-    <QtMoc Include="Rule.h">
       <Filter>Header Files\UI</Filter>
     </QtMoc>
   </ItemGroup>

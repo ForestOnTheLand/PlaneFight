@@ -40,8 +40,10 @@ public slots:
 	void StartGame();
 	void Leave();
 	void ShowRules();
-	void mouseMoveEvent(QMouseEvent* _event);
 	void ToFirstPage();
+
+public:
+	void mouseMoveEvent(QMouseEvent* _event);
 
 private:
 	Ui::MenuClass* ui;

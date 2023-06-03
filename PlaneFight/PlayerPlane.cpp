@@ -1,26 +1,31 @@
 #include "PlayerPlane.h"
 #include "SteadyMissile.h"
+#include "BattleField.h"
 
-static constexpr const char* player_plane_path = ":/PlaneFight/img/player.png";         // @IMAGE
-static constexpr const char* player_missile_path = ":/PlaneFight/img/missile_0.png";    // @IMAGE
-static constexpr const char* player_hurt_path = ":/PlaneFight/img/player_hurt.png";     // @IMAGE
-static constexpr const char* player_bomb_path =
-    ":/PlaneFight/img/bullet/scale_bullet_red.png";    // @IMAGE
-
-
+static constexpr const char* player_plane_path = ":/PlaneFight/img/player.png";
+static constexpr const char* player_missile_path = ":/PlaneFight/img/missile_0.png";
+static constexpr const char* player_hurt_path = ":/PlaneFight/img/player_hurt.png";
+static constexpr const char* player_bomb_path = ":/PlaneFight/img/bullet/scale_bullet_red.png";
+static constexpr const char* shield_path = ":/PlaneFight/img/effect/shield.png";
+static constexpr int max_cool_down = 600;
 static constexpr int player_plane_shoot_interval_1 = 20;
 static constexpr int player_plane_shoot_interval_2 = 20;
 static constexpr int player_plane_shoot_interval_3 = 20;
 static constexpr int player_plane_bombs = 3;
 
 PlayerPlane* PlayerPlane::_plane = nullptr;
+BattleField* PlayerPlane::_field = nullptr;
+
 
 PlayerPlane::PlayerPlane(const char* const __image_path, int _bombs)
     : _Plane(__image_path, player_max_health), bombs(_bombs), score(0), power(0) {
 	_hurt_image.load(player_hurt_path);
+	_shield_picture.load(shield_path);
+	_special_missile_icon.load(":/PlaneFight/img/effect/pheonix.png");
 }
 
-void PlayerPlane::init() {
+void PlayerPlane::init(BattleField* b) {
+	_field = b;
 	if (_plane) {
 		delete _plane;
 	}
@@ -88,10 +93,32 @@ void PlayerPlane::Bomb() {
 	}
 }
 
+void PlayerPlane::shootUltimate() {
+	if (_cool_down_timer <= 0) {
+		_special_missile = new SpecialMissile(
+		    {
+		        ":/PlaneFight/img/effect/phoenix_0.png",
+		        ":/PlaneFight/img/effect/phoenix_1.png",
+		        ":/PlaneFight/img/effect/phoenix_2.png",
+		        ":/PlaneFight/img/effect/phoenix_3.png",
+		        ":/PlaneFight/img/effect/phoenix_4.png",
+		        ":/PlaneFight/img/effect/phoenix_5.png",
+		        ":/PlaneFight/img/effect/phoenix_6.png",
+		        ":/PlaneFight/img/effect/phoenix_7.png",
+		        ":/PlaneFight/img/effect/phoenix_8.png",
+		        ":/PlaneFight/img/effect/phoenix_9.png",
+		    },
+		    _rect.center().x(), _rect.top(), 3);
+		_cool_down_timer = max_cool_down;
+	}
+}
+
 void PlayerPlane::drawMissiles(QPainter& painter) {
 	for (_Missile* missile : _missiles) {
 		painter.drawPixmap(missile->rect(), missile->picture(), QRectF());
 	}
+	if (_special_missile)
+		_special_missile->display(painter);
 }
 
 
@@ -113,6 +140,24 @@ void PlayerPlane::updateMissiles() {
 			++iter;
 		}
 	}
+	if (_cool_down_timer > 0) {
+		--_cool_down_timer;
+	}
+	if (_special_missile) {
+		if (_special_missile->free()) {
+			delete _special_missile;
+			_special_missile = nullptr;
+		} else {
+			_special_missile->updatePosition();
+			_field->enemy_missiles.erase(
+			    std::copy_if(_field->enemy_missiles.begin(), _field->enemy_missiles.end(),
+			                 _field->enemy_missiles.begin(),
+			                 [=](_Missile* missile) -> bool {
+				                 return !_special_missile->rect().intersects(missile->rect());
+			                 }),
+			    _field->enemy_missiles.end());
+		}
+	}
 }
 
 PlayerPlane* PlayerPlane::plane() {
@@ -128,19 +173,47 @@ void PlayerPlane::hurt(_Plane* __other) {
 	for (_Missile* missile : _missiles) {
 		missile->collide(__other);
 	}
+	if (_special_missile)
+		_special_missile->collide(__other);
 }
 
 void PlayerPlane::drawOn(QPainter& painter) {
-	if (_hurt_state) {
+	if (_hurt_state > 0) {
 		painter.drawPixmap(_rect, _hurt_image, QRectF());
 		_hurt_state--;
 	} else {
 		painter.drawPixmap(_rect, _picture, QRectF());
 	}
+	if (buff.shield) {
+		painter.drawPixmap(_rect, _shield_picture, QRectF());
+		buff.shield--;
+	}
 	drawMissiles(painter);
 	drawHP(painter);
+	drawCD(painter);
 }
 
-void PlayerPlane::hurtUpdate() {
-	_hurt_state = 3;
+void PlayerPlane::drawCD(QPainter& painter) {
+	painter.save();
+	painter.setClipRect(QRect(0, 0, 800, 800));
+	painter.drawPixmap(QRect(620, 620, 60, 60), _special_missile_icon);
+	if (_cool_down_timer) {
+		painter.setBrush(Qt::gray);
+		painter.drawPie(QRect(620, 620, 60, 60), 1440, (5760 * _cool_down_timer / max_cool_down));
+	}
+	painter.setClipRect(battlefield_border);
+	painter.restore();
+}
+
+void PlayerPlane::changeHealth(int m) {
+	if (m < 0) {
+		// Attacked
+		if (!buff.shield) {
+			_health += m;
+			_hurt_state = 5;
+		}
+	} else {
+		// Healed
+		_health = std::max(_health + m, player_max_health);
+	}
 }

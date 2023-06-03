@@ -6,8 +6,11 @@ const QPixmap& _Plane::picture() const {
 const QRectF& _Plane::rect() const {
 	return _rect;
 }
-int& _Plane::health() {
+int _Plane::health() {
 	return _health;
+}
+void _Plane::changeHealth(int m) {
+	_health += m;
 }
 
 /**
@@ -40,9 +43,7 @@ void _Plane::moveBy(double __dx, double __dy) {
 
 void _Plane::hurt(_Plane* __other) {
 	if (box().intersects(__other->box())) {
-		__other->hurtUpdate();
-		__other->health() -= 100;
-		// this->_health -= 100;
+		__other->changeHealth(-100);
 	}
 }
 
@@ -58,4 +59,4 @@ void _Plane::drawOn(QPainter& painter) {
 	painter.drawPixmap(_rect, _picture, QRectF());
 }
 
-void _Plane::hurtUpdate() {}
+// void _Plane::hurtUpdate() {}

@@ -10,8 +10,7 @@ TrackMissile::TrackMissile(const char* __image_path, double __init_x, double __i
 void TrackMissile::collide(_Plane* plane) {
 	if (plane->box().intersects(_rect)) {
 		_free = true;
-		plane->hurtUpdate();
-		plane->health() -= _attack_point;
+		plane->changeHealth(-_attack_point);
 	}
 }
 

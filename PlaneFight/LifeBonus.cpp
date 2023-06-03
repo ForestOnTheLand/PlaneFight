@@ -11,10 +11,7 @@ LifeBonus::LifeBonus(double __init_x, double __init_y, double __speed_x, double 
 void LifeBonus::collide() {
 	if (PlayerPlane::plane()->rect().intersects(_rect)) {
 		_free = true;
-		PlayerPlane::plane()->health() += _heal_point;
-		if (PlayerPlane::plane()->health() > player_max_health) {
-			PlayerPlane::plane()->health() = player_max_health;
-		}
+		PlayerPlane::plane()->changeHealth(_heal_point);
 	}
 }
 

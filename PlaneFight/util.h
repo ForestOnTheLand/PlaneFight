@@ -22,6 +22,11 @@ inline int randint(int begin, int end) {
 	return rand() % (end - begin) + begin;
 }
 
+inline int psuedo_randint(int begin, int end) {
+	static int a = begin - 1;
+	return ++a < end ? a : rand() % (end - begin) + begin;
+}
+
 inline int random_x() {
 	return randint(battlefield_border.left(), battlefield_border.right());
 }

@@ -105,6 +105,8 @@
     <ClCompile Include="PowerBonus.cpp" />
     <ClCompile Include="PlayerPlane.cpp" />
     <ClCompile Include="Ranking.cpp" />
+    <ClCompile Include="ShieldBonus.cpp" />
+    <ClCompile Include="SpecialMissile.cpp" />
     <ClCompile Include="SteadyMissile.cpp" />
     <ClCompile Include="TargetEffect.cpp" />
     <ClCompile Include="TrackMissile.cpp" />
@@ -135,6 +137,8 @@
     <ClInclude Include="PointBonus.h" />
     <ClInclude Include="PowerBonus.h" />
     <QtMoc Include="Ranking.h" />
+    <ClInclude Include="ShieldBonus.h" />
+    <ClInclude Include="SpecialMissile.h" />
     <ClInclude Include="TargetEffect.h" />
     <ClInclude Include="TrackMissile.h" />
     <ClInclude Include="util.h" />

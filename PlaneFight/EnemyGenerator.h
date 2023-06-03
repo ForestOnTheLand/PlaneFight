@@ -39,9 +39,10 @@ public:
 class BossGeneratingPolicy : public Policy {
 	BattleField* _field = nullptr;
 	int _health, _attack;
+	const char* _img_path;
 
 public:
-	BossGeneratingPolicy(int __health, int __attack);
+	BossGeneratingPolicy(const char* __img_path, int __health, int __attack);
 	void execute(BattleField* b) final;
 	bool terminal() final;
 };

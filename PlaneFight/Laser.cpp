@@ -14,7 +14,7 @@ void Laser::hurt() {
 	}
 	if (QPolygonF({src, QPoint(src.x() + 1000 * cos(theta), src.y() + 1000 * sin(theta))})
 	        .intersects(PlayerPlane::plane()->rect())) {
-		PlayerPlane::plane()->health() -= 100;
+		PlayerPlane::plane()->changeHealth(-100);
 		_hurt_timer = 50;    // Ensure no hurt in 50 ticks
 	}
 }

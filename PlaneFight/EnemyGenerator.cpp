@@ -36,17 +36,16 @@ bool EnemyClearingPolicy::terminal() {
 	return _finish;
 }
 
-BossGeneratingPolicy::BossGeneratingPolicy(int __health, int __attack)
-    : _health(__health), _attack(__attack) {}
+BossGeneratingPolicy::BossGeneratingPolicy(const char* __img_path, int __health, int __attack)
+    : _health(__health), _attack(__attack), _img_path(__img_path) {}
 void BossGeneratingPolicy::execute(BattleField* b) {
 	if (!_field) {
 		_field = b;
-		_field->enemy_planes.push_back(
-		    new BossEnemyPlane(":/PlaneFight/img/Boss_2.png", _health, _attack));
+		_field->enemy_planes.push_back(new BossEnemyPlane(_img_path, _health, _attack));
 	}
 }
 bool BossGeneratingPolicy::terminal() {
-	return _field != nullptr && _field->enemy_planes.empty();
+	return _field && _field->enemy_planes.empty();
 }
 
 

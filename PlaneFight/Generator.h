@@ -2,5 +2,5 @@
 #include "EnemyGenerator.h"
 
 namespace Generator {
-	EnemyGenerator* level_1();
+	EnemyGenerator* level(int n);
 }    // namespace Generator

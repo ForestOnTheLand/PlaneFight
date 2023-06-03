@@ -5,10 +5,11 @@
 #include <QtMultimedia/qsoundeffect.h>
 #include <algorithm>
 #include <QDebug>
+#include "Generator.h"
 
 BattleField::BattleField(QWidget* parent, Menu* menu)
-    : QWidget(parent), ui(new Ui::BattleFieldClass()), _timer(new QTimer),
-      _generator(Generator::level_1()), mainMenu(menu) {
+    : QWidget(parent), ui(new Ui::BattleFieldClass()), _timer(new QTimer), _generator(nullptr),
+      mainMenu(menu) {
 	ui->setupUi(this);
 	this->setAutoFillBackground(true);
 	this->setFixedSize(800, 800);
@@ -24,9 +25,9 @@ BattleField::~BattleField() {
 	delete _generator;
 }
 
-void BattleField::start() {
-	PlayerPlane::init();
-
+void BattleField::start(int level) {
+	PlayerPlane::init(this);
+	_generator = Generator::level(level);
 	_timer->setInterval(update_rate);
 	setMouseTracking(true);
 	_timer->start();
@@ -213,6 +214,7 @@ void BattleField::keyPressEvent(QKeyEvent* _event) {
 			case Qt::Key_A: _key.A = true; break;
 			case Qt::Key_S: _key.S = true; break;
 			case Qt::Key_D: _key.D = true; break;
+			case Qt::Key_L: PlayerPlane::plane()->shootUltimate(); break;
 			case Qt::Key_Escape: pause(); break;
 			case Qt::Key_Backspace: gameOver(); break;
 			default: break;
