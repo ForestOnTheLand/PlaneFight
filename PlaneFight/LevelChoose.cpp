@@ -1,5 +1,5 @@
 #include "LevelChoose.h"
-
+#include "iostream"
 LevelChoose::LevelChoose(QWidget *parent, Menu* menu)
 	: QWidget(parent)
 	, ui(new Ui::LevelChooseClass()), mainMenu(menu)
@@ -44,21 +44,23 @@ void LevelChoose::Level() {
 	mainMenu->stackWidget->setCurrentIndex(2);
 	if (pLevel == ui->Level_1) {
 		setWindowTitle("Level_One");
+		mainMenu->mode = 1;
 		pGame->start(1);
 	}
 	else if (pLevel == ui->Level_2) {
 		setWindowTitle("Level_Two");
+		mainMenu->mode = 2;
 		pGame->start(2);
 	}
 	else {
 		setWindowTitle("Level_Three");
+		mainMenu->mode = 3;
 		pGame->start(3);
 	}
 }
 
 void LevelChoose::mouseMoveEvent(QMouseEvent* _event) {
 	int _x = _event->pos().x(), _y = _event->pos().y();
-	//qDebug() << "aaa" << '\n';
 	if (_x > ui->Level_1->geometry().left() && _x < ui->Level_1->geometry().right()
 		&& mainMenu->stackWidget->currentIndex() == 3 &&
 		_y < ui->Level_1->geometry().bottom() && _y > ui->Level_1->geometry().top()) {
@@ -66,9 +68,9 @@ void LevelChoose::mouseMoveEvent(QMouseEvent* _event) {
 		ui->dr_1->setCurrentIndex(1);
 		ui->dr_2->setCurrentIndex(0);
 		ui->dr_3->setCurrentIndex(0);
-		ui->pr_1->setCurrentIndex(0);
-		ui->pr_2->setCurrentIndex(0);
-		ui->pr_3->setCurrentIndex(0);
+		ui->pr_1->setCurrentIndex(PR_data[0] >= 1 ? 1 : 0);
+		ui->pr_2->setCurrentIndex(PR_data[0] >= 2 ? 1 : 0);
+		ui->pr_3->setCurrentIndex(PR_data[0] >= 3 ? 1 : 0);
 	}
 	else if (_x > ui->Level_2->geometry().left() && _x < ui->Level_2->geometry().right()
 		&& mainMenu->stackWidget->currentIndex() == 3 &&
@@ -77,9 +79,9 @@ void LevelChoose::mouseMoveEvent(QMouseEvent* _event) {
 		ui->dr_1->setCurrentIndex(1);
 		ui->dr_2->setCurrentIndex(1);
 		ui->dr_3->setCurrentIndex(0);
-		ui->pr_1->setCurrentIndex(0);
-		ui->pr_2->setCurrentIndex(0);
-		ui->pr_3->setCurrentIndex(0);
+		ui->pr_1->setCurrentIndex(PR_data[1] >= 1 ? 1 : 0);
+		ui->pr_2->setCurrentIndex(PR_data[1] >= 2 ? 1 : 0);
+		ui->pr_3->setCurrentIndex(PR_data[1] >= 3 ? 1 : 0);
 	}
 	else if (_x > ui->Level_3->geometry().left() && _x < ui->Level_3->geometry().right()
 		&& mainMenu->stackWidget->currentIndex() == 3 &&
@@ -88,9 +90,9 @@ void LevelChoose::mouseMoveEvent(QMouseEvent* _event) {
 		ui->dr_1->setCurrentIndex(1);
 		ui->dr_2->setCurrentIndex(1);
 		ui->dr_3->setCurrentIndex(1);
-		ui->pr_1->setCurrentIndex(0);
-		ui->pr_2->setCurrentIndex(0);
-		ui->pr_3->setCurrentIndex(0);
+		ui->pr_1->setCurrentIndex(PR_data[2] >= 1 ? 1 : 0);
+		ui->pr_2->setCurrentIndex(PR_data[2] >= 2 ? 1 : 0);
+		ui->pr_3->setCurrentIndex(PR_data[2] >= 3 ? 1 : 0);
 	}
 	else if (mainMenu->stackWidget->currentIndex() == 3) {
 		ui->info_table->setCurrentIndex(1);

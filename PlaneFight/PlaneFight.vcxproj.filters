@@ -142,6 +142,9 @@
     <ClCompile Include="LevelChoose.cpp">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
+    <ClCompile Include="LevelReview.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="_Plane.h">
@@ -218,6 +221,9 @@
     <QtUic Include="LevelChoose.ui">
       <Filter>Form Files</Filter>
     </QtUic>
+    <QtUic Include="LevelReview.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="BattleField.h">
@@ -235,8 +241,12 @@
     <QtMoc Include="LevelChoose.h">
       <Filter>Header Files\UI</Filter>
     </QtMoc>
+    <QtMoc Include="LevelReview.h">
+      <Filter>Header Files\UI</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <Text Include="DataRecord.txt" />
+    <Text Include="levelPRdata.txt" />
   </ItemGroup>
 </Project>

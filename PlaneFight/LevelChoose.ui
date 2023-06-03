@@ -17,7 +17,7 @@
    <property name="geometry">
     <rect>
      <x>40</x>
-     <y>240</y>
+     <y>520</y>
      <width>181</width>
      <height>61</height>
     </rect>
@@ -36,7 +36,7 @@
    <property name="geometry">
     <rect>
      <x>290</x>
-     <y>240</y>
+     <y>520</y>
      <width>181</width>
      <height>61</height>
     </rect>
@@ -54,8 +54,8 @@
   <widget class="QPushButton" name="Level_3">
    <property name="geometry">
     <rect>
-     <x>530</x>
-     <y>240</y>
+     <x>540</x>
+     <y>520</y>
      <width>181</width>
      <height>61</height>
     </rect>
@@ -74,15 +74,15 @@
    <property name="geometry">
     <rect>
      <x>40</x>
-     <y>700</y>
-     <width>121</width>
+     <y>710</y>
+     <width>101</width>
      <height>51</height>
     </rect>
    </property>
    <property name="font">
     <font>
      <family>MV Boli</family>
-     <pointsize>18</pointsize>
+     <pointsize>16</pointsize>
     </font>
    </property>
    <property name="text">
@@ -92,8 +92,8 @@
   <widget class="QStackedWidget" name="info_table">
    <property name="geometry">
     <rect>
-     <x>40</x>
-     <y>460</y>
+     <x>50</x>
+     <y>150</y>
      <width>661</width>
      <height>231</height>
     </rect>
@@ -126,7 +126,7 @@
            </font>
           </property>
           <property name="styleSheet">
-           <string notr="true">color:#0000ff</string>
+           <string notr="true">color:#ff0000</string>
           </property>
           <property name="text">
            <string> Difficulty Rating :</string>
@@ -272,7 +272,7 @@
            </font>
           </property>
           <property name="styleSheet">
-           <string notr="true">color:#0000ff</string>
+           <string notr="true">color:#ff0000</string>
           </property>
           <property name="text">
            <string>Performance Rating :</string>

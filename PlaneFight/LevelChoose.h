@@ -16,6 +16,7 @@ public:
 	LevelChoose(QWidget *parent = nullptr, Menu* menu = nullptr);
 	~LevelChoose();
 	Menu* mainMenu;
+	int PR_data[3] = { 0 };
 
 public slots:
 	void Level();

@@ -2,6 +2,7 @@
 #include "PlayerPlane.h"
 #include "Menu.h"
 #include "GameReview.h"
+#include "LevelReview.h"
 #include <QtMultimedia/qsoundeffect.h>
 #include <algorithm>
 #include <QDebug>
@@ -53,11 +54,19 @@ void BattleField::updateAll() {
 }
 
 void BattleField::gameOver() {
-	GameReview* pGameReview = qobject_cast<GameReview*>(mainMenu->gameWidgets[5]);
 	_timer->stop();
-	pGameReview->score = PlayerPlane::plane()->score;
-	pGameReview->refill();
-	mainMenu->stackWidget->setCurrentIndex(5);
+	if (mainMenu->mode == 0) {
+		GameReview* pGameReview = qobject_cast<GameReview*>(mainMenu->gameWidgets[5]);
+		pGameReview->score = PlayerPlane::plane()->score;
+		pGameReview->refill();
+		mainMenu->stackWidget->setCurrentIndex(5);
+	}
+	else {
+		LevelReview* pLevelReview = qobject_cast<LevelReview*>(mainMenu->gameWidgets[7]);
+		pLevelReview->score = PlayerPlane::plane()->score;
+		pLevelReview->refill(0);
+		mainMenu->stackWidget->setCurrentIndex(7);
+	}
 	mainMenu->to_remove.push_back(mainMenu->gameWidgets[2]);
 	mainMenu->gameWidgets[2] = new BattleField(nullptr, mainMenu);
 	mainMenu->stackWidget->insertWidget(2, mainMenu->gameWidgets[2]);
@@ -75,6 +84,16 @@ void BattleField::generateEnemy() {
 }
 
 void BattleField::gameWin() {
+		
+	LevelReview* pLevelReview = qobject_cast<LevelReview*>(mainMenu->gameWidgets[7]);
+	pLevelReview->score = PlayerPlane::plane()->score;
+	pLevelReview->refill(1);
+	mainMenu->stackWidget->setCurrentIndex(7);
+
+	mainMenu->to_remove.push_back(mainMenu->gameWidgets[2]);
+	mainMenu->gameWidgets[2] = new BattleField(nullptr, mainMenu);
+	mainMenu->stackWidget->insertWidget(2, mainMenu->gameWidgets[2]);
+	mainMenu->stackWidget->removeWidget(this);
 	gameOver();
 }
 
