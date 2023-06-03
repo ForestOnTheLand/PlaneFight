@@ -63,3 +63,5 @@ inline constexpr double to_rad(double degree) {
 inline constexpr double to_deg(double radius) {
 	return radius * (180 / M_PI);
 }
+
+void paintRotatedPicture(QPainter& painter, const QPixmap& picture, QPointF center, double deg);

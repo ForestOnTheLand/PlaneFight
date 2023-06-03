@@ -108,6 +108,7 @@
     <ClCompile Include="SteadyMissile.cpp" />
     <ClCompile Include="TargetEffect.cpp" />
     <ClCompile Include="TrackMissile.cpp" />
+    <ClCompile Include="util.cpp" />
     <ClCompile Include="_Effect.cpp" />
     <ClCompile Include="_Entity.cpp" />
     <ClCompile Include="_Plane.cpp" />

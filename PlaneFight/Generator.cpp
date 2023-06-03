@@ -33,7 +33,7 @@ namespace Generator {
 		    new PictureDisplay({{warning_path, battlefield_border.center()}},
                  2),
 		    new EnemyClearingPolicy(),
-		    new BossGeneratingPolicy(20000, 50),
+		    new BossGeneratingPolicy(50000, 50),
 		    new MessageDisplay("Mission Complete!", 5),
 		});
 	};
