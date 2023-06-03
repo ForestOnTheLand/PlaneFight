@@ -1,7 +1,7 @@
 #include "ExplosionEffect.h"
 #include <QtMultimedia/QSoundEffect>
 
-ExplosionEffect::ExplosionEffect(const QPoint& __pos)
+ExplosionEffect::ExplosionEffect(const QPointF& __pos)
     : _Effect({":/PlaneFight/img/explosion_1.png", ":/PlaneFight/img/explosion_2.png"}),
       _pos(__pos) {
 	_sound = new QSoundEffect();
@@ -22,5 +22,6 @@ void ExplosionEffect::display(QPainter& painter) {
 		}
 	}
 	QPixmap& picture = *_pictures[_picture_index];
-	painter.drawPixmap(_pos.x() - picture.width() / 2, _pos.y() - picture.height() / 2, picture);
+	painter.drawPixmap(_pos.x() - picture.width() / 2.0, _pos.y() - picture.height() / 2.0,
+	                   picture);
 }

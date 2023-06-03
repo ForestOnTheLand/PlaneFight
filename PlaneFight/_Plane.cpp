@@ -3,7 +3,7 @@
 const QPixmap& _Plane::picture() const {
 	return _picture;
 }
-const QRect& _Plane::rect() const {
+const QRectF& _Plane::rect() const {
 	return _rect;
 }
 int& _Plane::health() {
@@ -21,11 +21,11 @@ _Plane::_Plane(const char* const __image_path, int __health) : _health(__health)
 	_rect.setHeight(_picture.height());
 }
 
-void _Plane::setPosition(QPoint __p) {
+void _Plane::setPosition(QPointF __p) {
 	_setPosition(__p.x(), __p.y());
 }
 
-void _Plane::setPosition(int __x, int __y) {
+void _Plane::setPosition(double __x, double __y) {
 	_setPosition(__x, __y);
 }
 
@@ -34,7 +34,7 @@ void _Plane::setPosition(int __x, int __y) {
  * \param __dx : change of x coordinate
  * \param __dy : change of y coordinate
  */
-void _Plane::moveBy(int __dx, int __dy) {
+void _Plane::moveBy(double __dx, double __dy) {
 	_setPosition(_rect.center().x() + __dx, _rect.center().y() + __dy);
 }
 
@@ -55,8 +55,7 @@ bool _Plane::out() const {
 }
 
 void _Plane::drawOn(QPainter& painter) {
-	painter.drawPixmap(_rect, _picture);
+	painter.drawPixmap(_rect, _picture, QRectF());
 }
 
-
-void _Plane::hurtUpdate(){}
+void _Plane::hurtUpdate() {}

@@ -16,7 +16,7 @@ private:
 
 private:
 	PlayerPlane(const char* const __image_path, int _bombs);
-	void _setPosition(int __x, int __y) final;
+	void _setPosition(double __x, double __y) final;
 	PlayerPlane(const PlayerPlane&) = delete;
 	PlayerPlane& operator=(const PlayerPlane&) = delete;
 
@@ -35,7 +35,7 @@ public:
 	void drawHP(QPainter& painter);
 	void updateMissiles();
 	void hurt(_Plane* __other) final;
-	QPolygon box() const final;
+	QPolygonF box() const final;
 	void drawOn(QPainter& painter) final;
 	void hurtUpdate() final;
 };

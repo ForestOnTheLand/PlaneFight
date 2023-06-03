@@ -226,6 +226,9 @@
     <QtMoc Include="Ranking.h">
       <Filter>Header Files\UI</Filter>
     </QtMoc>
+    <QtMoc Include="Rule.h">
+      <Filter>Header Files\UI</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <Text Include="DataRecord.txt" />

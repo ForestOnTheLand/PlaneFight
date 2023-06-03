@@ -2,11 +2,11 @@
 #include "_Effect.h"
 
 class TargetEffect : public _Effect {
-	QPoint _pos;
-	//QSoundEffect* _sound;
+	QPointF _pos;
+	// QSoundEffect* _sound;
 
 public:
-	explicit TargetEffect(const QPoint& __pos);
+	explicit TargetEffect(const QPointF& __pos);
 	~TargetEffect();
 	void display(QPainter& painter) final;
 };

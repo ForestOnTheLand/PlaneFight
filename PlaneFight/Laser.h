@@ -3,11 +3,11 @@
 
 class Laser {
 private:
-	int _width = 10;
+	double _width = 10;
 	QPixmap _picture;
 
 public:
-	QPoint src;
+	QPointF src;
 	double theta = 0.0;
 
 public:

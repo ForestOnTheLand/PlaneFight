@@ -50,7 +50,7 @@ bool BossGeneratingPolicy::terminal() {
 }
 
 
-PictureDisplay::PictureDisplay(std::initializer_list<std::pair<const char* const, QPoint>> __list,
+PictureDisplay::PictureDisplay(std::initializer_list<std::pair<const char* const, QPointF>> __list,
                                int __time)
     : _time(__time * (1000 / update_rate)), _list(__list) {}
 void PictureDisplay::execute(BattleField* b) {
@@ -61,16 +61,16 @@ bool PictureDisplay::terminal() {
 }
 void PictureDisplay::draw(QPainter& painter) {
 	if (_list.size() != _picture.size()) {
-		for (auto [path, pos] : _list) {
+		for (auto& [path, pos] : _list) {
 			QPixmap picture;
 			picture.load(path);
 			_picture.push_back(
-			    {picture, QRect(pos.x() - picture.width() / 2, pos.y() - picture.height() / 2,
-			                    picture.width(), picture.height())});
+			    {picture, QRectF(pos.x() - picture.width() / 2.0, pos.y() - picture.height() / 2.0,
+			                     picture.width(), picture.height())});
 		}
 	} else {
-		for (auto [pixmap, rect] : _picture) {
-			painter.drawPixmap(rect, pixmap);
+		for (auto& [pixmap, rect] : _picture) {
+			painter.drawPixmap(rect, pixmap, QRectF());
 		}
 	}
 }

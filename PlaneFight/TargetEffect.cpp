@@ -1,12 +1,11 @@
 #include "TargetEffect.h"
 
-TargetEffect::TargetEffect(const QPoint& __pos)
-	: _Effect({ ":/PlaneFight/img/explosion_1.png", ":/PlaneFight/img/explosion_2.png" }),
-	_pos(__pos) {
-}
+TargetEffect::TargetEffect(const QPointF& __pos)
+    : _Effect({":/PlaneFight/img/explosion_1.png", ":/PlaneFight/img/explosion_2.png"}),
+      _pos(__pos) {}
 
 TargetEffect::~TargetEffect() {
-	//delete _sound;
+	// delete _sound;
 }
 
 void TargetEffect::display(QPainter& painter) {
@@ -18,5 +17,6 @@ void TargetEffect::display(QPainter& painter) {
 		}
 	}
 	QPixmap& picture = *_pictures[_picture_index];
-	painter.drawPixmap(_pos.x() - picture.width() / 2, _pos.y() - picture.height() / 2, picture);
+	painter.drawPixmap(_pos.x() - picture.width() / 2.0, _pos.y() - picture.height() / 2.0,
+	                   picture);
 }
