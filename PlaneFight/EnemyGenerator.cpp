@@ -104,8 +104,10 @@ void MessageDisplay::execute(BattleField* b) {
 	if (!_b) {
 		_b = b;
 		_b->ui->msg_label->setText(_msg1);
-		_b->ui->story_label->setStyleSheet(QString::fromUtf8("background-color:rgba(170, 255, 255, 100)"));
-		_b->ui->story_label->setText(_msg2);
+		if (_msg2 != "") {
+			_b->ui->story_label->setStyleSheet(QString::fromUtf8("background-color:rgba(170, 255, 255, 100);""color: rgb(255, 255, 255);"));
+			_b->ui->story_label->setText(_msg2);
+		}
 	}
 }
 bool MessageDisplay::terminal() {

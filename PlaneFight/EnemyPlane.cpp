@@ -20,9 +20,7 @@ _EnemyPlane::_EnemyPlane(const char* __image_path, int __health, QPointF __init_
 }
 
 void _EnemyPlane::_setPosition(double __x, double __y) {
-	_rect.moveCenter({_checked(__x, battlefield_border.left() + _rect.width() / 2.0,
-	                           battlefield_border.right() - _rect.width() / 2),
-	                  std::max(__y, battlefield_border.top() + _rect.height() / 2.0)});
+	_rect.moveCenter({ __x, __y });
 }
 
 void _EnemyPlane::_clearOut() {
@@ -83,6 +81,11 @@ namespace Plane {
 			                                                  plane->rect().bottom(), -2, 3, 50));
 			field->enemy_missiles.push_back(new SteadyMissile(
 			    stable_missile_path, plane->rect().center().x(), plane->rect().bottom(), 2, 3, 50));
+		}
+		void Track::operator()(EnemyPlane* plane, BattleField* field) {
+			field->enemy_missiles.push_back(
+				new TrackMissile(track_missile_path, plane->rect().center().x(),
+					plane->rect().center().y() + 20, 0, 5, 50, 0, 0));
 		}
 	}    // namespace Shoot
 	namespace Speed {

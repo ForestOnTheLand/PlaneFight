@@ -141,18 +141,18 @@
    </property>
    <property name="font">
     <font>
-     <family>Microsoft YaHei UI</family>
+     <family>Garamond</family>
      <pointsize>12</pointsize>
     </font>
    </property>
    <property name="styleSheet">
-    <string notr="true">background-color:rgba(170, 255, 255, 100)</string>
+    <string notr="true">color: rgb(255, 255, 255);</string>
    </property>
    <property name="frameShape">
     <enum>QFrame::NoFrame</enum>
    </property>
    <property name="text">
-    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;&lt;br/&gt;&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
+    <string>&lt;html&gt;&lt;head/&gt;&lt;body&gt;&lt;p&gt;and it shall be bestowed upon you&lt;/p&gt;&lt;/body&gt;&lt;/html&gt;</string>
    </property>
    <property name="alignment">
     <set>Qt::AlignCenter</set>
