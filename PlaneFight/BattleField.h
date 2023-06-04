@@ -31,7 +31,7 @@ public:
 	~BattleField();
 
 public:
-	void start();
+	void start(int level = 0);
 	void updateAll();
 	void gameOver();
 	void gameWin();
@@ -58,5 +58,5 @@ public:
 	void keyReleaseEvent(QKeyEvent* _event) final;
 
 	friend class MessageDisplay;
-	friend class StoryDisplay;
+	friend class PlayerPlane;
 };

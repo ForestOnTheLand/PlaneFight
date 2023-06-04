@@ -14,6 +14,7 @@ public:
 	virtual void execute(BattleField* b) = 0;
 	virtual bool terminal() = 0;
 	virtual void draw(QPainter& painter);
+	virtual void reset() = 0;
 };
 
 
@@ -25,25 +26,26 @@ public:
 private:
 	int _time;
 	int _timer = 0;
-	// std::function<void(BattleField*)> _call;
 	std::vector<std::pair<plane_t, flag_t>> _policy;
 
 public:
-	// EnemyGeneratingPolicy(const std::function<void(BattleField*)>& __f, int __time);
 	EnemyGeneratingPolicy(std::initializer_list<std::pair<plane_t, flag_t>> __policy, int __time);
 	void execute(BattleField* b) override;
 	bool terminal() override;
+	void reset() final;
 };
 
 
 class BossGeneratingPolicy : public Policy {
 	BattleField* _field = nullptr;
-	int _health, _attack;
+	const int _health, _attack;
+	const char* _img_path;
 
 public:
-	BossGeneratingPolicy(int __health, int __attack);
+	BossGeneratingPolicy(const char* __img_path, int __health, int __attack);
 	void execute(BattleField* b) final;
 	bool terminal() final;
+	void reset() final;
 };
 
 
@@ -55,6 +57,7 @@ public:
 	EnemyClearingPolicy() = default;
 	void execute(BattleField* b) override;
 	bool terminal() override;
+	void reset() final;
 };
 
 
@@ -69,6 +72,7 @@ public:
 	void execute(BattleField* b) override;
 	bool terminal() override;
 	void draw(QPainter& painter) override;
+	void reset() final;
 };
 
 
@@ -82,6 +86,7 @@ public:
 	MessageDisplay(const QString& __msg1,const QString& __msg2, int __time);
 	void execute(BattleField* b) override;
 	bool terminal() override;
+	void reset() final;
 };
 
 
@@ -91,9 +96,10 @@ class EnemyGenerator {
 protected:
 	std::deque<Policy*> _policies;
 	bool _free = false;
+	bool _repeat;
 
 public:
-	EnemyGenerator(std::initializer_list<Policy*> __policies);
+	EnemyGenerator(std::initializer_list<Policy*> __policies, bool __repeat = false);
 	~EnemyGenerator();
 	void execute(BattleField* b);
 	bool free() const;

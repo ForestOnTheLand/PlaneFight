@@ -6,6 +6,8 @@
 #include "qpixmap.h"
 #include "qpoint.h"
 #include "GameReview.h"
+#include "LevelChoose.h"
+#include "LevelReview.h"
 //#include "Rule.h"
 #include "Ranking.h"
 #include <stdio.h>
@@ -25,14 +27,17 @@ Menu::Menu(QWidget* parent) : QWidget(parent), ui(new Ui::MenuClass) {
 	gameWidgets.push_back(new QWidget());				       //0 interface for start menu
 	gameWidgets.push_back(new QWidget());				       //1 interface for choosing mode
 	gameWidgets.push_back(new BattleField(nullptr, this));     //2 interface for survive mode
-	gameWidgets.push_back(new QWidget());			           //3 interface for choosing level mode
+	gameWidgets.push_back(new LevelChoose(nullptr,this));		//3 interface for choosing level mode
 	gameWidgets.push_back(new Ranking(nullptr,this));		   //4 interface for ranking
 	gameWidgets.push_back(new GameReview(nullptr, this));	   //5 interface for game review
 	gameWidgets.push_back(new QWidget());					   //6 interface for rule
-	gameWidgets.push_back(new QWidget());					   //7 interface for levels
-	gameWidgets.push_back(new QWidget());					   //8 interface for levels
+	gameWidgets.push_back(new LevelReview(nullptr,this));		//7 interface for level review
+	gameWidgets.push_back(new QWidget());					   //8 interface reserved
 
-	for (int i = 0; i <= 1; i++) {
+	for (int i = 0; i <= 3; i++) {
+		if (i == 2) {
+			continue;
+		}
 		gameWidgets[i]->setAutoFillBackground(true);
 		QImage image;
 		QPalette palette;
@@ -158,12 +163,19 @@ void Menu::ShowRules() {
 void Menu::GameMode1() {
 	setWindowTitle("Survive Mode");
 	BattleField* game = qobject_cast<BattleField*>(gameWidgets[2]);
+	mode = 0;
 	game->start();
 	stackWidget->setCurrentIndex(2);
 }
 
 void Menu::GameMode2() {
 	setWindowTitle("level Mode");
+	LevelChoose* plvChoose = qobject_cast<LevelChoose*>(gameWidgets[3]);
+	freopen("levelPRdata.txt", "r", stdin);
+	for (int i = 0; i < 3; ++i) {
+		std::cin >> plvChoose->PR_data[i];
+	}
+	fclose(stdin);
 	stackWidget->setCurrentIndex(3);
 }
 
@@ -231,6 +243,7 @@ void Menu::mouseMoveEvent(QMouseEvent* _event) {
 		modeLabels[1]->setPixmap(QPixmap("none"));
 		modeLabels[2]->setPixmap(QPixmap("none"));
 	}
+
 }
 
 Menu::~Menu() {

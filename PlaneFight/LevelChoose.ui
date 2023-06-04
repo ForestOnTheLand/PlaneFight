@@ -1,0 +1,424 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ui version="4.0">
+ <class>LevelChooseClass</class>
+ <widget class="QWidget" name="LevelChooseClass">
+  <property name="geometry">
+   <rect>
+    <x>0</x>
+    <y>0</y>
+    <width>1286</width>
+    <height>869</height>
+   </rect>
+  </property>
+  <property name="windowTitle">
+   <string>LevelChoose</string>
+  </property>
+  <widget class="QPushButton" name="Level_1">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>520</y>
+     <width>181</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>MV Boli</family>
+     <pointsize>22</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Level One</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="Level_2">
+   <property name="geometry">
+    <rect>
+     <x>290</x>
+     <y>520</y>
+     <width>181</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>MV Boli</family>
+     <pointsize>22</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Level Two</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="Level_3">
+   <property name="geometry">
+    <rect>
+     <x>540</x>
+     <y>520</y>
+     <width>181</width>
+     <height>61</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>MV Boli</family>
+     <pointsize>22</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>Level Three</string>
+   </property>
+  </widget>
+  <widget class="QPushButton" name="Return_bt">
+   <property name="geometry">
+    <rect>
+     <x>40</x>
+     <y>710</y>
+     <width>101</width>
+     <height>51</height>
+    </rect>
+   </property>
+   <property name="font">
+    <font>
+     <family>MV Boli</family>
+     <pointsize>16</pointsize>
+    </font>
+   </property>
+   <property name="text">
+    <string>&lt;&lt;Return</string>
+   </property>
+  </widget>
+  <widget class="QStackedWidget" name="info_table">
+   <property name="geometry">
+    <rect>
+     <x>50</x>
+     <y>150</y>
+     <width>661</width>
+     <height>231</height>
+    </rect>
+   </property>
+   <property name="currentIndex">
+    <number>0</number>
+   </property>
+   <widget class="QWidget" name="page">
+    <widget class="QWidget" name="verticalLayoutWidget">
+     <property name="geometry">
+      <rect>
+       <x>0</x>
+       <y>0</y>
+       <width>661</width>
+       <height>231</height>
+      </rect>
+     </property>
+     <layout class="QVBoxLayout" name="verticalLayout" stretch="1,1">
+      <property name="spacing">
+       <number>0</number>
+      </property>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout" stretch="6,3,3,3">
+        <item>
+         <widget class="QLabel" name="label">
+          <property name="font">
+           <font>
+            <family>MV Boli</family>
+            <pointsize>20</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color:#ff0000</string>
+          </property>
+          <property name="text">
+           <string> Difficulty Rating :</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QStackedWidget" name="dr_1">
+          <property name="currentIndex">
+           <number>1</number>
+          </property>
+          <widget class="QWidget" name="page_7">
+           <widget class="QLabel" name="label_3">
+            <property name="geometry">
+             <rect>
+              <x>40</x>
+              <y>40</y>
+              <width>54</width>
+              <height>51</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="pixmap">
+             <pixmap resource="PlaneFight.qrc">:/PlaneFight/img/star1.svg</pixmap>
+            </property>
+           </widget>
+          </widget>
+          <widget class="QWidget" name="page_8">
+           <widget class="QLabel" name="label_9">
+            <property name="geometry">
+             <rect>
+              <x>30</x>
+              <y>29</y>
+              <width>54</width>
+              <height>61</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="pixmap">
+             <pixmap resource="PlaneFight.qrc">:/PlaneFight/img/star2.svg</pixmap>
+            </property>
+           </widget>
+          </widget>
+         </widget>
+        </item>
+        <item>
+         <widget class="QStackedWidget" name="dr_2">
+          <property name="currentIndex">
+           <number>1</number>
+          </property>
+          <widget class="QWidget" name="page_3">
+           <widget class="QLabel" name="label_4">
+            <property name="geometry">
+             <rect>
+              <x>40</x>
+              <y>35</y>
+              <width>54</width>
+              <height>51</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="pixmap">
+             <pixmap resource="PlaneFight.qrc">:/PlaneFight/img/star1.svg</pixmap>
+            </property>
+           </widget>
+          </widget>
+          <widget class="QWidget" name="page_4">
+           <widget class="QLabel" name="label_10">
+            <property name="geometry">
+             <rect>
+              <x>40</x>
+              <y>35</y>
+              <width>54</width>
+              <height>51</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="pixmap">
+             <pixmap resource="PlaneFight.qrc">:/PlaneFight/img/star2.svg</pixmap>
+            </property>
+           </widget>
+          </widget>
+         </widget>
+        </item>
+        <item>
+         <widget class="QStackedWidget" name="dr_3">
+          <widget class="QWidget" name="page_5">
+           <widget class="QLabel" name="label_5">
+            <property name="geometry">
+             <rect>
+              <x>40</x>
+              <y>35</y>
+              <width>54</width>
+              <height>51</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="pixmap">
+             <pixmap resource="PlaneFight.qrc">:/PlaneFight/img/star1.svg</pixmap>
+            </property>
+           </widget>
+          </widget>
+          <widget class="QWidget" name="page_6">
+           <widget class="QLabel" name="label_11">
+            <property name="geometry">
+             <rect>
+              <x>40</x>
+              <y>35</y>
+              <width>54</width>
+              <height>51</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="pixmap">
+             <pixmap resource="PlaneFight.qrc">:/PlaneFight/img/star2.svg</pixmap>
+            </property>
+           </widget>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </item>
+      <item>
+       <layout class="QHBoxLayout" name="horizontalLayout_2" stretch="5,3,3,3">
+        <item>
+         <widget class="QLabel" name="label_2">
+          <property name="font">
+           <font>
+            <family>MV Boli</family>
+            <pointsize>20</pointsize>
+           </font>
+          </property>
+          <property name="styleSheet">
+           <string notr="true">color:#ff0000</string>
+          </property>
+          <property name="text">
+           <string>Performance Rating :</string>
+          </property>
+         </widget>
+        </item>
+        <item>
+         <widget class="QStackedWidget" name="pr_1">
+          <property name="currentIndex">
+           <number>1</number>
+          </property>
+          <widget class="QWidget" name="page_9">
+           <widget class="QLabel" name="label_6">
+            <property name="geometry">
+             <rect>
+              <x>20</x>
+              <y>35</y>
+              <width>54</width>
+              <height>51</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="pixmap">
+             <pixmap resource="PlaneFight.qrc">:/PlaneFight/img/star1.svg</pixmap>
+            </property>
+           </widget>
+          </widget>
+          <widget class="QWidget" name="page_10">
+           <widget class="QLabel" name="label_12">
+            <property name="geometry">
+             <rect>
+              <x>20</x>
+              <y>35</y>
+              <width>54</width>
+              <height>51</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="pixmap">
+             <pixmap resource="PlaneFight.qrc">:/PlaneFight/img/star2.svg</pixmap>
+            </property>
+           </widget>
+          </widget>
+         </widget>
+        </item>
+        <item>
+         <widget class="QStackedWidget" name="pr_2">
+          <property name="currentIndex">
+           <number>1</number>
+          </property>
+          <widget class="QWidget" name="page_11">
+           <widget class="QLabel" name="label_7">
+            <property name="geometry">
+             <rect>
+              <x>30</x>
+              <y>35</y>
+              <width>54</width>
+              <height>51</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="pixmap">
+             <pixmap resource="PlaneFight.qrc">:/PlaneFight/img/star1.svg</pixmap>
+            </property>
+           </widget>
+          </widget>
+          <widget class="QWidget" name="page_12">
+           <widget class="QLabel" name="label_13">
+            <property name="geometry">
+             <rect>
+              <x>30</x>
+              <y>35</y>
+              <width>54</width>
+              <height>51</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="pixmap">
+             <pixmap resource="PlaneFight.qrc">:/PlaneFight/img/star2.svg</pixmap>
+            </property>
+           </widget>
+          </widget>
+         </widget>
+        </item>
+        <item>
+         <widget class="QStackedWidget" name="pr_3">
+          <property name="currentIndex">
+           <number>1</number>
+          </property>
+          <widget class="QWidget" name="page_13">
+           <widget class="QLabel" name="label_8">
+            <property name="geometry">
+             <rect>
+              <x>30</x>
+              <y>35</y>
+              <width>54</width>
+              <height>51</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="pixmap">
+             <pixmap resource="PlaneFight.qrc">:/PlaneFight/img/star1.svg</pixmap>
+            </property>
+           </widget>
+          </widget>
+          <widget class="QWidget" name="page_14">
+           <widget class="QLabel" name="label_14">
+            <property name="geometry">
+             <rect>
+              <x>30</x>
+              <y>35</y>
+              <width>54</width>
+              <height>51</height>
+             </rect>
+            </property>
+            <property name="text">
+             <string/>
+            </property>
+            <property name="pixmap">
+             <pixmap resource="PlaneFight.qrc">:/PlaneFight/img/star2.svg</pixmap>
+            </property>
+           </widget>
+          </widget>
+         </widget>
+        </item>
+       </layout>
+      </item>
+     </layout>
+    </widget>
+   </widget>
+   <widget class="QWidget" name="page_2"/>
+  </widget>
+ </widget>
+ <layoutdefault spacing="6" margin="11"/>
+ <resources>
+  <include location="PlaneFight.qrc"/>
+ </resources>
+ <connections/>
+</ui>

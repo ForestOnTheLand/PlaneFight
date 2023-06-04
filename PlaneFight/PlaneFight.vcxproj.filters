@@ -66,6 +66,9 @@
     <Filter Include="Source Files\EnemyGenerator">
       <UniqueIdentifier>{7b8ad1ca-03dd-4eac-9198-3f28dfb93936}</UniqueIdentifier>
     </Filter>
+    <Filter Include="Source Files\Util">
+      <UniqueIdentifier>{013195a6-088b-49da-9db8-f21ab1dd89a9}</UniqueIdentifier>
+    </Filter>
   </ItemGroup>
   <ItemGroup>
     <QtRcc Include="PlaneFight.qrc">
@@ -136,8 +139,23 @@
     <ClCompile Include="TargetEffect.cpp">
       <Filter>Source Files\Effect</Filter>
     </ClCompile>
+    <ClCompile Include="util.cpp">
+      <Filter>Source Files\Util</Filter>
+    </ClCompile>
     <ClCompile Include="Laser.cpp">
+      <Filter>Source Files\Effect</Filter>
+    </ClCompile>
+    <ClCompile Include="ShieldBonus.cpp">
+      <Filter>Source Files\Bonus</Filter>
+    </ClCompile>
+    <ClCompile Include="SpecialMissile.cpp">
       <Filter>Source Files</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelChoose.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
+    <ClCompile Include="LevelReview.cpp">
+      <Filter>Source Files\UI</Filter>
     </ClCompile>
   </ItemGroup>
   <ItemGroup>
@@ -192,11 +210,17 @@
     <ClInclude Include="BackgroundMusic.h">
       <Filter>Header Files\Effect</Filter>
     </ClInclude>
-    <ClInclude Include="Laser.h">
-      <Filter>Header Files</Filter>
-    </ClInclude>
     <ClInclude Include="TargetEffect.h">
       <Filter>Header Files\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="Laser.h">
+      <Filter>Header Files\Effect</Filter>
+    </ClInclude>
+    <ClInclude Include="ShieldBonus.h">
+      <Filter>Header Files\Bonus</Filter>
+    </ClInclude>
+    <ClInclude Include="SpecialMissile.h">
+      <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>
@@ -212,6 +236,12 @@
     <QtUic Include="Ranking.ui">
       <Filter>Form Files</Filter>
     </QtUic>
+    <QtUic Include="LevelChoose.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
+    <QtUic Include="LevelReview.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="BattleField.h">
@@ -223,11 +253,15 @@
     <QtMoc Include="Ranking.h">
       <Filter>Header Files\UI</Filter>
     </QtMoc>
-    <QtMoc Include="GameReview.h">
-      <Filter>Header Files\Util</Filter>
+    <QtMoc Include="LevelChoose.h">
+      <Filter>Header Files\UI</Filter>
+    </QtMoc>
+    <QtMoc Include="LevelReview.h">
+      <Filter>Header Files\UI</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <Text Include="DataRecord.txt" />
+    <Text Include="levelPRdata.txt" />
   </ItemGroup>
 </Project>

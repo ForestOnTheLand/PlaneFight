@@ -21,17 +21,20 @@ class Menu : public QWidget {
 public:
 	explicit Menu(QWidget* parent = nullptr);
 	~Menu();
-	QStackedWidget* stackWidget;
+
+public:
+	int mode;  //to choose the review interface
 	std::vector<QPushButton*> startButtons;
-	QLabel* Title;
 	std::vector<QLabel*> startLabels;
 	std::vector<QPushButton*> gameModes;
-	QPushButton* toFirstPage;
 	std::vector<QLabel*> modeLabels;
 	std::vector<QWidget*> gameWidgets;
+	std::vector<QWidget*> to_remove;
+	QLabel* Title;
+	QPushButton* toFirstPage;
+	QStackedWidget* stackWidget;
 	QVBoxLayout menuButtonLayout;
 	QHBoxLayout mainLayout;
-	std::vector<QWidget*> to_remove;
 
 public slots:
 	void GameMode1();
@@ -40,8 +43,10 @@ public slots:
 	void StartGame();
 	void Leave();
 	void ShowRules();
-	void mouseMoveEvent(QMouseEvent* _event);
 	void ToFirstPage();
+
+public:
+	void mouseMoveEvent(QMouseEvent* _event);
 
 private:
 	Ui::MenuClass* ui;

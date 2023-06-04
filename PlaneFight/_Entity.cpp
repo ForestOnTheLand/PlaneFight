@@ -27,7 +27,7 @@ const QRectF& _Entity::rect() const {
 	return _rect;
 }
 bool _Entity::free() const {
-	return _free || !battlefield_border.contains(_rect);
+	return _free || !battlefield_border.intersects(_rect);
 }
 
 _Missile::_Missile(const char* const __image_path, double __init_x, double __init_y)

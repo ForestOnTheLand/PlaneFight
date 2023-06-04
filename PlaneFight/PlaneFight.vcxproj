@@ -99,15 +99,20 @@
     <ClCompile Include="GameReview.cpp" />
     <ClCompile Include="Generator.cpp" />
     <ClCompile Include="Laser.cpp" />
+    <ClCompile Include="LevelChoose.cpp" />
+    <ClCompile Include="LevelReview.cpp" />
     <ClCompile Include="LifeBonus.cpp" />
     <ClCompile Include="Menu.cpp" />
     <ClCompile Include="PointBonus.cpp" />
     <ClCompile Include="PowerBonus.cpp" />
     <ClCompile Include="PlayerPlane.cpp" />
     <ClCompile Include="Ranking.cpp" />
+    <ClCompile Include="ShieldBonus.cpp" />
+    <ClCompile Include="SpecialMissile.cpp" />
     <ClCompile Include="SteadyMissile.cpp" />
     <ClCompile Include="TargetEffect.cpp" />
     <ClCompile Include="TrackMissile.cpp" />
+    <ClCompile Include="util.cpp" />
     <ClCompile Include="_Effect.cpp" />
     <ClCompile Include="_Entity.cpp" />
     <ClCompile Include="_Plane.cpp" />
@@ -115,6 +120,8 @@
     <QtUic Include="BattleField.ui" />
     <ClCompile Include="main.cpp" />
     <QtUic Include="GameReview.ui" />
+    <QtUic Include="LevelChoose.ui" />
+    <QtUic Include="LevelReview.ui" />
     <QtUic Include="Menu.ui" />
     <QtUic Include="Ranking.ui" />
   </ItemGroup>
@@ -129,11 +136,15 @@
     <QtMoc Include="GameReview.h" />
     <ClInclude Include="Generator.h" />
     <ClInclude Include="Laser.h" />
+    <QtMoc Include="LevelChoose.h" />
+    <QtMoc Include="LevelReview.h" />
     <ClInclude Include="LifeBonus.h" />
     <QtMoc Include="Menu.h" />
     <ClInclude Include="PointBonus.h" />
     <ClInclude Include="PowerBonus.h" />
     <QtMoc Include="Ranking.h" />
+    <ClInclude Include="ShieldBonus.h" />
+    <ClInclude Include="SpecialMissile.h" />
     <ClInclude Include="TargetEffect.h" />
     <ClInclude Include="TrackMissile.h" />
     <ClInclude Include="util.h" />
@@ -145,6 +156,7 @@
   </ItemGroup>
   <ItemGroup>
     <Text Include="DataRecord.txt" />
+    <Text Include="levelPRdata.txt" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Condition="Exists('$(QtMsBuild)\qt.targets')">

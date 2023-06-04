@@ -2,13 +2,15 @@
 #include "PlayerPlane.h"
 #include "Menu.h"
 #include "GameReview.h"
+#include "LevelReview.h"
 #include <QtMultimedia/qsoundeffect.h>
 #include <algorithm>
 #include <QDebug>
+#include "Generator.h"
 
 BattleField::BattleField(QWidget* parent, Menu* menu)
-    : QWidget(parent), ui(new Ui::BattleFieldClass()), _timer(new QTimer),
-      _generator(Generator::level_1()), mainMenu(menu) {
+    : QWidget(parent), ui(new Ui::BattleFieldClass()), _timer(new QTimer), _generator(nullptr),
+      mainMenu(menu) {
 	ui->setupUi(this);
 	this->setAutoFillBackground(true);
 	this->setFixedSize(800, 800);
@@ -24,9 +26,9 @@ BattleField::~BattleField() {
 	delete _generator;
 }
 
-void BattleField::start() {
-	PlayerPlane::init();
-
+void BattleField::start(int level) {
+	PlayerPlane::init(this);
+	_generator = Generator::level(level);
 	_timer->setInterval(update_rate);
 	setMouseTracking(true);
 	_timer->start();
@@ -53,11 +55,18 @@ void BattleField::updateAll() {
 }
 
 void BattleField::gameOver() {
-	GameReview* pGameReview = qobject_cast<GameReview*>(mainMenu->gameWidgets[5]);
 	_timer->stop();
-	pGameReview->score = PlayerPlane::plane()->score;
-	pGameReview->refill();
-	mainMenu->stackWidget->setCurrentIndex(5);
+	if (mainMenu->mode == 0) {
+		GameReview* pGameReview = qobject_cast<GameReview*>(mainMenu->gameWidgets[5]);
+		pGameReview->score = PlayerPlane::plane()->score;
+		pGameReview->refill();
+		mainMenu->stackWidget->setCurrentIndex(5);
+	} else {
+		LevelReview* pLevelReview = qobject_cast<LevelReview*>(mainMenu->gameWidgets[7]);
+		pLevelReview->score = PlayerPlane::plane()->score;
+		pLevelReview->refill(0);
+		mainMenu->stackWidget->setCurrentIndex(7);
+	}
 	mainMenu->to_remove.push_back(mainMenu->gameWidgets[2]);
 	mainMenu->gameWidgets[2] = new BattleField(nullptr, mainMenu);
 	mainMenu->stackWidget->insertWidget(2, mainMenu->gameWidgets[2]);
@@ -75,7 +84,17 @@ void BattleField::generateEnemy() {
 }
 
 void BattleField::gameWin() {
-	gameOver();
+	LevelReview* pLevelReview = qobject_cast<LevelReview*>(mainMenu->gameWidgets[7]);
+	pLevelReview->score = PlayerPlane::plane()->score;
+	pLevelReview->refill(1);
+	mainMenu->stackWidget->setCurrentIndex(7);
+
+	mainMenu->to_remove.push_back(mainMenu->gameWidgets[2]);
+	mainMenu->gameWidgets[2] = new BattleField(nullptr, mainMenu);
+	mainMenu->stackWidget->insertWidget(2, mainMenu->gameWidgets[2]);
+	mainMenu->stackWidget->removeWidget(this);
+	// gameOver();
+	_timer->stop();
 }
 
 void BattleField::updateMissiles() {
@@ -158,9 +177,10 @@ void BattleField::processKeyEvent() {
 	if (_key.D)
 		PlayerPlane::plane()->moveBy(3, 0);
 	if (_key.K) {
-		if (PlayerPlane::plane()->Bomb()) {
+		PlayerPlane::plane()->Bomb();
+		if (PlayerPlane::plane()->bombs) {
 			for (auto iter = enemy_missiles.begin(); iter != enemy_missiles.end();) {
-				delete* iter;
+				delete *iter;
 				iter = enemy_missiles.erase(iter);
 			}
 		}
@@ -214,6 +234,7 @@ void BattleField::keyPressEvent(QKeyEvent* _event) {
 			case Qt::Key_A: _key.A = true; break;
 			case Qt::Key_S: _key.S = true; break;
 			case Qt::Key_D: _key.D = true; break;
+			case Qt::Key_L: PlayerPlane::plane()->shootUltimate(); break;
 			case Qt::Key_Escape: pause(); break;
 			case Qt::Key_Backspace: gameOver(); break;
 			default: break;

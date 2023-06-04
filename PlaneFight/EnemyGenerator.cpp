@@ -21,6 +21,9 @@ void EnemyGeneratingPolicy::execute(BattleField* b) {
 bool EnemyGeneratingPolicy::terminal() {
 	return _timer > _time;
 }
+void EnemyGeneratingPolicy::reset() {
+	_timer = 0;
+}
 
 void EnemyClearingPolicy::execute(BattleField* b) {
 	if (b->enemy_planes.empty()) {
@@ -36,17 +39,23 @@ bool EnemyClearingPolicy::terminal() {
 	return _finish;
 }
 
-BossGeneratingPolicy::BossGeneratingPolicy(int __health, int __attack)
-    : _health(__health), _attack(__attack) {}
+void EnemyClearingPolicy::reset() {
+	_finish = false, _start = false;
+}
+
+BossGeneratingPolicy::BossGeneratingPolicy(const char* __img_path, int __health, int __attack)
+    : _health(__health), _attack(__attack), _img_path(__img_path) {}
 void BossGeneratingPolicy::execute(BattleField* b) {
 	if (!_field) {
 		_field = b;
-		_field->enemy_planes.push_back(
-		    new BossEnemyPlane(":/PlaneFight/img/Boss_2.png", _health, _attack));
+		_field->enemy_planes.push_back(new BossEnemyPlane(_img_path, _health, _attack));
 	}
 }
 bool BossGeneratingPolicy::terminal() {
-	return _field != nullptr && _field->enemy_planes.empty();
+	return _field && _field->enemy_planes.empty();
+}
+void BossGeneratingPolicy::reset() {
+	_field = nullptr;
 }
 
 
@@ -75,8 +84,13 @@ void PictureDisplay::draw(QPainter& painter) {
 	}
 }
 
+void PictureDisplay::reset() {
+	_timer = 0;
+}
 
-EnemyGenerator::EnemyGenerator(std::initializer_list<Policy*> __policies) : _policies(__policies) {}
+
+EnemyGenerator::EnemyGenerator(std::initializer_list<Policy*> __policies, bool __repeat)
+    : _policies(__policies), _repeat(__repeat) {}
 EnemyGenerator::~EnemyGenerator() {
 	for (Policy* policy : _policies) {
 		delete policy;
@@ -105,16 +119,26 @@ bool MessageDisplay::terminal() {
 	}
 }
 
+void MessageDisplay::reset() {
+	_timer = 0;
+	_b = nullptr;
+}
+
 
 
 void EnemyGenerator::execute(BattleField* b) {
 	if (_policies.empty()) {
 		_free = true;
-	} else if (!_policies.front()->terminal()) {
-		_policies.front()->execute(b);
-	} else {
-		delete _policies.front();
+	} else if (_policies.front()->terminal()) {
+		if (_repeat) {
+			_policies.front()->reset();
+			_policies.push_back(_policies.front());
+		} else {
+			delete _policies.front();
+		}
 		_policies.pop_front();
+	} else {
+		_policies.front()->execute(b);
 	}
 }
 bool EnemyGenerator::free() const {

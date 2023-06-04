@@ -24,15 +24,16 @@ public:
 	const QPixmap& picture() const;
 	const QRectF& rect() const;
 	virtual QPolygonF box() const = 0;
-	int& health();
+	int health();
 	bool dead() const;
 	virtual bool out() const;
 
 public:
+	virtual void changeHealth(int m);
 	void setPosition(double __x, double __y);
 	void setPosition(QPointF p);
 	void moveBy(double __dx, double __dy);
 	virtual void hurt(_Plane* __other);
 	virtual void drawOn(QPainter& painter);
-	virtual void hurtUpdate();
+	// virtual void hurtUpdate();
 };

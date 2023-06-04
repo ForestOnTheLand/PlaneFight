@@ -6,6 +6,7 @@
 #include "PointBonus.h"
 #include "PowerBonus.h"
 #include "LifeBonus.h"
+#include "ShieldBonus.h"
 #include <cmath>
 
 static constexpr const char* trival_missile_path = ":/PlaneFight/img/bullet/mid_bullet_green.png";
@@ -49,9 +50,10 @@ void EnemyPlane::afterDeath(BattleField* field) {
 	field->effects.push_back(new ExplosionEffect(_rect.center()));
 	_Bonus* bonus;
 	switch (distribution_as(_prob)) {
-		case 0: bonus = new PointBonus(_rect.center().x(), _rect.center().y(), 0, 4, 10); break;
+		case 0: bonus = new PointBonus(_rect.center().x(), _rect.center().y(), 0, 4, 100); break;
 		case 1: bonus = new PowerBonus(_rect.center().x(), _rect.center().y(), 0, 4, 5); break;
-		case 2: bonus = new LifeBonus(_rect.center().x(), _rect.center().y(), 0, 4, 10); break;
+		case 2: bonus = new LifeBonus(_rect.center().x(), _rect.center().y(), 0, 4, 100); break;
+		case 3: bonus = new ShieldBonus(_rect.center().x(), _rect.center().y(), 0, 4); break;
 		default: return;
 	}
 	field->drops.push_back(bonus);
