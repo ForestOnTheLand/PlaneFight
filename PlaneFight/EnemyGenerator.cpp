@@ -98,17 +98,23 @@ EnemyGenerator::~EnemyGenerator() {
 }
 
 
-MessageDisplay::MessageDisplay(const QString& __msg, int __time)
-    : _msg(__msg), _time(__time * (1000 / update_rate)) {}
+MessageDisplay::MessageDisplay(const QString& __msg1,const QString& __msg2, int __time)
+    : _msg1(__msg1), _msg2(__msg2), _time(__time* (1000 / update_rate)) {}
 void MessageDisplay::execute(BattleField* b) {
 	if (!_b) {
 		_b = b;
-		_b->ui->msg_label->setText(_msg);
+		_b->ui->msg_label->setText(_msg1);
+		if (_msg2 != "") {
+			_b->ui->story_label->setStyleSheet(QString::fromUtf8("background-color:rgba(170, 255, 255, 100);""color: rgb(255, 255, 255);"));
+			_b->ui->story_label->setText(_msg2);
+		}
 	}
 }
 bool MessageDisplay::terminal() {
 	if (++_timer > _time) {
 		_b->ui->msg_label->setText(" ");
+		_b->ui->story_label->setStyleSheet(" ");
+		_b->ui->story_label->setText(" ");
 		return true;
 	} else {
 		return false;
@@ -119,6 +125,7 @@ void MessageDisplay::reset() {
 	_timer = 0;
 	_b = nullptr;
 }
+
 
 
 void EnemyGenerator::execute(BattleField* b) {

@@ -83,14 +83,16 @@ void PlayerPlane::shootMissiles() {
 	}
 }
 
-void PlayerPlane::Bomb() {
+bool PlayerPlane::Bomb() {
 	if (bombs) {
 		bombs--;
 		for (int i = 0; i < 500; i += 20) {
 			_missiles.push_back(
 			    new SteadyMissile(player_bomb_path, i, _rect.center().y() - 20, 0, -5, 100));
 		}
+		return 1;
 	}
+	return 0;
 }
 
 void PlayerPlane::shootUltimate() {

@@ -52,6 +52,11 @@ namespace Plane {
 			ThreeWays() = default;
 			void operator()(EnemyPlane* plane, BattleField* field);
 		};
+		class Track {
+		public:
+			Track() = default;
+			void operator()(EnemyPlane* plane, BattleField* field);
+		};
 	}    // namespace Shoot
 
 	namespace Speed {

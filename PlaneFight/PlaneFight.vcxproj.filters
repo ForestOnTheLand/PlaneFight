@@ -250,9 +250,6 @@
     <QtMoc Include="Menu.h">
       <Filter>Header Files\UI</Filter>
     </QtMoc>
-    <QtMoc Include="GameReview.h">
-      <Filter>Header Files\UI</Filter>
-    </QtMoc>
     <QtMoc Include="Ranking.h">
       <Filter>Header Files\UI</Filter>
     </QtMoc>
