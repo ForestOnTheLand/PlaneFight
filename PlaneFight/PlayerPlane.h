@@ -30,7 +30,7 @@ public:
 	int score;
 	int power;
 	void shootMissiles();
-	void Bomb();
+	bool Bomb();
 	void drawMissiles(QPainter& painter);
 	void drawHP(QPainter& painter);
 	void updateMissiles();

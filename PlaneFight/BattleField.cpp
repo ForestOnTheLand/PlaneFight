@@ -158,10 +158,11 @@ void BattleField::processKeyEvent() {
 	if (_key.D)
 		PlayerPlane::plane()->moveBy(3, 0);
 	if (_key.K) {
-		PlayerPlane::plane()->Bomb();
-		for (auto iter = enemy_missiles.begin(); iter != enemy_missiles.end();) {
-			delete *iter;
-			iter = enemy_missiles.erase(iter);
+		if (PlayerPlane::plane()->Bomb()) {
+			for (auto iter = enemy_missiles.begin(); iter != enemy_missiles.end();) {
+				delete* iter;
+				iter = enemy_missiles.erase(iter);
+			}
 		}
 		_key.K = 0;
 	}

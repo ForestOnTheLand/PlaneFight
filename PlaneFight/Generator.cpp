@@ -12,7 +12,7 @@ namespace Generator {
 	using namespace Plane;
 	EnemyGenerator* level_1() {
 		return new EnemyGenerator({
-		    new MessageDisplay("Mission 1", 3),
+		    new MessageDisplay("Mission 1","And it shall be bestowed upon you,\nthe star which you have longed for.", 3),
 		    new EnemyGeneratingPolicy(
 		        {{
 		             []() {
@@ -34,7 +34,7 @@ namespace Generator {
                  2),
 		    new EnemyClearingPolicy(),
 		    new BossGeneratingPolicy(20000, 50),
-		    new MessageDisplay("Mission Complete!", 5),
+		    new MessageDisplay("Mission Complete!","However, bigger challenges still lie ahead.", 5),
 		});
 	};
 }    // namespace Generator

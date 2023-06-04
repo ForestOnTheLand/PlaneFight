@@ -220,14 +220,11 @@
     <QtMoc Include="Menu.h">
       <Filter>Header Files\UI</Filter>
     </QtMoc>
-    <QtMoc Include="GameReview.h">
-      <Filter>Header Files\UI</Filter>
-    </QtMoc>
     <QtMoc Include="Ranking.h">
       <Filter>Header Files\UI</Filter>
     </QtMoc>
-    <QtMoc Include="Rule.h">
-      <Filter>Header Files\UI</Filter>
+    <QtMoc Include="GameReview.h">
+      <Filter>Header Files\Util</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>

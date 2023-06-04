@@ -65,6 +65,5 @@
         <file>img/player_hurt.png</file>
         <file>img/bullet/etama6_4_down.png</file>
         <file>img/bullet/etama6_4_right.png</file>
-        <file>sound/third_eye.wav</file>
     </qresource>
 </RCC>

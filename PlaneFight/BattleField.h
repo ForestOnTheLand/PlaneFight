@@ -58,4 +58,5 @@ public:
 	void keyReleaseEvent(QKeyEvent* _event) final;
 
 	friend class MessageDisplay;
+	friend class StoryDisplay;
 };

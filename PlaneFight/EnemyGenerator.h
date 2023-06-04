@@ -73,15 +73,18 @@ public:
 
 
 class MessageDisplay : public Policy {
-	QString _msg;
+	QString _msg1;
+	QString _msg2;
 	int _timer = 0, _time;
 	BattleField* _b = nullptr;
 
 public:
-	MessageDisplay(const QString& __msg, int __time);
+	MessageDisplay(const QString& __msg1,const QString& __msg2, int __time);
 	void execute(BattleField* b) override;
 	bool terminal() override;
 };
+
+
 
 
 class EnemyGenerator {
