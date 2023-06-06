@@ -8,7 +8,7 @@
 #include "GameReview.h"
 #include "LevelChoose.h"
 #include "LevelReview.h"
-//#include "Rule.h"
+#include "Rule.h"
 #include "Ranking.h"
 #include <stdio.h>
 #include <iostream>
@@ -27,11 +27,11 @@ Menu::Menu(QWidget* parent) : QWidget(parent), ui(new Ui::MenuClass) {
 	gameWidgets.push_back(new QWidget());				       //0 interface for start menu
 	gameWidgets.push_back(new QWidget());				       //1 interface for choosing mode
 	gameWidgets.push_back(new BattleField(nullptr, this));     //2 interface for survive mode
-	gameWidgets.push_back(new LevelChoose(nullptr,this));		//3 interface for choosing level mode
+	gameWidgets.push_back(new LevelChoose(nullptr,this));	   //3 interface for choosing level mode
 	gameWidgets.push_back(new Ranking(nullptr,this));		   //4 interface for ranking
 	gameWidgets.push_back(new GameReview(nullptr, this));	   //5 interface for game review
-	gameWidgets.push_back(new QWidget());					   //6 interface for rule
-	gameWidgets.push_back(new LevelReview(nullptr,this));		//7 interface for level review
+	gameWidgets.push_back(new Rule(nullptr,this));			   //6 interface for rule
+	gameWidgets.push_back(new LevelReview(nullptr,this));	   //7 interface for level review
 	gameWidgets.push_back(new QWidget());					   //8 interface reserved
 
 	for (int i = 0; i <= 3; i++) {
@@ -137,9 +137,9 @@ Menu::Menu(QWidget* parent) : QWidget(parent), ui(new Ui::MenuClass) {
 	}
 	// gameWidgets[0]->setLayout(&menuButtonLayout);
 
-	for (int i = 0; i < 9; ++i) {
-		stackWidget->addWidget(gameWidgets[i]);
-		gameWidgets[i]->setMouseTracking(true);
+	for (auto i = gameWidgets.begin(); i !=gameWidgets.end(); ++i) {
+		stackWidget->addWidget(*i);
+		(*i)->setMouseTracking(true);
 	}
 	stackWidget->setMouseTracking(true);
 	mainLayout.addWidget(stackWidget);

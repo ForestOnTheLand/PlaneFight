@@ -20,7 +20,23 @@ GameReview::GameReview(QWidget *parent,Menu* menu)
 	, ui(new Ui::GameReviewClass()),score(0),mainMenu(menu)
 {
 	ui->setupUi(this);
-	connect(ui->commandLinkButton, &QPushButton::clicked, this, &GameReview::Return);
+
+	QString exit_button_style = "QPushButton{background-color:grey;\
+										color: white; border-radius:10px ; border : 2px groove gray;\
+										border-style: outset;}"
+		"QPushButton:hover{background-color: white;color: black;}"
+		"QPushButton:pressed{background-color:rgb{85,170,255};\
+									border-style: inset;}";
+
+	ui->Return_bt->setStyleSheet(exit_button_style);
+	connect(ui->Return_bt, &QPushButton::clicked, this, &GameReview::Return);
+	
+	setAutoFillBackground(true);
+	QImage image;
+	QPalette palette;
+	image.load(":/PlaneFight/img/review.jpg");
+	palette.setBrush(this->backgroundRole(), QBrush(image));
+	setPalette(palette);
 }
 
 void GameReview::Return() {

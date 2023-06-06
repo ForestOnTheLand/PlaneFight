@@ -1,5 +1,6 @@
 <RCC>
     <qresource prefix="/PlaneFight">
+        <file>text/rule.md</file>
         <file>img/1305704.jpg</file>
         <file>img/685387.jpg</file>
         <file>img/MenuBackground.png</file>
@@ -58,5 +59,8 @@
         <file>sound/effect_sound/se_enep00.wav</file>
         <file>sound/lockdown.wav</file>
         <file>sound/third_eye.wav</file>
+        <file>img/review.jpg</file>
+        <file>img/ranking.jpg</file>
+        <file>img/rule.jpg</file>
     </qresource>
 </RCC>

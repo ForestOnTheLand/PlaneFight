@@ -23,7 +23,7 @@ public:
 	~Menu();
 
 public:
-	int mode;  //to choose the review interface
+	int mode=0;  //to choose the review interface
 	std::vector<QPushButton*> startButtons;
 	std::vector<QLabel*> startLabels;
 	std::vector<QPushButton*> gameModes;
