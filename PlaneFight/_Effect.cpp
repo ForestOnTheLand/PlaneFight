@@ -13,6 +13,10 @@ _Effect::~_Effect() {
 	}
 }
 
+void _Effect::update() {
+	return;
+}
+
 bool _Effect::valid() const {
 	return _valid;
 }

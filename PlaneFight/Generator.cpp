@@ -136,11 +136,11 @@ namespace Generator {
 			             }
 		             },
 		         }},
-		        10),
+		        40),
 		    new PictureDisplay({{warning_path, battlefield_border.center()}},
                  2),
 		    new EnemyClearingPolicy(),
-		    new BossGeneratingPolicy(":/PlaneFight/img/boss/Boss_1.png", 5000, 50),
+		    new BossGeneratingPolicy(":/PlaneFight/img/boss/Boss_1.png", 40000, 50),
 		    new MessageDisplay("Mission Complete!", "However, bigger challenges still lie ahead.",
 		                       3),
 		});
@@ -165,7 +165,7 @@ namespace Generator {
 		             },
 		             Timer::Gap(60),
 		         }},
-		        5),
+		        30),
 		    new PictureDisplay({{warning_path, battlefield_border.center()}},
                  2),
 		    new EnemyClearingPolicy(),
@@ -180,14 +180,14 @@ namespace Generator {
 		    new EnemyGeneratingPolicy(
 		        {{
 		             []() {
-			             return new EnemyPlane(enemy_plane_path_2, 200, 20, Shoot::Straight(),
+			             return new EnemyPlane(enemy_plane_path_2, 150, 20, Shoot::Straight(),
 			                                   Speed::RandomX(), Speed::Steady(10, 3),
 			                                   {0.2, 0.2, 0.1, 0.1});
 		             },
 		             Timer::Gap(30),
 		         }, {
 		             []() {
-			             return new EnemyPlane(enemy_plane_path_1, 300, 30, Shoot::ThreeWays(),
+			             return new EnemyPlane(enemy_plane_path_1, 150, 30, Shoot::ThreeWays(),
 			                                   Speed::Steady(random_x()),
 			                                   Speed::Stable(30, 3, 200, 500),
 			                                   {0.2, 0.2, 0.1, 0.1});

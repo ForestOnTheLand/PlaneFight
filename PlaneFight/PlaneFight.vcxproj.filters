@@ -259,6 +259,9 @@
     <QtMoc Include="LevelReview.h">
       <Filter>Header Files\UI</Filter>
     </QtMoc>
+    <QtMoc Include="GameReview.h">
+      <Filter>Header Files</Filter>
+    </QtMoc>
   </ItemGroup>
   <ItemGroup>
     <Text Include="DataRecord.txt" />

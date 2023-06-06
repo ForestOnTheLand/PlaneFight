@@ -9,5 +9,6 @@ class ExplosionEffect : public _Effect {
 public:
 	explicit ExplosionEffect(const QPointF& __pos);
 	~ExplosionEffect();
+	void update() final;
 	void display(QPainter& painter) final;
 };

@@ -6,6 +6,7 @@ SpecialMissile::SpecialMissile(std::initializer_list<const char*> __image_path, 
 
 void SpecialMissile::updatePosition() {
 	_rect.translate(0, -_speed);
+	++_timer;
 }
 
 void SpecialMissile::collide(_Plane* plane) {
@@ -18,7 +19,7 @@ void SpecialMissile::collide(_Plane* plane) {
 }
 
 void SpecialMissile::display(QPainter& painter) {
-	if (++_timer == 10) {
+	if (_timer == 10) {
 		_timer = 0;
 		if (++_picture_index == _pictures.size()) {
 			_picture_index = 0;

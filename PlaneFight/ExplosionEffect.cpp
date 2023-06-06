@@ -13,8 +13,12 @@ ExplosionEffect::~ExplosionEffect() {
 	delete _sound;
 }
 
+void ExplosionEffect::update() {
+	++_timer;
+}
+
 void ExplosionEffect::display(QPainter& painter) {
-	if (++_timer == 10) {
+	if (_timer >= 10) {
 		_timer = 0;
 		if (++_picture_index == _pictures.size()) {
 			_valid = false;

@@ -19,5 +19,6 @@ public:
 	_Effect(std::initializer_list<const char*> __images_path);
 	bool valid() const;
 	virtual ~_Effect();
+	virtual void update();
 	virtual void display(QPainter& painter) = 0;
 };

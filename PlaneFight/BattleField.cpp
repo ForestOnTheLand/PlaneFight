@@ -46,6 +46,9 @@ void BattleField::updateAll() {
 	generateEnemy();
 	checkCollision();
 	checkDeadPlane();
+	for (_Effect* effect : effects) {
+		effect->update();
+	}
 	for (_EnemyPlane* enemy : enemy_planes) {
 		enemy->updatePosition();
 		enemy->shootMissiles(this);
@@ -129,7 +132,6 @@ void BattleField::checkDeadPlane() {
 		if ((*iter)->dead() || (*iter)->out()) {
 			if ((*iter)->dead()) {
 				PlayerPlane::plane()->score += 100;
-				// effects.push_back(new ExplosionEffect((*iter)->rect().center()));
 				(*iter)->afterDeath(this);
 			}
 			delete *iter;
