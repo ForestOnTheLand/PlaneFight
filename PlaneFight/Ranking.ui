@@ -299,25 +299,23 @@
     </item>
    </layout>
   </widget>
-  <widget class="QCommandLinkButton" name="exitButton">
+  <widget class="QPushButton" name="Return_bt">
    <property name="geometry">
     <rect>
-     <x>690</x>
-     <y>740</y>
-     <width>121</width>
-     <height>51</height>
+     <x>660</x>
+     <y>730</y>
+     <width>101</width>
+     <height>41</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>Segoe UI</family>
+     <family>MV Boli</family>
      <pointsize>16</pointsize>
-     <italic>true</italic>
-     <bold>true</bold>
     </font>
    </property>
    <property name="text">
-    <string>exit</string>
+    <string>Return&gt;&gt;</string>
    </property>
   </widget>
  </widget>

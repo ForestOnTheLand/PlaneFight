@@ -85,7 +85,7 @@
             <height>251</height>
            </rect>
           </property>
-          <layout class="QVBoxLayout" name="verticalLayout_2" stretch="8,2">
+          <layout class="QVBoxLayout" name="verticalLayout_2" stretch="6,2">
            <item>
             <widget class="QLabel" name="label_6">
              <property name="text">
@@ -150,25 +150,23 @@
     </item>
    </layout>
   </widget>
-  <widget class="QCommandLinkButton" name="commandLinkButton">
+  <widget class="QPushButton" name="Return_bt">
    <property name="geometry">
     <rect>
-     <x>630</x>
+     <x>660</x>
      <y>710</y>
-     <width>186</width>
+     <width>111</width>
      <height>41</height>
     </rect>
    </property>
    <property name="font">
     <font>
-     <family>Segoe UI</family>
-     <pointsize>20</pointsize>
-     <italic>true</italic>
-     <bold>true</bold>
+     <family>MV Boli</family>
+     <pointsize>16</pointsize>
     </font>
    </property>
    <property name="text">
-    <string>return</string>
+    <string>Return&gt;&gt;</string>
    </property>
   </widget>
  </widget>

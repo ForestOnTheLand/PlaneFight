@@ -14,6 +14,14 @@ LevelReview::LevelReview(QWidget* parent, Menu* menu)
 									border-style: inset;}";
 	ui->Return_bt->setStyleSheet(exit_button_style);
 	connect(ui->Return_bt, &QPushButton::clicked, this, &LevelReview::Return);
+
+	setAutoFillBackground(true);
+	QImage image;
+	QPalette palette;
+	image.load(":/PlaneFight/img/review.jpg");
+	palette.setBrush(this->backgroundRole(), QBrush(image));
+	setPalette(palette);
+
 }
 
 void LevelReview::refill(int win) {

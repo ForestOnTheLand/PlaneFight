@@ -157,6 +157,9 @@
     <ClCompile Include="SpecialMissile.cpp">
       <Filter>Source Files\Missile</Filter>
     </ClCompile>
+    <ClCompile Include="Rule.cpp">
+      <Filter>Source Files\UI</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="_Plane.h">
@@ -242,6 +245,9 @@
     <QtUic Include="LevelReview.ui">
       <Filter>Form Files</Filter>
     </QtUic>
+    <QtUic Include="Rule.ui">
+      <Filter>Form Files</Filter>
+    </QtUic>
   </ItemGroup>
   <ItemGroup>
     <QtMoc Include="BattleField.h">
@@ -259,8 +265,11 @@
     <QtMoc Include="LevelReview.h">
       <Filter>Header Files\UI</Filter>
     </QtMoc>
+    <QtMoc Include="Rule.h">
+      <Filter>Header Files\UI</Filter>
+    </QtMoc>
     <QtMoc Include="GameReview.h">
-      <Filter>Header Files</Filter>
+      <Filter>Header Files\UI</Filter>
     </QtMoc>
   </ItemGroup>
   <ItemGroup>
