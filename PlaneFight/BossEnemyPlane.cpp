@@ -1,7 +1,6 @@
 #include "BossEnemyPlane.h"
 #include "BattleField.h"
-#include "SteadyMissile.h"
-#include "TrackMissile.h"
+#include "Missile.h"
 #include "TargetEffect.h"
 #include "Generator.h"
 #include "EnemyPlane.h"

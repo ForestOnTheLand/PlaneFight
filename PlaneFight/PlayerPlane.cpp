@@ -1,5 +1,5 @@
 #include "PlayerPlane.h"
-#include "SteadyMissile.h"
+#include "Missile.h"
 #include "BattleField.h"
 
 static constexpr const char* player_plane_path = ":/PlaneFight/img/player.png";
@@ -142,9 +142,12 @@ void PlayerPlane::updateMissiles() {
 			++iter;
 		}
 	}
-	if (_cool_down_timer > 0) {
+	if (_cool_down_timer > 0)
 		--_cool_down_timer;
-	}
+	if (_hurt_state > 0)
+		_hurt_state--;
+	if (buff.shield)
+		buff.shield--;
 	if (_special_missile) {
 		if (_special_missile->free()) {
 			delete _special_missile;
@@ -182,13 +185,12 @@ void PlayerPlane::hurt(_Plane* __other) {
 void PlayerPlane::drawOn(QPainter& painter) {
 	if (_hurt_state > 0) {
 		painter.drawPixmap(_rect, _hurt_image, QRectF());
-		_hurt_state--;
+
 	} else {
 		painter.drawPixmap(_rect, _picture, QRectF());
 	}
 	if (buff.shield) {
 		painter.drawPixmap(_rect, _shield_picture, QRectF());
-		buff.shield--;
 	}
 	drawMissiles(painter);
 	drawHP(painter);

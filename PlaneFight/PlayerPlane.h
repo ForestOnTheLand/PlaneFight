@@ -1,7 +1,7 @@
 #pragma once
 
-#include "_Plane.h"
-#include "SpecialMissile.h"
+#include "_Entity.h"
+#include "Missile.h"
 #include <vector>
 
 class BattleField;

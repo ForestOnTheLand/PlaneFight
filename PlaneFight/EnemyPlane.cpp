@@ -1,12 +1,8 @@
 #include "EnemyPlane.h"
 #include "PlayerPlane.h"
-#include "SteadyMissile.h"
-#include "TrackMissile.h"
+#include "Missile.h"
 #include "BattleField.h"
-#include "PointBonus.h"
-#include "PowerBonus.h"
-#include "LifeBonus.h"
-#include "ShieldBonus.h"
+#include "Bonus.h"
 #include <cmath>
 
 static constexpr const char* trival_missile_path = ":/PlaneFight/img/bullet/mid_bullet_green.png";
@@ -20,7 +16,7 @@ _EnemyPlane::_EnemyPlane(const char* __image_path, int __health, QPointF __init_
 }
 
 void _EnemyPlane::_setPosition(double __x, double __y) {
-	_rect.moveCenter({ __x, __y });
+	_rect.moveCenter({__x, __y});
 }
 
 void _EnemyPlane::_clearOut() {
@@ -84,8 +80,8 @@ namespace Plane {
 		}
 		void Track::operator()(EnemyPlane* plane, BattleField* field) {
 			field->enemy_missiles.push_back(
-				new TrackMissile(track_missile_path, plane->rect().center().x(),
-					plane->rect().center().y() + 20, 0, 5, 50, 0, 0));
+			    new TrackMissile(track_missile_path, plane->rect().center().x(),
+			                     plane->rect().center().y() + 20, 0, 5, 50, 0, 0));
 		}
 	}    // namespace Shoot
 	namespace Speed {

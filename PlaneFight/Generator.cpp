@@ -69,14 +69,9 @@ namespace Generator {
 		             },
 		             []() {
 			             static int timer = 0;
-			             if (timer++ <= 150 && timer % 20 == 0) {
-				             return 1;
-			             } else if (timer <= 1000) {
-				             return 0;
-			             } else {
-				             timer = 0;
-				             return 0;
-			             }
+			             return (++timer <= 150 && timer % 20 == 0) ? 1
+			                    : (timer <= 1000)                   ? 0
+			                                                        : (timer = 0);
 		             },
 		         }, {
 		             []() {
@@ -89,14 +84,9 @@ namespace Generator {
 		             },
 		             []() {
 			             static int timer = 0;
-			             if (timer++ <= 150 && timer % 20 == 0) {
-				             return 1;
-			             } else if (timer <= 1000) {
-				             return 0;
-			             } else {
-				             timer = 0;
-				             return 0;
-			             }
+			             return (++timer <= 150 && timer % 20 == 0) ? 1
+			                    : (timer <= 1000)                   ? 0
+			                                                        : (timer = 0);
 		             },
 		         }, {
 		             []() {
@@ -106,14 +96,9 @@ namespace Generator {
 		             },
 		             []() {
 			             static int timer = 0;
-			             if (timer++ <= 150 && timer % 20 == 0) {
-				             return 1;
-			             } else if (timer <= 1000) {
-				             return 0;
-			             } else {
-				             timer = 0;
-				             return 0;
-			             }
+			             return (++timer <= 150 && timer % 20 == 0) ? 1
+			                    : (timer <= 1000)                   ? 0
+			                                                        : (timer = 0);
 		             },
 		         }, {
 		             []() {
@@ -126,14 +111,9 @@ namespace Generator {
 		             },
 		             []() {
 			             static int timer = 0;
-			             if (timer++ <= 150 && timer % 20 == 0) {
-				             return 1;
-			             } else if (timer <= 1000) {
-				             return 0;
-			             } else {
-				             timer = 0;
-				             return 0;
-			             }
+			             return (++timer <= 150 && timer % 20 == 0) ? 1
+			                    : (timer <= 1000)                   ? 0
+			                                                        : (timer = 0);
 		             },
 		         }},
 		        40),
@@ -169,7 +149,7 @@ namespace Generator {
 		    new PictureDisplay({{warning_path, battlefield_border.center()}},
                  2),
 		    new EnemyClearingPolicy(),
-		    new BossGeneratingPolicy(":/PlaneFight/img/boss/Boss_2.png", 60000, 80),
+		    new BossGeneratingPolicy(":/PlaneFight/img/boss/Boss_2.png", 60000, 50),
 		    new MessageDisplay("Mission Complete!",
 		                       "Bear in mind: Never take your victory for granted.", 3),
 		});
@@ -184,7 +164,7 @@ namespace Generator {
 			                                   Speed::RandomX(), Speed::Steady(10, 3),
 			                                   {0.2, 0.2, 0.1, 0.1});
 		             },
-		             Timer::Gap(30),
+		             Timer::Gap(60),
 		         }, {
 		             []() {
 			             return new EnemyPlane(enemy_plane_path_1, 150, 30, Shoot::ThreeWays(),
@@ -192,13 +172,13 @@ namespace Generator {
 			                                   Speed::Stable(30, 3, 200, 500),
 			                                   {0.2, 0.2, 0.1, 0.1});
 		             },
-		             Timer::Gap(30),
+		             Timer::Gap(60),
 		         }},
 		        30),
 		    new PictureDisplay({{warning_path, battlefield_border.center()}},
                  2),
 		    new EnemyClearingPolicy(),
-		    new BossGeneratingPolicy(":/PlaneFight/img/boss/Boss_2.png", 100000, 150),
+		    new BossGeneratingPolicy(":/PlaneFight/img/boss/Boss_2.png", 100000, 60),
 		    new MessageDisplay("Mission Complete!", "Yes, you've conquered all. And then?", 3),
 		});
 	};

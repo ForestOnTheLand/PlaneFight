@@ -39,12 +39,6 @@
     <Filter Include="Source Files\UI">
       <UniqueIdentifier>{833f689a-addf-45d3-b85e-54d688361569}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Missile">
-      <UniqueIdentifier>{970fd193-79ed-4285-80f8-b01e063653a7}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Missile">
-      <UniqueIdentifier>{7c03453e-d143-446b-a97c-b933ab415028}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\Effect">
       <UniqueIdentifier>{b4f3edb3-d1f2-46af-a2d9-6ff8519fd046}</UniqueIdentifier>
     </Filter>
@@ -54,12 +48,6 @@
     <Filter Include="Header Files\Util">
       <UniqueIdentifier>{ea9fc4f3-ca87-474d-b637-d219d52d3539}</UniqueIdentifier>
     </Filter>
-    <Filter Include="Header Files\Bonus">
-      <UniqueIdentifier>{4cb79c73-2af1-40bc-9346-65fded4abb98}</UniqueIdentifier>
-    </Filter>
-    <Filter Include="Source Files\Bonus">
-      <UniqueIdentifier>{b703603e-a837-4f27-b5b8-c69193dad822}</UniqueIdentifier>
-    </Filter>
     <Filter Include="Header Files\EnemyGenerator">
       <UniqueIdentifier>{e60b2f2d-37a1-430d-a4be-796bc252d0db}</UniqueIdentifier>
     </Filter>
@@ -68,6 +56,12 @@
     </Filter>
     <Filter Include="Source Files\Util">
       <UniqueIdentifier>{013195a6-088b-49da-9db8-f21ab1dd89a9}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Header Files\Entity">
+      <UniqueIdentifier>{4cb79c73-2af1-40bc-9346-65fded4abb98}</UniqueIdentifier>
+    </Filter>
+    <Filter Include="Source Files\Entity">
+      <UniqueIdentifier>{b703603e-a837-4f27-b5b8-c69193dad822}</UniqueIdentifier>
     </Filter>
   </ItemGroup>
   <ItemGroup>
@@ -79,17 +73,11 @@
     <ClCompile Include="main.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
-    <ClCompile Include="_Plane.cpp">
-      <Filter>Source Files\Base</Filter>
-    </ClCompile>
     <ClCompile Include="PlayerPlane.cpp">
       <Filter>Source Files\Plane</Filter>
     </ClCompile>
     <ClCompile Include="BattleField.cpp">
       <Filter>Source Files\UI</Filter>
-    </ClCompile>
-    <ClCompile Include="SteadyMissile.cpp">
-      <Filter>Source Files\Missile</Filter>
     </ClCompile>
     <ClCompile Include="EnemyPlane.cpp">
       <Filter>Source Files\Plane</Filter>
@@ -99,15 +87,6 @@
     </ClCompile>
     <ClCompile Include="ExplosionEffect.cpp">
       <Filter>Source Files\Effect</Filter>
-    </ClCompile>
-    <ClCompile Include="LifeBonus.cpp">
-      <Filter>Source Files\Bonus</Filter>
-    </ClCompile>
-    <ClCompile Include="PointBonus.cpp">
-      <Filter>Source Files\Bonus</Filter>
-    </ClCompile>
-    <ClCompile Include="PowerBonus.cpp">
-      <Filter>Source Files\Bonus</Filter>
     </ClCompile>
     <ClCompile Include="Menu.cpp">
       <Filter>Source Files\UI</Filter>
@@ -130,9 +109,6 @@
     <ClCompile Include="Ranking.cpp">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
-    <ClCompile Include="TrackMissile.cpp">
-      <Filter>Source Files\Missile</Filter>
-    </ClCompile>
     <ClCompile Include="BackgroundMusic.cpp">
       <Filter>Source Files\Effect</Filter>
     </ClCompile>
@@ -145,29 +121,23 @@
     <ClCompile Include="Laser.cpp">
       <Filter>Source Files\Effect</Filter>
     </ClCompile>
-    <ClCompile Include="ShieldBonus.cpp">
-      <Filter>Source Files\Bonus</Filter>
-    </ClCompile>
     <ClCompile Include="LevelChoose.cpp">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
     <ClCompile Include="LevelReview.cpp">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
-    <ClCompile Include="SpecialMissile.cpp">
-      <Filter>Source Files\Missile</Filter>
-    </ClCompile>
     <ClCompile Include="Rule.cpp">
       <Filter>Source Files\UI</Filter>
     </ClCompile>
+    <ClCompile Include="Bonus.cpp">
+      <Filter>Source Files\Entity</Filter>
+    </ClCompile>
+    <ClCompile Include="Missile.cpp">
+      <Filter>Source Files\Entity</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
-    <ClInclude Include="_Plane.h">
-      <Filter>Header Files\Base</Filter>
-    </ClInclude>
-    <ClInclude Include="SteadyMissile.h">
-      <Filter>Header Files\Missile</Filter>
-    </ClInclude>
     <ClInclude Include="PlayerPlane.h">
       <Filter>Header Files\Plane</Filter>
     </ClInclude>
@@ -182,15 +152,6 @@
     </ClInclude>
     <ClInclude Include="config.h">
       <Filter>Header Files\Util</Filter>
-    </ClInclude>
-    <ClInclude Include="PointBonus.h">
-      <Filter>Header Files\Bonus</Filter>
-    </ClInclude>
-    <ClInclude Include="PowerBonus.h">
-      <Filter>Header Files\Bonus</Filter>
-    </ClInclude>
-    <ClInclude Include="LifeBonus.h">
-      <Filter>Header Files\Bonus</Filter>
     </ClInclude>
     <ClInclude Include="_Entity.h">
       <Filter>Header Files\Base</Filter>
@@ -207,9 +168,6 @@
     <ClInclude Include="BossEnemyPlane.h">
       <Filter>Header Files\Plane</Filter>
     </ClInclude>
-    <ClInclude Include="TrackMissile.h">
-      <Filter>Header Files\Missile</Filter>
-    </ClInclude>
     <ClInclude Include="BackgroundMusic.h">
       <Filter>Header Files\Effect</Filter>
     </ClInclude>
@@ -219,11 +177,11 @@
     <ClInclude Include="Laser.h">
       <Filter>Header Files\Effect</Filter>
     </ClInclude>
-    <ClInclude Include="ShieldBonus.h">
-      <Filter>Header Files\Bonus</Filter>
+    <ClInclude Include="Bonus.h">
+      <Filter>Header Files\Entity</Filter>
     </ClInclude>
-    <ClInclude Include="SpecialMissile.h">
-      <Filter>Header Files\Missile</Filter>
+    <ClInclude Include="Missile.h">
+      <Filter>Header Files\Entity</Filter>
     </ClInclude>
   </ItemGroup>
   <ItemGroup>

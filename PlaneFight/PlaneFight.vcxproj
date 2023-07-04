@@ -92,6 +92,7 @@
   <ItemGroup>
     <ClCompile Include="BackgroundMusic.cpp" />
     <ClCompile Include="BattleField.cpp" />
+    <ClCompile Include="Bonus.cpp" />
     <ClCompile Include="BossEnemyPlane.cpp" />
     <ClCompile Include="EnemyGenerator.cpp" />
     <ClCompile Include="EnemyPlane.cpp" />
@@ -101,22 +102,15 @@
     <ClCompile Include="Laser.cpp" />
     <ClCompile Include="LevelChoose.cpp" />
     <ClCompile Include="LevelReview.cpp" />
-    <ClCompile Include="LifeBonus.cpp" />
     <ClCompile Include="Menu.cpp" />
-    <ClCompile Include="PointBonus.cpp" />
-    <ClCompile Include="PowerBonus.cpp" />
+    <ClCompile Include="Missile.cpp" />
     <ClCompile Include="PlayerPlane.cpp" />
     <ClCompile Include="Ranking.cpp" />
     <ClCompile Include="Rule.cpp" />
-    <ClCompile Include="ShieldBonus.cpp" />
-    <ClCompile Include="SpecialMissile.cpp" />
-    <ClCompile Include="SteadyMissile.cpp" />
     <ClCompile Include="TargetEffect.cpp" />
-    <ClCompile Include="TrackMissile.cpp" />
     <ClCompile Include="util.cpp" />
     <ClCompile Include="_Effect.cpp" />
     <ClCompile Include="_Entity.cpp" />
-    <ClCompile Include="_Plane.cpp" />
     <QtRcc Include="PlaneFight.qrc" />
     <QtUic Include="BattleField.ui" />
     <ClCompile Include="main.cpp" />
@@ -130,6 +124,7 @@
   <ItemGroup>
     <QtMoc Include="BattleField.h" />
     <ClInclude Include="BackgroundMusic.h" />
+    <ClInclude Include="Bonus.h" />
     <ClInclude Include="BossEnemyPlane.h" />
     <ClInclude Include="config.h" />
     <ClInclude Include="EnemyGenerator.h" />
@@ -140,22 +135,15 @@
     <ClInclude Include="Laser.h" />
     <QtMoc Include="LevelChoose.h" />
     <QtMoc Include="LevelReview.h" />
-    <ClInclude Include="LifeBonus.h" />
     <QtMoc Include="Menu.h" />
-    <ClInclude Include="PointBonus.h" />
-    <ClInclude Include="PowerBonus.h" />
     <QtMoc Include="Ranking.h" />
     <QtMoc Include="Rule.h" />
-    <ClInclude Include="ShieldBonus.h" />
-    <ClInclude Include="SpecialMissile.h" />
+    <ClInclude Include="Missile.h" />
     <ClInclude Include="TargetEffect.h" />
-    <ClInclude Include="TrackMissile.h" />
     <ClInclude Include="util.h" />
     <ClInclude Include="PlayerPlane.h" />
-    <ClInclude Include="SteadyMissile.h" />
     <ClInclude Include="_Effect.h" />
     <ClInclude Include="_Entity.h" />
-    <ClInclude Include="_Plane.h" />
   </ItemGroup>
   <ItemGroup>
     <Text Include="DataRecord.txt" />
