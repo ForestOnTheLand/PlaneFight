@@ -14,8 +14,6 @@ public:
 public:
 	virtual void shootMissiles(BattleField* field) = 0;
 	virtual void afterDeath(BattleField* field) = 0;
-	virtual void updatePosition() = 0;
-	QPolygonF box() const override;
 
 	friend class EnemyClearingPolicy;
 };

@@ -20,7 +20,7 @@ BattleField::BattleField(QWidget* parent, Menu* menu)
 }
 
 BattleField::~BattleField() {
-	PlayerPlane::free();
+	PlayerPlane::del();
 	delete ui;
 	delete _timer;
 	delete _generator;
@@ -129,7 +129,7 @@ void BattleField::updateDrops() {
 
 void BattleField::checkDeadPlane() {
 	for (auto iter = enemy_planes.begin(); iter != enemy_planes.end();) {
-		if ((*iter)->dead() || (*iter)->out()) {
+		if ((*iter)->dead() || (*iter)->free()) {
 			if ((*iter)->dead()) {
 				PlayerPlane::plane()->score += 100;
 				(*iter)->afterDeath(this);
@@ -146,8 +146,8 @@ void BattleField::checkDeadPlane() {
 
 void BattleField::checkCollision() {
 	for (_EnemyPlane* enemy : enemy_planes) {
-		enemy->hurt(PlayerPlane::plane());
-		PlayerPlane::plane()->hurt(enemy);
+		enemy->attack(PlayerPlane::plane());
+		PlayerPlane::plane()->attack(enemy);
 	}
 	for (_Missile* missile : enemy_missiles) {
 		missile->collide(PlayerPlane::plane());

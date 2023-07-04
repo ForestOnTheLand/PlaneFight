@@ -100,7 +100,7 @@
     <ClCompile Include="Generator.cpp">
       <Filter>Source Files\EnemyGenerator</Filter>
     </ClCompile>
-    <ClCompile Include="BossEnemyPlane.cpp">
+    <ClCompile Include="BossPlane.cpp">
       <Filter>Source Files\Plane</Filter>
     </ClCompile>
     <ClCompile Include="GameReview.cpp">
@@ -165,7 +165,7 @@
     <ClInclude Include="EnemyPlane.h">
       <Filter>Header Files\Plane</Filter>
     </ClInclude>
-    <ClInclude Include="BossEnemyPlane.h">
+    <ClInclude Include="BossPlane.h">
       <Filter>Header Files\Plane</Filter>
     </ClInclude>
     <ClInclude Include="BackgroundMusic.h">

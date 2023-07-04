@@ -39,13 +39,7 @@ void _Bonus::updatePosition() {
 	_rect.moveTo(_rect.x() + _speed_x, _rect.y() + _speed_y);
 }
 
-const QPixmap& _Plane::picture() const {
-	return _picture;
-}
-const QRectF& _Plane::rect() const {
-	return _rect;
-}
-int _Plane::health() {
+int _Plane::health() const {
 	return _health;
 }
 void _Plane::changeHealth(int m) {
@@ -57,10 +51,15 @@ void _Plane::changeHealth(int m) {
  *
  * \param __image_path :  Path of the picture of plane
  */
-_Plane::_Plane(const char* const __image_path, int __health) : _health(__health) {
-	_picture.load(__image_path);
-	_rect.setWidth(_picture.width());
-	_rect.setHeight(_picture.height());
+_Plane::_Plane(const char* const __image_path, QPointF __init_pos, int __health)
+    : _Entity(__image_path, __init_pos.x(), __init_pos.y()), _health(__health) {}
+
+QPolygonF _Plane::box() const {
+	return QPolygonF(_rect);
+}
+
+void _Plane::_setPosition(double __x, double __y) {
+	_rect.moveCenter({__x, __y});
 }
 
 void _Plane::setPosition(QPointF __p) {
@@ -80,7 +79,7 @@ void _Plane::moveBy(double __dx, double __dy) {
 	_setPosition(_rect.center().x() + __dx, _rect.center().y() + __dy);
 }
 
-void _Plane::hurt(_Plane* __other) {
+void _Plane::attack(_Plane* __other) {
 	if (box().intersects(__other->box())) {
 		__other->changeHealth(-100);
 	}
@@ -90,9 +89,7 @@ bool _Plane::dead() const {
 	return (_health <= 0);
 }
 
-bool _Plane::out() const {
-	return !_rect.intersects(battlefield_border);
-}
+
 
 void _Plane::drawOn(QPainter& painter) {
 	painter.drawPixmap(_rect, _picture, QRectF());

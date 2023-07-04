@@ -18,7 +18,8 @@ BattleField* PlayerPlane::_field = nullptr;
 
 
 PlayerPlane::PlayerPlane(const char* const __image_path, int _bombs)
-    : _Plane(__image_path, player_max_health), bombs(_bombs), score(0), power(0) {
+    : _Plane(__image_path, battlefield_border.center(), player_max_health), bombs(_bombs), score(0),
+      power(0) {
 	_hurt_image.load(player_hurt_path);
 	_shield_picture.load(shield_path);
 	_special_missile_icon.load(":/PlaneFight/img/effect/pheonix.png");
@@ -43,7 +44,7 @@ void PlayerPlane::_setPosition(double __x, double __y) {
 }
 
 
-void PlayerPlane::free() {
+void PlayerPlane::del() {
 	delete _plane;
 	_plane = nullptr;
 }
@@ -173,8 +174,8 @@ QPolygonF PlayerPlane::box() const {
 	return QPolygonF(QRectF(_rect.center(), QSize(1, 1)));
 }
 
-void PlayerPlane::hurt(_Plane* __other) {
-	_Plane::hurt(__other);
+void PlayerPlane::attack(_Plane* __other) {
+	_Plane::attack(__other);
 	for (_Missile* missile : _missiles) {
 		missile->collide(__other);
 	}
@@ -221,3 +222,5 @@ void PlayerPlane::changeHealth(int m) {
 		_health = std::min(_health + m, player_max_health);
 	}
 }
+
+void PlayerPlane::updatePosition() {}

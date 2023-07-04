@@ -18,40 +18,35 @@ public:
 public:
 	const QPixmap& picture() const;
 	const QRectF& rect() const;
-	bool free() const;
+	virtual bool free() const;
 
 public:
 	virtual void updatePosition() = 0;    // To be implemented...
 };
 
 
-class _Plane {
+class _Plane : public _Entity {
 protected:
-	QPixmap _picture;    // Picture of plane
-	QRectF _rect;        // Border of picture
 	int _health;
 
 protected:
-	virtual void _setPosition(double __x, double __y) = 0;
+	virtual void _setPosition(double __x, double __y);
 
 public:
-	_Plane(const char* const __image_path, int __health);
+	_Plane(const char* const __image_path, QPointF __init_pos, int __health);
 	virtual ~_Plane() = default;
 
 public:
-	const QPixmap& picture() const;
-	const QRectF& rect() const;
-	virtual QPolygonF box() const = 0;
-	int health();
+	virtual QPolygonF box() const;
+	int health() const;
 	bool dead() const;
-	virtual bool out() const;
 
 public:
-	virtual void changeHealth(int m);
 	void setPosition(double __x, double __y);
 	void setPosition(QPointF p);
 	void moveBy(double __dx, double __dy);
-	virtual void hurt(_Plane* __other);
+	virtual void changeHealth(int m);
+	virtual void attack(_Plane* __other);
 	virtual void drawOn(QPainter& painter);
 };
 

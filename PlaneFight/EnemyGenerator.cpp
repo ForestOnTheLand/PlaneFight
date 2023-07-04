@@ -1,6 +1,6 @@
 #include "EnemyGenerator.h"
 #include "BattleField.h"
-#include "BossEnemyPlane.h"
+#include "BossPlane.h"
 
 void Policy::draw(QPainter& painter) {
 	return;
@@ -48,7 +48,7 @@ BossGeneratingPolicy::BossGeneratingPolicy(const char* __img_path, int __health,
 void BossGeneratingPolicy::execute(BattleField* b) {
 	if (!_field) {
 		_field = b;
-		_field->enemy_planes.push_back(new BossEnemyPlane(_img_path, _health, _attack));
+		_field->enemy_planes.push_back(new BossPlane(_img_path, _health, _attack));
 	}
 }
 bool BossGeneratingPolicy::terminal() {
@@ -98,14 +98,16 @@ EnemyGenerator::~EnemyGenerator() {
 }
 
 
-MessageDisplay::MessageDisplay(const QString& __msg1,const QString& __msg2, int __time)
-    : _msg1(__msg1), _msg2(__msg2), _time(__time* (1000 / update_rate)) {}
+MessageDisplay::MessageDisplay(const QString& __msg1, const QString& __msg2, int __time)
+    : _msg1(__msg1), _msg2(__msg2), _time(__time * (1000 / update_rate)) {}
 void MessageDisplay::execute(BattleField* b) {
 	if (!_b) {
 		_b = b;
 		_b->ui->msg_label->setText(_msg1);
 		if (_msg2 != "") {
-			_b->ui->story_label->setStyleSheet(QString::fromUtf8("background-color:rgba(170, 255, 255, 100);""color: rgb(255, 255, 255);"));
+			_b->ui->story_label->setStyleSheet(
+			    QString::fromUtf8("background-color:rgba(170, 255, 255, 100);"
+			                      "color: rgb(255, 255, 255);"));
 			_b->ui->story_label->setText(_msg2);
 		}
 	}

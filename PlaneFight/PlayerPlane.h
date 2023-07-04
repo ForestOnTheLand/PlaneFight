@@ -27,7 +27,7 @@ private:
 public:
 	static PlayerPlane* plane();
 	static void init(BattleField* b);
-	static void free();
+	static void del();
 
 public:
 	struct {
@@ -44,9 +44,10 @@ public:
 	void drawMissiles(QPainter& painter);
 	void drawHP(QPainter& painter);
 	void updateMissiles();
-	void hurt(_Plane* __other) final;
+	void attack(_Plane* __other) final;
 	QPolygonF box() const final;
 	void drawOn(QPainter& painter) final;
 	void drawCD(QPainter& painter);
 	void changeHealth(int m) final;
+	void updatePosition() final;
 };

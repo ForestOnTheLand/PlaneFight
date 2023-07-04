@@ -1,4 +1,4 @@
-#include "BossEnemyPlane.h"
+#include "BossPlane.h"
 #include "BattleField.h"
 #include "Missile.h"
 #include "TargetEffect.h"
@@ -17,11 +17,11 @@ static constexpr const char* knife_right_missile_path =
 static constexpr const char* big_missile_path = ":/PlaneFight/img/bullet/big_bullet_blue.png";
 
 
-BossEnemyPlane::BossEnemyPlane(const char* __image_path, int __health, int __attack)
+BossPlane::BossPlane(const char* __image_path, int __health, int __attack)
     : _EnemyPlane(__image_path, __health, {battlefield_border.center().x(), 0}),
       _max_health(_health), _attack(__attack) {}
 
-void BossEnemyPlane::shootMissilesAround(BattleField* field) {
+void BossPlane::shootMissilesAround(BattleField* field) {
 	static double angle = 0;
 	static int timer = 0;
 	if (++timer <= 3)
@@ -37,7 +37,7 @@ void BossEnemyPlane::shootMissilesAround(BattleField* field) {
 }
 
 
-void BossEnemyPlane::shootMissilesRound(BattleField* field) {
+void BossPlane::shootMissilesRound(BattleField* field) {
 	static int counter = 0;
 	static int timer = 0;
 	if (++timer <= 10)
@@ -54,7 +54,7 @@ void BossEnemyPlane::shootMissilesRound(BattleField* field) {
 	}
 }
 
-void BossEnemyPlane::shootMissilesArc(BattleField* field) {
+void BossPlane::shootMissilesArc(BattleField* field) {
 	static int counter = 0;
 	static int timer = 0;
 	if (++timer <= 3)
@@ -71,7 +71,7 @@ void BossEnemyPlane::shootMissilesArc(BattleField* field) {
 	}
 }
 
-void BossEnemyPlane::shootLaser(BattleField* field) {
+void BossPlane::shootLaser(BattleField* field) {
 	_laser.src = _rect.center();
 	if ((_laser.theta += 0.01) > 2 * M_PI) {
 		_shoot_state = 0;
@@ -80,7 +80,7 @@ void BossEnemyPlane::shootLaser(BattleField* field) {
 	}
 }
 
-void BossEnemyPlane::shootMissilesTrack(BattleField* field) {
+void BossPlane::shootMissilesTrack(BattleField* field) {
 	static int counter = 0;
 	static int timer = 0;
 	if (++timer <= 10)
@@ -97,7 +97,7 @@ void BossEnemyPlane::shootMissilesTrack(BattleField* field) {
 	}
 }
 
-void BossEnemyPlane::shootMissilesTarget(BattleField* field) {
+void BossPlane::shootMissilesTarget(BattleField* field) {
 	static int counter = 0;
 	static int timer = 0;
 	static int x = 0;
@@ -120,7 +120,7 @@ void BossEnemyPlane::shootMissilesTarget(BattleField* field) {
 	}
 }
 
-void BossEnemyPlane::shootMissilesCrossing(BattleField* field) {
+void BossPlane::shootMissilesCrossing(BattleField* field) {
 	static int counter = 0;
 	static int timer = 0;
 	if (++timer <= 50)
@@ -140,13 +140,13 @@ void BossEnemyPlane::shootMissilesCrossing(BattleField* field) {
 	}
 }
 
-void BossEnemyPlane::updatePosition() {
+void BossPlane::updatePosition() {
 	if (_rect.y() <= battlefield_border.y() + 100) {
 		moveBy(0, 10);
 	}
 }
 
-void BossEnemyPlane::shootMissiles(BattleField* field) {
+void BossPlane::shootMissiles(BattleField* field) {
 	switch (_shoot_state) {
 		case 0: _shoot_state = with_probability(0.5) ? 0 : psuedo_randint(1, 7); break;
 		case 1: shootMissilesAround(field); break;
@@ -158,13 +158,13 @@ void BossEnemyPlane::shootMissiles(BattleField* field) {
 	}
 }
 
-void BossEnemyPlane::afterDeath(BattleField* field) {
+void BossPlane::afterDeath(BattleField* field) {
 	field->effects.push_back(new ExplosionEffect(_rect.topLeft()));
 	field->effects.push_back(new ExplosionEffect(_rect.bottomRight()));
 	return;
 }
 
-void BossEnemyPlane::drawOn(QPainter& painter) {
+void BossPlane::drawOn(QPainter& painter) {
 	_Plane::drawOn(painter);
 	painter.drawRect(QRectF(_rect.x(), _rect.y() - 3, _rect.width(), 3));
 	painter.fillRect(QRectF(_rect.x(), _rect.y() - 3, _rect.width(), 3), Qt::red);
@@ -175,12 +175,12 @@ void BossEnemyPlane::drawOn(QPainter& painter) {
 		_laser.drawOn(painter);
 }
 
-bool BossEnemyPlane::out() const {
+bool BossPlane::free() const {
 	return false;
 }
 
-void BossEnemyPlane::hurt(_Plane* plane) {
-	_Plane::hurt(plane);
+void BossPlane::attack(_Plane* plane) {
+	_Plane::attack(plane);
 	if (_shoot_state == 4) {
 		_laser.hurt();
 	}

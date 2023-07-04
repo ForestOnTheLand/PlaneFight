@@ -3,6 +3,7 @@
 #include "util.h"
 #include "ui_BattleField.h"
 #include "EnemyPlane.h"
+#include "BossPlane.h"
 #include "ExplosionEffect.h"
 #include "Generator.h"
 #include "Menu.h"

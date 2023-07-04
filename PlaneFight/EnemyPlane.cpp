@@ -11,7 +11,7 @@ static constexpr const char* stable_missile_path =
 static constexpr const char* track_missile_path = ":/PlaneFight/img/bullet/small_bullet_orange.png";
 
 _EnemyPlane::_EnemyPlane(const char* __image_path, int __health, QPointF __init_pos)
-    : _Plane(__image_path, __health) {
+    : _Plane(__image_path, __init_pos, __health) {
 	setPosition(__init_pos);
 }
 
@@ -22,11 +22,6 @@ void _EnemyPlane::_setPosition(double __x, double __y) {
 void _EnemyPlane::_clearOut() {
 	return;
 }
-
-QPolygonF _EnemyPlane::box() const {
-	return QPolygonF(_rect);
-}
-
 
 EnemyPlane::EnemyPlane(const char* __image_path, int __health, int __shoot_inteval,
                        std::function<void(EnemyPlane*, BattleField*)> __shoot,

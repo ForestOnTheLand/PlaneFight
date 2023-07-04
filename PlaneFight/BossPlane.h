@@ -2,7 +2,7 @@
 #include "EnemyPlane.h"
 #include "Laser.h"
 
-class BossEnemyPlane : public _EnemyPlane {
+class BossPlane : public _EnemyPlane {
 private:
 	void shootMissilesAround(BattleField* field);
 	void shootMissilesArc(BattleField* field);
@@ -17,11 +17,11 @@ private:
 	Laser _laser;
 
 public:
-	BossEnemyPlane(const char* __image_path, int __health, int __attack);
+	BossPlane(const char* __image_path, int __health, int __attack);
 	void updatePosition() final;
-	void shootMissiles(BattleField* field) final;
-	void afterDeath(BattleField* field) final;
+	void shootMissiles(BattleField* field);
+	void afterDeath(BattleField* field);
 	void drawOn(QPainter& painter) final;
-	bool out() const final;
-	void hurt(_Plane* plane) final;
+	bool free() const final;
+	void attack(_Plane* plane) final;
 };
