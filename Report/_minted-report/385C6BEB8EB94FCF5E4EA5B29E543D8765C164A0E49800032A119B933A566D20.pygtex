@@ -1,0 +1,3 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{n}{QPushButton}\PYG{o}{*\PYGZgt{}}\PYG{+w}{ }\PYG{n}{gameModes}
+\end{Verbatim}

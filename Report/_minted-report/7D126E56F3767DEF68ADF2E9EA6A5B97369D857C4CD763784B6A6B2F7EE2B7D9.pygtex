@@ -1,0 +1,9 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{c+c1}{//变量}
+\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{PR\PYGZus{}data}\PYG{p}{[}\PYG{l+m+mi}{3}\PYG{p}{];}\PYG{c+c1}{//记录从文件读取的历史表现评分, 与鼠标活动结合实现动态展示.}
+\PYG{n}{Menu}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{mainMenu}\PYG{p}{;}\PYG{c+c1}{//提供界面转换的接口.}
+\PYG{c+c1}{//槽函数}
+\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{Level}\PYG{p}{();}\PYG{c+c1}{//根据信号的触发者决定关卡编号, 并切换到对应的战场界面.}
+\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{mouseMoveEvent}\PYG{p}{(}\PYG{n}{QMouseEvent}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{\PYGZus{}event}\PYG{p}{);}\PYG{c+c1}{//监听鼠标活动}
+\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{Return}\PYG{p}{();}\PYG{c+c1}{//返回模式选择界面}
+\end{Verbatim}

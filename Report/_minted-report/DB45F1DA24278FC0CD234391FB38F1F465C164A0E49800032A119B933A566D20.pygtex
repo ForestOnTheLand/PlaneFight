@@ -1,0 +1,3 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{QVBoxLayout}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{menuButtonLayout}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{QHBoxLayout}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{mainLayout}
+\end{Verbatim}

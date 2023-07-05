@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{std}\PYG{o}{::}\PYG{n}{function}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{int}\PYG{p}{(}\PYG{k+kt}{int}\PYG{p}{)}\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{n}{\PYGZus{}x}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{\PYGZus{}y}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// 横纵两方向的位置\PYGZhy{}时间函数}
+\PYG{n}{std}\PYG{o}{::}\PYG{n}{function}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{void}\PYG{p}{(}\PYG{n}{EnemyPlane}\PYG{o}{*}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{BattleField}\PYG{o}{*}\PYG{p}{)}\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{n}{\PYGZus{}shoot}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// 发射子弹的函数}
+\PYG{n}{std}\PYG{o}{::}\PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{k+kt}{double}\PYG{o}{\PYGZgt{}}\PYG{+w}{ }\PYG{n}{\PYGZus{}prob}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// 掉落物的概率}
+\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{\PYGZus{}shoot\PYGZus{}timer}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{\PYGZus{}move\PYGZus{}timer}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{\PYGZus{}shoot\PYGZus{}interval}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// 计时器}
+\end{Verbatim}

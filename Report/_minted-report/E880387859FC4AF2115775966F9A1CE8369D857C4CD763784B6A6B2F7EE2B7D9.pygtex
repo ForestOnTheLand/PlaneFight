@@ -1,0 +1,5 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{refill}\PYG{p}{();}\PYG{+w}{ }\PYG{c+c1}{// 根据本次游戏成绩设置界面显示内容, 并更新记录文件}
+\PYG{c+c1}{// 槽函数}
+\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{Return}\PYG{p}{();}\PYG{+w}{ }\PYG{c+c1}{// 用来返回关卡选择界面}
+\end{Verbatim}

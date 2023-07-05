@@ -1,0 +1,6 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{std}\PYG{o}{::}\PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{n}{QPixmap}\PYG{o}{*\PYGZgt{}}\PYG{+w}{ }\PYG{n}{\PYGZus{}pictures}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// 存储要显示的图片}
+\PYG{k+kt}{bool}\PYG{+w}{ }\PYG{n}{\PYGZus{}valid}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// 当前对象是否有效}
+\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{\PYGZus{}picture\PYGZus{}index}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// 当前显示图片编号}
+\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{\PYGZus{}timer}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// 计数器}
+\end{Verbatim}

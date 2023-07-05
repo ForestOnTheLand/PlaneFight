@@ -1,0 +1,13 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{k}{public}\PYG{+w}{ }\PYG{o}{:}
+\PYG{+w}{    }\PYG{c+c1}{//槽函数}
+\PYG{+w}{    }\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n}{StartGame}\PYG{p}{();}\PYG{c+c1}{//切换到模式选择界面}
+\PYG{+w}{    }\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{Leave}\PYG{p}{();}\PYG{c+c1}{//结束程序}
+\PYG{+w}{    }\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{ShowRules}\PYG{p}{();}\PYG{c+c1}{//切换到游戏规则界面}
+\PYG{+w}{    }\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{ToFirstPage}\PYG{p}{();}\PYG{c+c1}{//切换到开始界面}
+\PYG{+w}{    }\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{GameMode1}\PYG{p}{();}\PYG{c+c1}{//切换到战场界面, 进入 survive mode}
+\PYG{+w}{    }\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{GameMode2}\PYG{p}{();}\PYG{c+c1}{//切换到战场界面, 进入 level mode}
+\PYG{+w}{    }\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{GameMode3}\PYG{p}{();}\PYG{c+c1}{//切换到游戏排名界面}
+\PYG{+w}{    }\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{mouseMoveEvent}\PYG{p}{(}\PYG{n}{QMouseEvent}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{\PYGZus{}event}\PYG{p}{);}\PYG{c+c1}{//监听鼠标活动,在移动到按钮上时}
+\PYG{+w}{                            }\PYG{c+c1}{// 触发颜色变换,图标显示等}
+\end{Verbatim}

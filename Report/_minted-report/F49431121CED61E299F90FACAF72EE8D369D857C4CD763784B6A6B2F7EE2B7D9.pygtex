@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{QPixmap}\PYG{+w}{ }\PYG{n}{pic1}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{pic2}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// 背景图片}
+\PYG{n}{std}\PYG{o}{::}\PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{n}{\PYGZus{}EnemyPlane}\PYG{o}{*\PYGZgt{}}\PYG{+w}{ }\PYG{n}{enemy\PYGZus{}planes}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// 存储当前全部敌机}
+\PYG{n}{std}\PYG{o}{::}\PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{n}{\PYGZus{}Effect}\PYG{o}{*\PYGZgt{}}\PYG{+w}{ }\PYG{n}{effects}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// 存储当前需要展示的效果}
+\PYG{n}{std}\PYG{o}{::}\PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{n}{\PYGZus{}Missile}\PYG{o}{*\PYGZgt{}}\PYG{+w}{ }\PYG{n}{enemy\PYGZus{}missiles}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// 当前所有敌机子弹}
+\PYG{n}{std}\PYG{o}{::}\PYG{n}{vector}\PYG{o}{\PYGZlt{}}\PYG{n}{\PYGZus{}Bonus}\PYG{o}{*\PYGZgt{}}\PYG{+w}{ }\PYG{n}{drops}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// 当前所有道具}
+\end{Verbatim}

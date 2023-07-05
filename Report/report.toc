@@ -1,0 +1,21 @@
+\contentsline {section}{\numberline {1}概述}{2}{section.1}%
+\contentsline {subsection}{\numberline {1.1}代码结构}{2}{subsection.1.1}%
+\contentsline {subsection}{\numberline {1.2}游戏结构}{3}{subsection.1.2}%
+\contentsline {subsection}{\numberline {1.3}游戏主要功能}{3}{subsection.1.3}%
+\contentsline {section}{\numberline {2}各文件内容描述}{4}{section.2}%
+\contentsline {subsection}{\numberline {2.1}界面}{4}{subsection.2.1}%
+\contentsline {subsubsection}{\numberline {2.1.1}\tt Menu.h, Menu.cpp}{4}{subsubsection.2.1.1}%
+\contentsline {subsubsection}{\numberline {2.1.2}\tt GameReview, LevelReview}{5}{subsubsection.2.1.2}%
+\contentsline {subsubsection}{\numberline {2.1.3}\tt LevelChoose.h, LevelChoose.cpp}{5}{subsubsection.2.1.3}%
+\contentsline {subsubsection}{\numberline {2.1.4}\tt Rule, Ranking}{5}{subsubsection.2.1.4}%
+\contentsline {subsubsection}{\numberline {2.1.5}\tt BattleField.h}{5}{subsubsection.2.1.5}%
+\contentsline {subsection}{\numberline {2.2}核心}{7}{subsection.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.1}\tt \_Effect.h}{7}{subsubsection.2.2.1}%
+\contentsline {subsubsection}{\numberline {2.2.2}\tt \_Entity.h}{7}{subsubsection.2.2.2}%
+\contentsline {subsubsection}{\numberline {2.2.3}\tt PlayerPlane.h, EnemyPlane.h, BossPlane.h(Laser.h)}{8}{subsubsection.2.2.3}%
+\contentsline {subsubsection}{\numberline {2.2.4}\tt Bonus.h, Missile.h}{8}{subsubsection.2.2.4}%
+\contentsline {subsubsection}{\numberline {2.2.5}\tt ExplosionEffect.h, TargetEffect.h}{9}{subsubsection.2.2.5}%
+\contentsline {subsubsection}{\numberline {2.2.6}\tt BackgroundMusic.h}{9}{subsubsection.2.2.6}%
+\contentsline {subsubsection}{\numberline {2.2.7}\tt EnemyGenerator.h, Generator.h}{9}{subsubsection.2.2.7}%
+\contentsline {section}{\numberline {3}小组分工}{9}{section.3}%
+\contentsline {section}{\numberline {4}项目总结与反思}{10}{section.4}%

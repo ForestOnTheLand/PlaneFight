@@ -1,0 +1,23 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{BattleField}\PYG{p}{(}\PYG{n}{QWidget}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{parent}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{nullptr}\PYG{p}{,}\PYG{+w}{ }\PYG{n}{Menu}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{menu}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{k}{nullptr}\PYG{p}{);}\PYG{+w}{ }\PYG{c+c1}{// 构造函数}
+\PYG{o}{\PYGZti{}}\PYG{n}{BattleField}\PYG{p}{();}\PYG{+w}{ }\PYG{c+c1}{// 析构函数}
+
+\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{start}\PYG{p}{(}\PYG{k+kt}{int}\PYG{+w}{ }\PYG{n}{level}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{);}\PYG{+w}{ }\PYG{c+c1}{// 开始，参数指定关卡，会根据关卡编号修改\PYGZus{}generator}
+\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{updateAll}\PYG{p}{();}\PYG{+w}{ }\PYG{c+c1}{// 一帧内全部更新}
+\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{gameOver}\PYG{p}{();}\PYG{+w}{ }\PYG{c+c1}{// 输掉游戏}
+\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{gameWin}\PYG{p}{();}\PYG{+w}{ }\PYG{c+c1}{// 游戏胜利}
+\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{pause}\PYG{p}{();}\PYG{+w}{ }\PYG{c+c1}{// 游戏暂停}
+
+\PYG{c+c1}{// 以下函数在updateAll中调用}
+\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{generateEnemy}\PYG{p}{();}\PYG{+w}{ }\PYG{c+c1}{// 生成敌机。调用\PYGZus{}generator的函数}
+\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{checkDeadPlane}\PYG{p}{();}\PYG{+w}{ }\PYG{c+c1}{// 清除死亡的敌机}
+\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{checkCollision}\PYG{p}{();}\PYG{+w}{ }\PYG{c+c1}{// 碰撞检测}
+\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{paintEffect}\PYG{p}{(}\PYG{n}{QPainter}\PYG{o}{\PYGZam{}}\PYG{+w}{ }\PYG{n}{painter}\PYG{p}{);}\PYG{+w}{ }\PYG{c+c1}{// 绘制特效}
+\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{processKeyEvent}\PYG{p}{();}\PYG{+w}{ }\PYG{c+c1}{// 处理按键}
+\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{updateMissiles}\PYG{p}{();}\PYG{+w}{ }\PYG{c+c1}{// 更新子弹}
+\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{updateDrops}\PYG{p}{();}\PYG{+w}{ }\PYG{c+c1}{// 更新掉落物}
+
+\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{paintEvent}\PYG{p}{(}\PYG{n}{QPaintEvent}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{\PYGZus{}event}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{final}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// 重载绘制事件处理}
+\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{keyPressEvent}\PYG{p}{(}\PYG{n}{QKeyEvent}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{\PYGZus{}event}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{final}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// 重载按键按下事件处理}
+\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{keyReleaseEvent}\PYG{p}{(}\PYG{n}{QKeyEvent}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{\PYGZus{}event}\PYG{p}{)}\PYG{+w}{ }\PYG{k}{final}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// 重载按键松开事件处理}
+\end{Verbatim}

@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{QTimer}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{\PYGZus{}timer}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// 计时器}
+\PYG{n}{Ui}\PYG{o}{::}\PYG{n}{BattleFieldClass}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{ui}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// Qt的UI界面}
+\PYG{n}{KeyState}\PYG{+w}{ }\PYG{n}{\PYGZus{}key}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// 按键记录}
+\PYG{n}{EnemyGenerator}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{\PYGZus{}generator}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// 关卡敌机生成，详见EnemyGenerator说明}
+\PYG{n}{Menu}\PYG{o}{*}\PYG{+w}{ }\PYG{n}{mainMenu}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// 主菜单}
+\end{Verbatim}

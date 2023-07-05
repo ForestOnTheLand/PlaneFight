@@ -1,0 +1,7 @@
+\begin{Verbatim}[commandchars=\\\{\}]
+\PYG{n}{\PYGZus{}Effect}\PYG{p}{(}\PYG{n}{std}\PYG{o}{::}\PYG{n}{initializer\PYGZus{}list}\PYG{o}{\PYGZlt{}}\PYG{k}{const}\PYG{+w}{ }\PYG{k+kt}{char}\PYG{o}{*\PYGZgt{}}\PYG{+w}{ }\PYG{n}{\PYGZus{}\PYGZus{}images\PYGZus{}path}\PYG{p}{);}\PYG{+w}{ }\PYG{c+c1}{// 构造函数}
+\PYG{k}{virtual}\PYG{+w}{ }\PYG{o}{\PYGZti{}}\PYG{n}{\PYGZus{}Effect}\PYG{p}{();}\PYG{+w}{ }\PYG{c+c1}{// 析构函数}
+\PYG{k+kt}{bool}\PYG{+w}{ }\PYG{n+nf}{valid}\PYG{p}{()}\PYG{+w}{ }\PYG{k}{const}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// 返回\PYGZus{}valid}
+\PYG{k}{virtual}\PYG{+w}{ }\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{update}\PYG{p}{();}\PYG{+w}{ }\PYG{c+c1}{// 更新。默认情况增加计数器}
+\PYG{k}{virtual}\PYG{+w}{ }\PYG{k+kt}{void}\PYG{+w}{ }\PYG{n+nf}{display}\PYG{p}{(}\PYG{n}{QPainter}\PYG{o}{\PYGZam{}}\PYG{+w}{ }\PYG{n}{painter}\PYG{p}{)}\PYG{+w}{ }\PYG{o}{=}\PYG{+w}{ }\PYG{l+m+mi}{0}\PYG{p}{;}\PYG{+w}{ }\PYG{c+c1}{// 要求子类实现绘制函数}
+\end{Verbatim}
