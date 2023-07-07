@@ -7,4 +7,4 @@
 - [`./Report`](./Report): 作业报告的LaTeX源码
 - [`./PlaneFight.sln`](./PlaneFight.sln): 项目VS解决方案
 - [`./report.pdf`](./report.pdf): **作业报告**`pdf`版
-- [`49-演示.(mkv|mp4)`](./49-演示.(mkv|mp4)): 演示视频。两者内容完全相同，因格式问题推荐打开`mp4`文件。
+- [`49-演示.(mkv|mp4)`](./49-演示.mp4): 演示视频。两者内容完全相同，因格式问题推荐打开`mp4`文件。
